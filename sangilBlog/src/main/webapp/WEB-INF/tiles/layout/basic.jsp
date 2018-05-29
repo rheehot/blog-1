@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 
-<link type="text/css" href="/css/common/footer.css" rel="stylesheet">
-<link type="text/css" href="/css/common/offcanvas.css" rel="stylesheet">
 <link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css">
 
 <html lang="ko">
