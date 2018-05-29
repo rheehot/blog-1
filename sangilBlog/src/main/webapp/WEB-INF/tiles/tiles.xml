@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+
+    <!-- Templates -->
+    <definition name="frontTemplate" template="/WEB-INF/tiles/layout/basic.jsp">
+        <put-attribute name="title" value="sangil's blog" />
+        <put-attribute name="header" value="/WEB-INF/tiles/template/header.jsp" />
+        <put-attribute name="body" value="" />
+        <put-attribute name="footer" value="/WEB-INF/tiles/template/footer.jsp" />
+    </definition>
+    
+    <definition name="mdTemplate" template="/WEB-INF/tiles/layout/basic.jsp">
+        <put-attribute name="title" value="sangil's Admin Page" />
+        <put-attribute name="header" value="/WEB-INF/tiles/template/header_md.jsp" />
+        <put-attribute name="body" value="" />
+        <put-attribute name="footer" value="/WEB-INF/tiles/template/footer_md.jsp" />
+    </definition>
+    
+    <definition name="loginTemplate" template="/WEB-INF/tiles/layout/basic.jsp">
+        <put-attribute name="title" value="sangil's Login Page" />
+        <put-attribute name="header" value="/WEB-INF/tiles/template/header_md.jsp" />
+        <put-attribute name="body" value="" />
+        <put-attribute name="footer" value="/WEB-INF/tiles/template/footer_md.jsp" />
+    </definition>
+    
+    <definition name="front/*" extends="frontTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/front/{1}.jsp"/>
+	</definition>
+	
+	<definition name="front/*/*" extends="frontTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/front/{1}/{2}.jsp"/>
+	</definition>
+	
+	<definition name="md/*" extends="mdTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/md/{1}.jsp"/>
+	</definition>
+	
+	<definition name="md/*/*" extends="mdTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/md/{1}/{2}.jsp"/>
+	</definition>
+	
+	<definition name="login" extends="loginTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/login.jsp"/>
+	</definition>
+
+</tiles-definitions>
+
