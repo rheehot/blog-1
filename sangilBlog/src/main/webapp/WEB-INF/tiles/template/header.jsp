@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 
-<nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="/main">Sangil's blog</a>
+<div class="container-fluid mt-3">
+  <h2><a href="">Sangil's blog</a></h2>
+</div>
+
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
 		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb">
 		  <span class="navbar-toggler-icon"></span>
 		</button>
@@ -16,9 +19,6 @@
 		      		<a class="dropdown-item" href="#">Link 3</a>
 		    		</div>
 		  		</li>
-				<li class="nav-item">
-	 				<a class="nav-link disabled" href="javascript:void(0)">Disabled</a>
-				</li>
 	    	</ul>
 	    	
 	    	<div class="form-inline">
