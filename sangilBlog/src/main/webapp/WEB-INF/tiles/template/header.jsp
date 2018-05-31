@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 
-<div class="mt-4">
+<div class="jumbotron mb-0">
   	<h1>Sangil's blog</h1>
 </div>
 
