@@ -11,7 +11,7 @@
 }
 #sidebar .list-group {
     min-width: 400px;
-    background-color: #333;
+    background-color: #f3f3f3;
     min-height: 100vh;
 }
 #sidebar i {
@@ -20,17 +20,17 @@
 
 #sidebar .list-group-item {
     border-radius: 0;
-    background-color: #333;
-    color: #ccc;
+    background-color: #f3f3f3;
+    color: #000000;
     border-left: 0;
     border-right: 0;
-    border-color: #2c2c2c;
+    border-color: #f3f3f3;
     white-space: nowrap;
 }
 
 /* highlight active menu */
 #sidebar .list-group-item:not(.collapsed) {
-    background-color: #222;
+    background-color: #f3f3f3;
 }
 
 /* closed state */
@@ -44,7 +44,7 @@
 
 /* open state */
 #sidebar .list-group .list-group-item[aria-expanded="true"] {
-  background-color: #222;
+  background-color: #dedede;
 }
 #sidebar .list-group .list-group-item[aria-expanded="true"]::after {
   content: " \f0da";
@@ -135,7 +135,7 @@
 	<div class="row d-flex d-md-block flex-nowrap wrapper">
         <div class="col-md-2 float-left col-1 pl-0 pr-0 collapse width show" id="sidebar">
                 <div class="list-group border-0 card text-center text-md-left">
-                <a href="#menu1" class="list-group-item d-inline-block collapsed" data-toggle="collapse" aria-expanded="false"><i class="fa fa-dashboard"></i> <span class="d-none d-md-inline">Item 1</span> </a>
+                <a href="#menu1" class="list-group-item d-inline-block collapsed" data-toggle="collapse" aria-expanded="false"><span class="d-none d-md-inline">Item 1</span> </a>
                 <div class="collapse" id="menu1" data-parent="#sidebar">
                     <a href="#menu1sub1" class="list-group-item" data-toggle="collapse" aria-expanded="false">Subitem 1 </a>
                     <div class="collapse" id="menu1sub1" data-parent="#menu1">
@@ -171,8 +171,8 @@
                     </div>
                     <a href="#" class="list-group-item">Subitem 3</a>
                 </div>
-                <a href="#" class="list-group-item d-inline-block collapsed"><i class="fa fa-film"></i> <span class="d-none d-md-inline">Item 2</span></a>
-                <a href="#menu3" class="list-group-item d-inline-block collapsed" data-toggle="collapse" aria-expanded="false"><i class="fa fa-book"></i> <span class="d-none d-md-inline">Item 3 </span></a>
+                <a href="#" class="list-group-item d-inline-block collapsed"><span class="d-none d-md-inline">Item 2</span></a>
+                <a href="#menu3" class="list-group-item d-inline-block collapsed" data-toggle="collapse" aria-expanded="false"> <span class="d-none d-md-inline">Item 3 </span></a>
                 <div class="collapse" id="menu3" data-parent="#sidebar">
                     <a href="#" class="list-group-item" data-parent="#menu3">3.1</a>
                     <a href="#menu3sub2" class="list-group-item" data-toggle="collapse" aria-expanded="false">3.2 </a>
@@ -183,18 +183,9 @@
                     </div>
                     <a href="#" class="list-group-item" data-parent="#menu3">3.3</a>
                 </div>
-                <a href="#" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-heart"></i> <span class="d-none d-md-inline">Item 4</span></a>
-                <a href="#" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-list"></i> <span class="d-none d-md-inline">Item 5</span></a>
-                <a href="#" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-clock-o"></i> <span class="d-none d-md-inline">Link</span></a>
-                <a href="#" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-th"></i> <span class="d-none d-md-inline">Link</span></a>
-                <a href="#" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-gear"></i> <span class="d-none d-md-inline">Link</span></a>
-                <a href="#" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-calendar"></i> <span class="d-none d-md-inline">Link</span></a>
-                <a href="#" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-envelope"></i> <span class="d-none d-md-inline">Link</span></a>
-                <a href="#" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-bar-chart-o"></i> <span class="d-none d-md-inline">Link</span></a>
-                <a href="#" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-star"></i> <span class="d-none d-md-inline">Link</span></a>
             </div>
         </div>
-        <main class="col-md-9 float-left col px-5 pl-md-2 pt-2 main">
+        <div class="col-md-9 float-left col px-5 pl-md-2 pt-2 main">
             <a href="#" data-target="#sidebar" data-toggle="collapse"><i class="fa fa-navicon fa-2x py-2 p-1"></i></a>
             <div class="page-header">
                 <h2>Sangil's blog</h2>
@@ -225,6 +216,6 @@
                     </div>
                 </div>
             </div>
-        </main>
+        </div>
     </div>
 </div>

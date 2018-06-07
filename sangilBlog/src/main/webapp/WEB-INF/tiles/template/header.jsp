@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 
-<div class="jumbotron mb-0">
+<div class="container-flud" style="background-color: #ffffff; height:6em;">
   	<h1>Sangil's blog</h1>
 </div>
 
@@ -9,7 +9,7 @@
 		  <span class="navbar-toggler-icon"></span>
 		</button>
 
-		<div class="collapse navbar-collapse" id="navb"">
+		<div class="collapse navbar-collapse" id="navb">
 			<ul class="navbar-nav mr-auto">
 				<%-- 
 	  			<li class="nav-item dropdown">
