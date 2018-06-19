@@ -30,6 +30,7 @@
 		<put-attribute name="body" value="/WEB-INF/views/front/{1}.jsp"/>
 	</definition>
 	
+	<!--  
 	<definition name="front/*/*" extends="frontTemplate">
 		<put-attribute name="body" value="/WEB-INF/views/front/{1}/{2}.jsp"/>
 	</definition>
@@ -45,6 +46,6 @@
 	<definition name="login" extends="loginTemplate">
 		<put-attribute name="body" value="/WEB-INF/views/login.jsp"/>
 	</definition>
-
+	-->
 </tiles-definitions>
 

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 
 <div class="container-flud" style="background-color: #ffffff; height:6em;">
-  	<h1>Sangil's blog</h1>
+  	<h1><a href="/main">Sangil's blog</a></h1>
 </div>
 
 <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">

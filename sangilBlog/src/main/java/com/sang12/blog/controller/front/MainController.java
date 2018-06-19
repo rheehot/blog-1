@@ -1,5 +1,7 @@
 package com.sang12.blog.controller.front;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,11 +12,29 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class MainController {
-
+	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
+	
+	/*
 	@RequestMapping("/main")
 	public ModelAndView main() throws Exception {
 		ModelMap model = new ModelMap();
+		logger.info("main Controller");
 		return new ModelAndView("front/main", "data", model);
+	}
+	*/
+	
+	@RequestMapping("front/main")
+	public String main(){
+		ModelMap model = new ModelMap();
+		logger.info("main Controller");
+		return "front/main";
+	}
+	
+	@RequestMapping("/md/test")
+	public String main2(){
+		ModelMap model = new ModelMap();
+		logger.info("main Controller");
+		return "front/main";
 	}
 	
 	@GetMapping("/articleDetail/{articleId}")

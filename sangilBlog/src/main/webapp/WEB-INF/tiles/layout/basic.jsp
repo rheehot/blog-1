@@ -11,8 +11,10 @@
 	    <title><tiles:getAsString name="title" /></title>
 	    <script src="/webjars/jquery/3.2.1/jquery.js"></script>
 	    <script src="/webjars/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+	    <%-- 
 	   	<script src="/js/common/jquery.serialize-object.js"></script>
 	   	<script src="/js/common/util.js"></script>
+	   	--%>
 	</head>
 	<body>
 	    <tiles:insertAttribute name="header" />
