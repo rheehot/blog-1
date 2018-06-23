@@ -26,17 +26,19 @@
         <put-attribute name="footer" value="/WEB-INF/tiles/template/footer_md.jsp" />
     </definition>
     
+    <!-- front template -->
     <definition name="front/*" extends="frontTemplate">
 		<put-attribute name="body" value="/WEB-INF/views/front/{1}.jsp"/>
+	</definition>
+	
+	<!-- admin template -->
+	<definition name="md/*" extends="mdTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/md/{1}.jsp"/>
 	</definition>
 	
 	<!--  
 	<definition name="front/*/*" extends="frontTemplate">
 		<put-attribute name="body" value="/WEB-INF/views/front/{1}/{2}.jsp"/>
-	</definition>
-	
-	<definition name="md/*" extends="mdTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/md/{1}.jsp"/>
 	</definition>
 	
 	<definition name="md/*/*" extends="mdTemplate">

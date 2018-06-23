@@ -2,6 +2,9 @@
 
 <div class="container-flud" style="background-color: #ffffff; height:6em;">
   	<h1><a href="/main">Sangil's blog</a></h1>
+  	<div class="float-right mr-3 mt-3"> 
+	  	<span class="badge badge-primary" style="cursor:hand" onclick="javascript:location.href='/md/main'">Admin</span>
+  	</div>
 </div>
 
 <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">

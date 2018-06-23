@@ -14,8 +14,8 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
  */
 
 @Component
-public class CountInterceptor extends HandlerInterceptorAdapter{
-	private static final Logger logger = LoggerFactory.getLogger(CountInterceptor.class);
+public class FrontSessionInterceptor extends HandlerInterceptorAdapter{
+	private static final Logger logger = LoggerFactory.getLogger(FrontSessionInterceptor.class);
 	//@Autowired
 	//private CommonService commonService;
   
@@ -34,18 +34,13 @@ public class CountInterceptor extends HandlerInterceptorAdapter{
 			return false;
 		}
 		*/
+		logger.info("Front Session Interceptor");
 		HttpSession session = request.getSession(false);
 		if(session != null){
-			logger.info("세션존재");
 			return true;
 		}
 		session = request.getSession();
 		//this.commonService.checkAndCount();
-			logger.info("세션 생성 카운트++");
-			return true;
-	}
-  
-	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception{
-		super.postHandle(request, response, handler, modelAndView);
+		return true;
 	}
 }

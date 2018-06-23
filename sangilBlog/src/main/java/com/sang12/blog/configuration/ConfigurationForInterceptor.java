@@ -1,6 +1,7 @@
 package com.sang12.blog.configuration;
 
-import com.sang12.blog.interceptor.CountInterceptor;
+import com.sang12.blog.interceptor.AdminLoginInterceptor;
+import com.sang12.blog.interceptor.FrontSessionInterceptor;
 import com.sang12.blog.interceptor.PageNotFoundInterceptor;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,15 +12,21 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @Configuration
 public class ConfigurationForInterceptor extends WebMvcConfigurerAdapter{
 	@Autowired
-	CountInterceptor countInterceptor;
+	FrontSessionInterceptor frontSessionInterceptor;
 	
 	@Autowired
 	PageNotFoundInterceptor pageNotFoundInterceptor;
+	
+	@Autowired
+	AdminLoginInterceptor adminLoginInterceptor;
   
 	public void addInterceptors(InterceptorRegistry registry){
-		registry.addInterceptor(this.countInterceptor)
+		registry.addInterceptor(this.frontSessionInterceptor)
 				.addPathPatterns("/front/**")
 				.excludePathPatterns("/md/**");
+		
+		registry.addInterceptor(this.adminLoginInterceptor).addPathPatterns("/md/**")
+		.excludePathPatterns("/front/**");
 		
 		registry.addInterceptor(this.pageNotFoundInterceptor).addPathPatterns("/**")
 				.excludePathPatterns("/md/**")
