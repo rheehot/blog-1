@@ -5,7 +5,7 @@
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="/webjars/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
-<div class="container-fluid d-flex justify-content-center h-100" style="width:800px;">
+<div class="container-fluid d-flex justify-content-center h-100">
 	<div class="align-self-center text-center">
 		<i class="fa fa-frown-o fa-5x" style="color:red;"></i>
 		<h2 class="text-center">아이고 잘못된 접근입니다</h2>

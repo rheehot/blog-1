@@ -26,12 +26,13 @@ public class ConfigurationForInterceptor extends WebMvcConfigurerAdapter{
 				.excludePathPatterns("/md/**");
 		
 		registry.addInterceptor(this.adminLoginInterceptor).addPathPatterns("/md/**")
-		.excludePathPatterns("/front/**");
+		.excludePathPatterns("/front/**")
+		.excludePathPatterns("/md/login*");
 		
 		registry.addInterceptor(this.pageNotFoundInterceptor).addPathPatterns("/**")
 				.excludePathPatterns("/md/**")
 				.excludePathPatterns("/front/**")
 				.excludePathPatterns("/pageNotFound");
-		//excludePathPatterns는 컨트롤러에 걸렸을때 requestMapping이 /md로 접근했을 경우에만 안탄다.
+		//excludePathPatterns�뒗 而⑦듃濡ㅻ윭�뿉 嫄몃졇�쓣�븣 requestMapping�씠 /md濡� �젒洹쇳뻽�쓣 寃쎌슦�뿉留� �븞�깂�떎.
 	}
 }

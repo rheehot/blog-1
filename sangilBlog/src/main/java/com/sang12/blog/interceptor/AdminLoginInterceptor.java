@@ -2,6 +2,7 @@ package com.sang12.blog.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +19,17 @@ public class AdminLoginInterceptor extends HandlerInterceptorAdapter{
 	private static final Logger logger = LoggerFactory.getLogger(PageNotFoundInterceptor.class);
 	
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception{
-		logger.info("admin Interceptor");
+		HttpSession session = request.getSession(false);
+		if(session != null) {
+			String userId = (String)session.getAttribute("userId");
+			if (userId != null){
+				logger.info("login::true");
+				return true;
+			}else {
+				logger.info("login::false");
+				response.sendRedirect("/md/login");
+			}
+		}
 		return true;
 	}
 }
