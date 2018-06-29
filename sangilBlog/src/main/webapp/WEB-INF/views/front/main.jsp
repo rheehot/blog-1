@@ -130,7 +130,7 @@
 </style>
 
 <div class="container-fluid">
-	<div class="row d-flex d-md-block flex-nowrap wrapper">
+	<div class="row d-flex d-md-block wrapper">
         <div class="col-md-2 float-left col-1 pl-0 pr-0 collapse width show" id="sidebar">
                 <div class="list-group border-0 card text-center text-md-left">
                 <a href="#menu1" class="list-group-item d-inline-block collapsed" data-toggle="collapse" aria-expanded="false"><span class="d-none d-md-inline">Item 1</span> </a>

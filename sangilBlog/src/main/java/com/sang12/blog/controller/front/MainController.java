@@ -30,6 +30,13 @@ public class MainController {
 		return "front/main";
 	}
 	
+	@RequestMapping("front/main_test")
+	public String main_test(){
+		ModelMap model = new ModelMap();
+		logger.info("main Controller");
+		return "front/main_test";
+	}
+	
 	@RequestMapping("/md/test")
 	public String main2(){
 		ModelMap model = new ModelMap();
