@@ -13,8 +13,8 @@
 	    <script src="/webjars/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 	    <%--awesome --%>
 	    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	   	<script src="/js/common/jquery.serializeObject.js"></script>
 	    <%-- 
-	   	<script src="/js/common/jquery.serialize-object.js"></script>
 	   	<script src="/js/common/util.js"></script>
 	   	--%>
 	</head>

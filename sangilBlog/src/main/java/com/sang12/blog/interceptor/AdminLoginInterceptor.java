@@ -16,20 +16,21 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 @Component
 public class AdminLoginInterceptor extends HandlerInterceptorAdapter{
-	private static final Logger logger = LoggerFactory.getLogger(PageNotFoundInterceptor.class);
+	private static final Logger logger = LoggerFactory.getLogger(AdminLoginInterceptor.class);
 	
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception{
 		HttpSession session = request.getSession(false);
 		if(session != null) {
-			String userId = (String)session.getAttribute("userId");
+			String userId = (String)session.getAttribute("user");
 			if (userId != null){
 				logger.info("login::true");
 				return true;
 			}else {
 				logger.info("login::false");
 				response.sendRedirect("/md/login");
+				return false;
 			}
 		}
-		return true;
+		return false;
 	}
 }

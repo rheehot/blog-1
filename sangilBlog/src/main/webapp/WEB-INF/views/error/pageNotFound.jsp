@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 
 <script src="/webjars/jquery/3.2.1/jquery.js"></script>
-<link rel="stylesheet" href="/webjars/bootstrap/4.1.0//css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/webjars/bootstrap/4.1.0//css/bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
 <script src="/webjars/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
 <div class="container-fluid d-flex justify-content-center h-100">

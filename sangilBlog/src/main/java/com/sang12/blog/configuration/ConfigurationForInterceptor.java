@@ -32,6 +32,7 @@ public class ConfigurationForInterceptor extends WebMvcConfigurerAdapter{
 		registry.addInterceptor(this.pageNotFoundInterceptor).addPathPatterns("/**")
 				.excludePathPatterns("/md/**")
 				.excludePathPatterns("/front/**")
+				.excludePathPatterns("/common/**")
 				.excludePathPatterns("/pageNotFound");
 		//excludePathPatterns�뒗 而⑦듃濡ㅻ윭�뿉 嫄몃졇�쓣�븣 requestMapping�씠 /md濡� �젒洹쇳뻽�쓣 寃쎌슦�뿉留� �븞�깂�떎.
 	}
