@@ -69,7 +69,6 @@ doLogin = function(){
 		contentType: 'application/json',
 		success: function(res) {
 			if(res.isReceived){
-				alert("abc");
 				location.href="/md/main";
 			}else{
 				alert("아이디와 암호를 확인하여 주십시오");

@@ -8,14 +8,18 @@
     <definition name="frontTemplate" template="/WEB-INF/tiles/layout/basic.jsp">
         <put-attribute name="title" value="sangil's blog" />
         <put-attribute name="header" value="/WEB-INF/tiles/template/header.jsp" />
-        <put-attribute name="body" value="" />
+        <put-attribute name="leftArea" value="/WEB-INF/tiles/template/leftArea.jsp"/>
+        <put-attribute name="body" value=""/>
+        <put-attribute name="rightArea" value="/WEB-INF/tiles/template/rightArea.jsp"/>
         <put-attribute name="footer" value="/WEB-INF/tiles/template/footer.jsp" />
     </definition>
     
     <definition name="mdTemplate" template="/WEB-INF/tiles/layout/basic.jsp">
         <put-attribute name="title" value="sangil's Admin Page" />
         <put-attribute name="header" value="/WEB-INF/tiles/template/header_md.jsp" />
+        <put-attribute name="leftArea" value=""/>
         <put-attribute name="body" value="" />
+        <put-attribute name="rightArea" value=""/>
         <put-attribute name="footer" value="/WEB-INF/tiles/template/footer_md.jsp" />
     </definition>
     
