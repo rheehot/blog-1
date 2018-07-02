@@ -21,16 +21,9 @@
 	<body>
 		<div class="container-flud">
 			<tiles:insertAttribute name="header" />
-			<div class="row d-flex"><div class="col-md-2 h-100 d-none d-sm-block" style="background-color:#f3f3f3;">
-				<tiles:insertAttribute name="leftArea"/>
-			</div>
-       		<div class="col">
-       			<tiles:insertAttribute name="body"/>
-      		</div>
-       		<div class="col-md-2 h-100 d-none d-sm-block" style="background-color:#f3f3f3;">
-       			<tiles:insertAttribute name="rightArea"/>
-       		</div>
-		</div>
+			<tiles:insertAttribute name="leftArea"/>
+     		<tiles:insertAttribute name="body"/>
+      		<tiles:insertAttribute name="rightArea"/>
 		    <tiles:insertAttribute name="footer" />	
 		</div>
 	</body>
