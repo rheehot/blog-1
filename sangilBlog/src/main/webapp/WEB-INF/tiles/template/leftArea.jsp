@@ -41,7 +41,7 @@
 	}
 </style>
 	
-	<nav class="sidenav">
+	<nav class="sidenav d-none d-sm-block">
        <div class="sidebar-header">
            <h3>sidebar</h3>
        </div>
