@@ -1,7 +1,7 @@
 	
 <style>
 	/* The sidebar menu */
-	.sidenav {
+	.leftArea {
 	    height: 100%; /* Full-height: remove this if you want "auto" height */
 	    width: 15%; /* Set the width of the sidebar */
 	    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
@@ -11,49 +11,45 @@
 	    background-color: #f3f3f3; /* Black */
 	    overflow-x: hidden; /* Disable horizontal scroll */
 	    padding-top: 20px;
-	    margin-top:140px;
+	    margin-top:200px;
 	}
 	
 	/* The navigation menu links */
-	.sidenav a {
+	.leftArea a {
 	    padding: 6px 8px 6px 16px;
 	    text-decoration: none;
 	    font-size: 25px;
-	    color: #818181;
+	    color: #464242;
 	    display: block;
 	}
 	
 	/* When you mouse over the navigation links, change their color */
-	.sidenav a:hover {
-	    color: #f1f1f1;
+	.leftArea a:hover {
+	    color: black;
 	}
 	
-	/* Style page content */
-	.main {
-	    margin-left: 160px; /* Same as the width of the sidebar */
-	    padding: 0px 10px;
-	}
-	
-	/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
-	@media screen and (max-height: 450px) {
-	    .sidenav {padding-top: 15px;}
-	    .sidenav a {font-size: 18px;}
-	}
 </style>
 	
-	<nav class="sidenav">
-       <div class="sidebar-header">
-           <h3>sidebar</h3>
-       </div>
-       
-       <a href="#">123t</a>
-
-       <!-- <ul class="list-unstyled components">
-           <li class="active">
+	
+<div style="height:100%; background-color: #f3f3f3; float:left; width:250px;">
+	<nav class="leftArea">
+        <ul class="list-unstyled components">
+           <li>
                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
                <ul class="collapse list-unstyled" id="homeSubmenu">
                    <li>
-                       <a href="#">Home 1</a>
+                       <a href="#home1Submenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home 1</a>
+						<ul class="collapse list-unstyled" id="home1Submenu">
+							<li>
+                       			<a href="#">Home1_1</a>
+                  			</li>
+                   			<li>
+                       			<a href="#">Home1_2</a>
+                   			</li>
+                   			<li>
+                       			<a href="#">Home1_3</a>
+                   			</li>
+               			</ul>
                    </li>
                    <li>
                        <a href="#">Home 2</a>
@@ -86,5 +82,6 @@
            <li>
                <a href="#">Contact</a>
            </li>
-       </ul> -->
+       </ul> 
    </nav>
+</div>

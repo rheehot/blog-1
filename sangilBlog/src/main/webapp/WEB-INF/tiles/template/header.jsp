@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 
 <div style="background-color: #ffffff; height:6em;">
-  	<h1><a href="/front/main">Sangil's blog</a></h1>
+  	<h1 class="ml-3"><a href="/front/main">Sangil's blog</a></h1>
   	<div class="float-right mr-3 mt-3"> 
 	  	<span class="badge badge-primary" style="cursor:hand" onclick="javascript:location.href='/md/main'">Admin</span>
   	</div>
@@ -14,16 +14,20 @@
 
 		<div class="collapse navbar-collapse" id="navb">
 			<ul class="navbar-nav mr-auto">
-				<%-- 
+				<li class="nav-item">
+     				<a class="nav-link" href="#">INTRODUCTION</a>
+   				</li>
 	  			<li class="nav-item dropdown">
-		    		<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">menu</a>
+		    		<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">LABORATORY</a>
 		    		<div class="dropdown-menu">
 		      		<a class="dropdown-item" href="#">Link 1</a>
 		      		<a class="dropdown-item" href="#">Link 2</a>
 		      		<a class="dropdown-item" href="#">Link 3</a>
 		    		</div>
 		  		</li>
-		  		--%>
+		  		<li class="nav-item">
+     				<a class="nav-link" href="#">GUESTBOOK</a>
+   				</li>
 	    	</ul>
 	    	
 	    	<div class="form-inline f">

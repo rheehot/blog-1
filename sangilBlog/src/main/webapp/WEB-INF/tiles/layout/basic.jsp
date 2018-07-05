@@ -3,6 +3,14 @@
 
 <link rel="stylesheet" href="/webjars/bootstrap/4.1.0//css/bootstrap.min.css">
 
+<style>
+html, body{
+  margin:0;
+  padding:0;
+  height:100%;
+}
+</style>
+
 <html lang="ko">
 	<head>
 	    <meta charset="utf-8">
@@ -21,9 +29,17 @@
 	<body>
 		<div class="container-flud">
 			<tiles:insertAttribute name="header" />
-			<tiles:insertAttribute name="leftArea"/>
-     		<tiles:insertAttribute name="body"/>
-      		<tiles:insertAttribute name="rightArea"/>
+			<div class="row d-flex p-0 mr-0 ml-0">
+				<div class="col-md-2 d-none d-sm-block" style="background-color:#f3f3f3">
+					<tiles:insertAttribute name="leftArea"/>
+				</div>
+				<div class="col">
+		     		<tiles:insertAttribute name="body"/>
+				</div>
+				<div class="col-md-2 d-none d-sm-block" style="background-color:#f3f3f3">
+					<tiles:insertAttribute name="rightArea"/>	
+				</div>
+			</div>
 		    <tiles:insertAttribute name="footer" />	
 		</div>
 	</body>

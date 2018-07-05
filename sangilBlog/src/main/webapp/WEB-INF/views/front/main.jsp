@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
  
 <style>
+<%-- 
 #sidebar {
     overflow: hidden;
     z-index: 3;
@@ -127,8 +128,13 @@
   -webkit-transition-timing-function: ease-out;
   transition-timing-function: ease-out;
 }
+--%>
 </style>
 
-<div class="container-fluid">
-	
+<div class="main" style="">
+	<div class="jumbotron">
+  		<h1>BootStrap Tutorial</h1>
+  		<div class="float-right">2018/07/05 sang12</div> 
+  		<p>Bootstrap is the most popular HTML, CSS...</p> 
+	</div>
 </div>
