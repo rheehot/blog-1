@@ -135,6 +135,7 @@
 	<div class="jumbotron">
   		<h1>BootStrap Tutorial</h1>
   		<div class="float-right">2018/07/05 sang12</div> 
-  		<p>Bootstrap is the most popular HTML, CSS...</p> 
+  		<p>블로그 작업중입니다.</p> 
+  		<p>github => <a href="https://github.com/ChoiSangIl" target="_blank">https://github.com/ChoiSangIl</a></p>
 	</div>
 </div>
