@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 @Controller
+@RequestMapping("front")
 public class MainController {
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 	
@@ -23,25 +24,23 @@ public class MainController {
 	}
 	*/
 	
-	@RequestMapping("front/main")
+	@RequestMapping("/main")
 	public String main(){
 		ModelMap model = new ModelMap();
 		logger.info("main Controller");
 		return "front/main";
 	}
 	
-	@RequestMapping("front/main_test")
+	@RequestMapping("/intro")
+	public String intro(){
+		return "front/intro";
+	}
+	
+	@RequestMapping("/main_test")
 	public String main_test(){
 		ModelMap model = new ModelMap();
 		logger.info("main Controller");
 		return "front/main_test";
-	}
-	
-	@RequestMapping("/md/test")
-	public String main2(){
-		ModelMap model = new ModelMap();
-		logger.info("main Controller");
-		return "front/main";
 	}
 	
 	@GetMapping("/articleDetail/{articleId}")

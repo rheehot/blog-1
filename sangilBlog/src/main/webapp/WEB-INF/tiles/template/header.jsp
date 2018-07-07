@@ -15,7 +15,7 @@
 		<div class="collapse navbar-collapse" id="navb">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item">
-     				<a class="nav-link" href="#">INTRODUCTION</a>
+     				<a class="nav-link" href="/front/intro">INTRODUCTION</a>
    				</li>
 	  			<li class="nav-item dropdown">
 		    		<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">LABORATORY</a>

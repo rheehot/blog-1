@@ -31,7 +31,7 @@
 </style>
 	
 	
-<div style="height:100%; background-color: #f3f3f3; float:left; width:250px;">
+<div>
 	<nav class="leftArea">
         <ul class="list-unstyled components">
            <li>
