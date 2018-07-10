@@ -1,5 +1,8 @@
 package com.sang12.blog.repository.security;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,5 +22,10 @@ public class UserRepositoryTest {
 		User user;
 		user = userRepo.findByUserIdAndPassword("sang12", "test");
 		System.out.println(user);
+		
+		Calendar calendar = Calendar.getInstance();
+		calendar.add(Calendar.DATE, 1);
+		Date date = calendar.getTime();
+		System.out.println(date);
 	}
 }
