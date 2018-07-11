@@ -18,5 +18,5 @@
 <script type="text/javascript">
 	setInterval(function(){ 
 		location.href = "/front/main";
-	}, 2000);
+	}, 5000);
 </script>
