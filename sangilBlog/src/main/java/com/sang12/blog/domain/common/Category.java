@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -16,11 +18,12 @@ public class Category implements Serializable {
 	private static final long serialVersionUID = 4632631363169579856L;
 	
 	@Id
-	private int category_id;
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int categoryId;
 	
-	private String category_name;
+	private String categoryName;
 	
-	private int parent_id;
+	private int parentId;
 	
 	Date registerDate;
 	String registerId;

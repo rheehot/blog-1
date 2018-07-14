@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.sang12.blog.domain.common.Category;
 import com.sang12.blog.domain.common.JoinCount;
+import com.sang12.blog.repository.common.CategoryRepository;
 import com.sang12.blog.repository.common.JoinCountRepository;
 import com.sang12.blog.service.common.CommonService;
 import com.sang12.blog.utils.DateUtil;
@@ -14,6 +16,9 @@ import com.sang12.blog.utils.DateUtil;
 public class CommonServiceImpl implements CommonService {
 	@Autowired
 	private JoinCountRepository joinCountRep;
+	
+	@Autowired
+	private CategoryRepository categoryRep;
 	
 	@Override
 	public void checkAndCount() {
@@ -32,6 +37,11 @@ public class CommonServiceImpl implements CommonService {
 	@Override
 	public List<JoinCount> getJoinCount(String fromDate, String toDate) {
 		return joinCountRep.findByJoinDateBetween(fromDate, toDate);
+	}
+
+	@Override
+	public List<Category> getCategoryList(int CategoryNumber) {
+		return categoryRep.findByParentId(CategoryNumber);
 	}
 
 }

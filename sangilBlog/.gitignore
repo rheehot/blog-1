@@ -9,6 +9,10 @@
 .project
 .settings
 .springBeans
+*.class
+/application-dev.properties
+/application-prd.properties
+
 
 ### IntelliJ IDEA ###
 .idea

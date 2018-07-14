@@ -15,6 +15,9 @@
 	<div class="collapse navbar-collapse" id="navb">
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item">
+     				<a class="nav-link" href="/md/categoryManagement">카테고리</a>
+   			</li>
+			<li class="nav-item">
      				<a class="nav-link" href="#">게시판</a>
    			</li>
    			<%-- 
