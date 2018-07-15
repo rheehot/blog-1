@@ -5,9 +5,15 @@
 <link rel="stylesheet" href="/dataTables/css/jquery.dataTables.min.css"> -->
 
 
-<script src="/dataTables/js/jquery.dataTables.min.js"></script>
-<script src="/dataTables/js/dataTables.bootstrap4.min.js"></script>
-<link rel="stylesheet" href="/dataTables/css/dataTables.bootstrap4.min.css">
+<script src="/lib/dataTables/js/jquery.dataTables.min.js"></script>
+<script src="/lib/dataTables/js/dataTables.bootstrap4.min.js"></script>
+<script src="/lib/Buttons-1.5.2/js/dataTables.buttons.min.js"></script>
+<script src="/lib/Buttons-1.5.2/js/buttons.bootstrap4.min.js"></script>
+<script src="/lib/Select-1.2.6/js/dataTables.select.min.js"></script>
+
+<link rel="stylesheet" href="/lib/dataTables/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="/lib/Buttons-1.5.2/css/buttons.bootstrap4.min.css">
+<link rel="stylesheet" href="/lib/Select-1.2.6/css/select.bootstrap4.min.css">
 
 <div class="card mt-2">
     <div class="card-body">
@@ -45,25 +51,33 @@
 </div> 
 
 <script type="text/javascript">
+
 $(document).ready(function(){
-	getCategoryList();
-	  $('#upCategoryTable').DataTable( {
-	        "processing": true,
-	        "paging": false,
-	        "searching": false,
-	        "ajax": {
-	        	"url":"/md/getCategoryList",
-	        	"type":"POST",
-	        	"data": function(d){
-	        	}
-	        },
-	        "columns": [
-	            { "data": "categoryId" },
-	            { "data": "categoryName" }
-	        ],
-	        select: true
-	  } );
-	  
+	var table = $('#upCategoryTable').DataTable( {
+		"processing": true,
+		"paging": false,
+		"searching": false,
+		"ajax": {
+			"url":"/md/getCategoryList",
+			"type":"POST",
+			"data": function(d){
+			}
+		},
+		"columns": [
+		    { "data": "categoryId" },
+		    { "data": "categoryName" }
+		],
+		select: true
+	} );
+
+	/*
+	// Display the buttons
+	new $.fn.dataTable.Buttons( table, [
+		{ extend: "create", editor: editor },
+		{ extend: "edit",   editor: editor },
+		{ extend: "remove", editor: editor }
+	] );
+	  */
 	  /*
 	  $('#upCategoryTable tbody').on( 'click', 'tr', function () {
 		  alert("123");

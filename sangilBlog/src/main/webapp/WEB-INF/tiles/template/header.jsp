@@ -29,7 +29,7 @@
      				<a class="nav-link" href="/front/logbook">LOGBOOK</a>
    				</li>
 		  		<li class="nav-item">
-     				<a class="nav-link" href="#">GUESTBOOK</a>
+     				<a class="nav-link" href="/front/guestbook">GUESTBOOK</a>
    				</li>
 	    	</ul>
 	    	

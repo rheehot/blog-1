@@ -36,6 +36,16 @@ public class MainController {
 		return "front/intro";
 	}
 	
+	@RequestMapping("/logbook")
+	public ModelAndView logbook(){
+		return new ModelAndView("front/logbook");
+	}
+	
+	@RequestMapping("/guestbook")
+	public ModelAndView guestbook(){
+		return new ModelAndView("front/guestbook");
+	}
+	
 	@RequestMapping("/main_test")
 	public String main_test(){
 		ModelMap model = new ModelMap();
