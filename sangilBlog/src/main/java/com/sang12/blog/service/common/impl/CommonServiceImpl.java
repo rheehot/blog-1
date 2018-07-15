@@ -1,6 +1,8 @@
 package com.sang12.blog.service.common.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,6 +39,15 @@ public class CommonServiceImpl implements CommonService {
 	@Override
 	public List<JoinCount> getJoinCount(String fromDate, String toDate) {
 		return joinCountRep.findByJoinDateBetween(fromDate, toDate);
+	}
+	
+	@Override
+	public Map<String, Object> getJoinCountTotalList() {
+		Map<String, Object> returnMap = new HashMap<String, Object>(); 
+		returnMap.put("joinCountWeekList", joinCountRep.findByJoinDateBetween(DateUtil.addDayGetString(-7), DateUtil.addDayGetString(0)));
+		returnMap.put("joinCountTotalSum", joinCountRep.findByJoinDateSum());
+		returnMap.put("joinCountOfToday", joinCountRep.findByTodayCount(DateUtil.addDayGetString(0)));
+		return returnMap;
 	}
 
 	@Override

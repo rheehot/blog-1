@@ -1,6 +1,6 @@
 package com.sang12.blog.controller.common;
 
-import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.sang12.blog.domain.common.JoinCount;
 import com.sang12.blog.service.common.CommonService;
-import com.sang12.blog.utils.DateUtil;
 
 @Controller
 @RequestMapping("/common")
@@ -24,8 +22,8 @@ public class CommonController {
 	
 	@PostMapping("/getJoinCountList")
 	@ResponseBody
-	public List<JoinCount> getJoinCount(){
+	public Map<String, Object> getJoinCount(){
 		logger.debug("getJoinCountList Controller");
-		return commonService.getJoinCount(DateUtil.addDayGetString(-7), DateUtil.addDayGetString(0));
+		return commonService.getJoinCountTotalList();
 	}
 }

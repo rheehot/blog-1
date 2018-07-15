@@ -4,6 +4,7 @@
 
 <div class="rightArea" id="rightArea" style="height:100%; background-color:#f3f3f3;">
 	<canvas id="joinCountChart" class="mt-2" width="5" height="5"></canvas>
+	<p id="joinCountDetail" class="text-center" style="font-size:12px; font-weight:bold;"></p>
 </div>
 
 <script type="text/javascript">
@@ -19,14 +20,16 @@ getJoinCount = function(){
 		data: JSON.stringify(param),
 		contentType: 'application/json',
 		success: function(res) {
-			var joinCountList = res;
+			$("#joinCountDetail").append("TOTAL : <span class='badge badge-secondary'>" + res.joinCountTotalSum +
+					"</span><br/> TODAY : <span class='badge badge-secondary'>" + res.joinCountOfToday + "</span>")
+			var joinCountList = res.joinCountWeekList;
 			var joinCountArray = new Array();
 			var joinDateArray = new Array();
 			for (var i in joinCountList) {
 				joinDateArray.push(joinCountList[i].joinDate.substr(6,8));
 				joinCountArray.push(joinCountList[i].joinCount);
 			}	
-			setChart(joinDateArray,joinCountArray);
+			setChart(joinDateArray, joinCountArray);
 		}
   	});
 }
@@ -81,7 +84,7 @@ setChart = function(joinDateArray, joinCountArray){
 	        },
 			title: {
 				display: true,
-				text: '방문자수'
+				text: '방문자 통계'
 			}
 	    }
 	});
