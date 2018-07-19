@@ -30,38 +30,41 @@
                 <th>name</th>
             </tr>
         </thead>
+        <tbody></tbody>
 		</table>
 	</div>
 	<div class="col">
 		<table id="middleCategoryTable" class="table table-striped table-bordered" style="width:100%">
+		<thead>
 			<tr>
                 <th>number</th>
                 <th>name</th>
             </tr>
-		</table>
-	</div>
-	<div class="col">
-		<table id="bottomCategoryTable" class="table table-striped table-bordered" style="width:100%">
-			<tr>
-                <th>number</th>
-                <th>name</th>
-            </tr>
+        <thead>
+        <tbody></tbody>
 		</table>
 	</div>
 </div> 
 
 <script type="text/javascript">
-
 $(document).ready(function(){
+	getUpCategoryList();
+	//getMiddleCategoryList(0);
+});
+
+getUpCategoryList = function(){
+	var param = {};
+	param.parentId = 0;
+	
 	var table = $('#upCategoryTable').DataTable( {
 		"processing": true,
 		"paging": false,
-		"searching": false,
+		"searching": true,
+		"serverside": true,
 		"ajax": {
 			"url":"/md/getCategoryList",
 			"type":"POST",
-			"data": function(d){
-			}
+			"data": param
 		},
 		"columns": [
 		    { "data": "categoryId" },
@@ -69,43 +72,49 @@ $(document).ready(function(){
 		],
 		select: true
 	} );
-
-	/*
-	// Display the buttons
-	new $.fn.dataTable.Buttons( table, [
-		{ extend: "create", editor: editor },
-		{ extend: "edit",   editor: editor },
-		{ extend: "remove", editor: editor }
-	] );
-	  */
-	  /*
-	  $('#upCategoryTable tbody').on( 'click', 'tr', function () {
-		  alert("123");
-	        if ( $(this).hasClass('selected') ) {
-	            $(this).removeClass('selected');
-	        }
-	        else {
-	            $('tr.selected').removeClass('selected');
-	            $(this).addClass('selected');
-	        }
-	    } )*/
-	 //$('#upCategoryTable').DataTable();
-	 //$('#middleCategoryTable').DataTable();
-	 //$('#bottomCategoryTable').DataTable();
-});
-
-
-
-getCategoryList = function(){
-	var param = {};
-	$.ajax({
-		type: "POST",
-		url: '/md/getCategoryList',
-		data: JSON.stringify(param),
-		contentType: 'application/json',
-		success: function(res) {
-		}
-  	});
+	
+	table
+	 .on( 'select', function ( e, dt, type, indexes ) {
+	     var rowData = table.rows( indexes ).data().toArray();
+	     getMiddleCategoryList(rowData[0].categoryId);
+	 } );
 }
 
+/*
+ * 원하는 부모id 리스트를 가져온다. 0->root
+ */
+getMiddleCategoryList = function(parentId){
+	$('#middleCategoryTable').DataTable().destroy(); 
+	 
+	var param = {};
+	param.parentId = parentId;
+	
+	middleCategoryTable = $('#middleCategoryTable').DataTable( {
+		"processing": true,
+		"paging": false,
+		"retrieve": false,
+		"searching": true,
+		"serverside": true,
+		"ajax": {
+			"url":"/md/getCategoryList",
+			"type":"POST",
+			"data": param
+		},
+		"columns": [
+		    { "data": "categoryId" },
+		    { "data": "categoryName" }
+		],
+		select: true
+	} );
+}
+
+ 
+ 
+
+ 
+/* $('#upCategoryTable tbody').on( 'click', 'tr', function () {
+	var rowData = $('#upCategoryTable').DataTable().rows('.selected').data(); 
+	alert("id::"+rowData[0].categoryId +"name::" + rowData[0].categoryName);
+} );
+ */
 </script>

@@ -47,10 +47,9 @@ public class AdminController {
 	
 	@PostMapping("/getCategoryList")
 	@ResponseBody
-	public Map<String, Object> getCategoryList(){
-		logger.info("getCategoryList Controller");
+	public Map<String, Object> getCategoryList(Category category){
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("data", commonService.getCategoryList(0));
+		map.put("data", commonService.getCategoryList(category.getParentId()));
 		return map;
 	}
 }
