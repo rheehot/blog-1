@@ -52,4 +52,9 @@ public class AdminController {
 		map.put("data", commonService.getCategoryList(category.getParentId()));
 		return map;
 	}
+	
+	@RequestMapping("/writeArticle")
+	public ModelAndView writeArticle(){
+		return new ModelAndView("md/writeArticle");
+	}
 }

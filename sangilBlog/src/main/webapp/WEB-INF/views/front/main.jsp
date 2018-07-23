@@ -133,7 +133,7 @@
 
 <div class="main" style="">
 	<div class="jumbotron mt-2">
-  		<h1>BootStrap Tutorial</h1>
+  		<h1>BootStrap</h1>
   		<div class="float-right">2018/07/05 sang12</div> 
   		<p>블로그 작업중입니다.</p> 
   		<p>github => <a href="https://github.com/ChoiSangIl" target="_blank">https://github.com/ChoiSangIl</a></p>

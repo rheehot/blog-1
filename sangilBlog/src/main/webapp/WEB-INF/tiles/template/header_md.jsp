@@ -17,19 +17,16 @@
 			<li class="nav-item">
      				<a class="nav-link" href="/md/categoryManagement">카테고리</a>
    			</li>
-			<li class="nav-item">
-     				<a class="nav-link" href="#">게시판</a>
+   			<li class="nav-item">
+     				<a class="nav-link" href="/md/writeArticle">글작성</a>
    			</li>
-   			<%-- 
-  			<li class="nav-item dropdown">
-	    		<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">menu</a>
+  			<!-- <li class="nav-item dropdown">
+	    		<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">게시판</a>
 	    		<div class="dropdown-menu">
-	      		<a class="dropdown-item" href="#">Link 1</a>
-	      		<a class="dropdown-item" href="#">Link 2</a>
-	      		<a class="dropdown-item" href="#">Link 3</a>
+	      		<a class="dropdown-item" href="/md/categoryManagement">카테고리관리</a>
+	      		<a class="dropdown-item" href="/md/writeArticle">글작성</a>
 	    		</div>
-	  		</li>
-	  		--%>
+	  		</li> -->
     	</ul>
 	</div>
 </nav>

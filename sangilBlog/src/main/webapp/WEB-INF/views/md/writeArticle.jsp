@@ -1,21 +1,47 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="/webjars/bootstrap/4.1.1/dist/js/bootstrap.bundle.min.js"></script>
-<link href="/webjars/summernote/0.8.10/dist/summernote-bs4.css" rel="stylesheet">
-<script src="/webjars/summernote/0.8.10/dist/summernote-bs4.js"></script>
-<script src="/webjars/summernote/0.8.10/dist/lang/summernote-ko-KR.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.js"></script>
 
-<div class="container">
-	<div class="input-group" style="margin-bottom:5px;">
-    	<span class="input-group-addon">Title</span>
-    	<form id="frm" name="frm" method="post">
-    	<input id="title" name="title" type="text" class="form-control" placeholder="Additional Title">
-    	</form>
-	</div>
-	<div style="margin-bottom:100px;">
-		<div class="summernote"></div>
-		<button type="button" class="btn btn-primary center-block" onClick="javascript:save();">저장</button>
+<!--  
+<script src="/lib/summernote-0.8.9/summernote-bs4.min.js"></script>
+<script src="/lib/summernote-0.8.9/summernote-bs4.css"></script>
+<script src="/lib/summernote-0.8.9/lang/summernote-ko-KR.js"></script>
+-->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+<script src="/webjars/summernote/0.8.10/dist/summernote-bs4.js"></script>
+<script src="/webjars/summernote/0.8.10/dist/summernote.css"></script>
+<script src="/webjars/summernote/0.8.10/dist/lang/summernote-ko-KR.js"></script> -->
+
+<div class="row d-flex justify-content-center mt-3 mb-3">
+    <div class="col-xs-2 ml-3 mr-1">
+        <select class="form-control" id="sel1">
+			<option>선택하세요</option>
+			<option>BootStrap4</option>
+			<option>Spring</option>
+			<option>Android</option>
+		</select>
+    </div>
+    <div class="col-xs-3">
+		<select class="form-control" id="sel1">
+			<option>선택하세요</option>
+			<option>sub category1</option>
+			<option>sub category2</option>
+			<option>sub category3</option>
+		</select>
+    </div>
+    <div class="col">
+        <input type="text" class="form-control" placeholder="title">
+    </div>
+</div>
+
+<div>
+	<div class="summernote"></div>
+	<div class="row justify-content-center mt-2">
+		<button type="button" class="btn btn-primary" onClick="javascript:save();">저장</button>
 	</div>
 </div>
 
@@ -27,7 +53,12 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
-	$('.summernote').summernote({
+	 $('.summernote').summernote({
+         placeholder: 'Write contents',
+         height: 500,
+	 });
+	
+	/* $('.summernote').summernote({
           placeholder: 'Write contents',
           height: 300,
           minHeight: null,             // set minimum height of editor
@@ -44,7 +75,7 @@ $(document).ready(function(){
                   $target.remove();
               }
           }
-   });  
+   }); */  
 
 })
 	
