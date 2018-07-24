@@ -62,7 +62,7 @@ getUpCategoryList = function(){
 		"searching": true,
 		"serverside": true,
 		"ajax": {
-			"url":"/md/getCategoryList",
+			"url":"/common/getCategoryList",
 			"type":"POST",
 			"data": param
 		},
@@ -96,7 +96,7 @@ getMiddleCategoryList = function(parentId){
 		"searching": true,
 		"serverside": true,
 		"ajax": {
-			"url":"/md/getCategoryList",
+			"url":"/common/getCategoryList",
 			"type":"POST",
 			"data": param
 		},

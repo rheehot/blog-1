@@ -1,36 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.js"></script>
 
-<!--  
-<script src="/lib/summernote-0.8.9/summernote-bs4.min.js"></script>
-<script src="/lib/summernote-0.8.9/summernote-bs4.css"></script>
-<script src="/lib/summernote-0.8.9/lang/summernote-ko-KR.js"></script>
--->
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-<script src="/webjars/summernote/0.8.10/dist/summernote-bs4.js"></script>
-<script src="/webjars/summernote/0.8.10/dist/summernote.css"></script>
-<script src="/webjars/summernote/0.8.10/dist/lang/summernote-ko-KR.js"></script> -->
-
 <div class="row d-flex justify-content-center mt-3 mb-3">
     <div class="col-xs-2 ml-3 mr-1">
-        <select class="form-control" id="sel1">
-			<option>선택하세요</option>
-			<option>BootStrap4</option>
-			<option>Spring</option>
-			<option>Android</option>
+        <select class="form-control" id="largeCategoryCombo">
 		</select>
     </div>
     <div class="col-xs-3">
-		<select class="form-control" id="sel1">
-			<option>선택하세요</option>
-			<option>sub category1</option>
-			<option>sub category2</option>
-			<option>sub category3</option>
+		<select class="form-control" id="middleCategoryCombo">
 		</select>
     </div>
     <div class="col">
@@ -52,30 +34,27 @@
 
 <script type="text/javascript">
 
-$(document).ready(function(){
-	 $('.summernote').summernote({
-         placeholder: 'Write contents',
-         height: 500,
-	 });
+$(document).ready(function(){	
+$('.summernote').summernote({
+	placeholder: 'Write contents',
+	height: 500,
+	minHeight: null,             // set minimum height of editor
+	maxHeight: null,             // set maximum height of editor
+	callbacks:{
+		onImageUpload: function(files){
+ 			for (var i = files.length - 1; i >= 0; i--) {
+	  			console.log("upload image");
+	  			sendFile(files[i], this);
+			}
+		},
+		onMediaDelete : function ($target, $editable) {
+       		console.log($target.attr('remove image"'));   // get image url 
+       		$target.remove();
+   		}
+	}
+});   
 	
-	/* $('.summernote').summernote({
-          placeholder: 'Write contents',
-          height: 300,
-          minHeight: null,             // set minimum height of editor
-          maxHeight: null,             // set maximum height of editor
-          callbacks:{
-        	  onImageUpload: function(files){
-	        	  for (var i = files.length - 1; i >= 0; i--) {
-	        		  console.log("upload image");
-	        		  sendFile(files[i], this);
-			      }
-        	  },
-        	  onMediaDelete : function ($target, $editable) {
-                  console.log($target.attr('remove image"'));   // get image url 
-                  $target.remove();
-              }
-          }
-   }); */  
+	getUpCategoryList();
 
 })
 	
@@ -96,7 +75,64 @@ sendFile = function(file, summernote){
   			}
       });
 }
+
+getUpCategoryList = function(){
+	var param = {};
+	param.parentId = 0;
 	
+	$.ajax({
+		type: "POST",
+		url: '/common/getCategoryList',
+		data: param,
+		success: function(res) {
+			var categoryList = res.data;
+			if(categoryList.length > 0){
+				$("#largeCategoryCombo").append("<option value=''>선택하세요</option>");
+				for(var i=0; i< categoryList.length; i++){
+					$("#largeCategoryCombo").append("<option value='"+categoryList[i].categoryId+"'>"+categoryList[i].categoryName+"</option>");
+				}	
+			}else{
+				//카테고리가 존재하지 X
+			}
+			
+		}
+  	});
+}
+
+/*
+ * 원하는 부모id 리스트를 가져온다. 0->root
+ */
+getMiddleCategoryList = function(parentId){
+	var param = {};
+	param.parentId = parentId;
+	
+	$("#middleCategoryCombo").empty();
+	
+	$.ajax({
+		type: "POST",
+		url: '/common/getCategoryList',
+		data: param,
+		success: function(res) {
+			var categoryList = res.data;
+			if(categoryList.length > 0){
+				$("#middleCategoryCombo").append("<option value=''>선택하세요</option>");
+				for(var i=0; i< categoryList.length; i++){
+					$("#middleCategoryCombo").append("<option value='"+categoryList[i].categoryId+"'>"+categoryList[i].categoryName+"</option>");
+				}	
+			}else{
+				//카테고리가 존재하지 X
+			}
+			
+		}
+  	});
+}
+
+
+$("#largeCategoryCombo").change(function(){
+	var categoryId = $("#largeCategoryCombo option:selected").val();
+	getMiddleCategoryList(categoryId);
+});
+
 save = function(){
 	var param = {};
 	param.title = $("#title").val();
