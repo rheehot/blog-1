@@ -6,26 +6,28 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.js"></script>
 
-<div class="row d-flex justify-content-center mt-3 mb-3">
-    <div class="col-xs-2 ml-3 mr-1">
-        <select class="form-control" id="largeCategoryCombo">
-		</select>
-    </div>
-    <div class="col-xs-3">
-		<select class="form-control" id="middleCategoryCombo">
-		</select>
-    </div>
-    <div class="col">
-        <input type="text" class="form-control" placeholder="title">
-    </div>
-</div>
-
-<div>
-	<div class="summernote"></div>
-	<div class="row justify-content-center mt-2">
-		<button type="button" class="btn btn-primary" onClick="javascript:save();">저장</button>
+<form method="post" id="frm" name="frm">
+	<div class="row d-flex justify-content-center mt-3 mb-3">
+	    <div class="col-xs-2 ml-3 mr-1">
+	        <select class="form-control" id="largeCategory" name="largeCategory">
+			</select>
+	    </div>
+	    <div class="col-xs-3">
+			<select class="form-control" id="middleCategory" name="middleCategory">
+			</select>
+	    </div>
+	    <div class="col">
+	        <input type="text" class="form-control" placeholder="title" id="title" name="title">
+	    </div>
 	</div>
-</div>
+	
+	<div>
+		<div class="summernote"></div>
+		<div class="row justify-content-center mt-2">
+			<button type="button" class="btn btn-primary" onClick="javascript:save();">저장</button>
+		</div>
+	</div>
+</form>
 
 <%-- 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.css" rel="stylesheet">
@@ -87,9 +89,9 @@ getUpCategoryList = function(){
 		success: function(res) {
 			var categoryList = res.data;
 			if(categoryList.length > 0){
-				$("#largeCategoryCombo").append("<option value=''>선택하세요</option>");
+				$("#largeCategory").append("<option value=''>선택하세요</option>");
 				for(var i=0; i< categoryList.length; i++){
-					$("#largeCategoryCombo").append("<option value='"+categoryList[i].categoryId+"'>"+categoryList[i].categoryName+"</option>");
+					$("#largeCategory").append("<option value='"+categoryList[i].categoryId+"'>"+categoryList[i].categoryName+"</option>");
 				}	
 			}else{
 				//카테고리가 존재하지 X
@@ -106,7 +108,7 @@ getMiddleCategoryList = function(parentId){
 	var param = {};
 	param.parentId = parentId;
 	
-	$("#middleCategoryCombo").empty();
+	$("#middleCategory").empty();
 	
 	$.ajax({
 		type: "POST",
@@ -115,9 +117,9 @@ getMiddleCategoryList = function(parentId){
 		success: function(res) {
 			var categoryList = res.data;
 			if(categoryList.length > 0){
-				$("#middleCategoryCombo").append("<option value=''>선택하세요</option>");
+				$("#middleCategory").append("<option value=''>선택하세요</option>");
 				for(var i=0; i< categoryList.length; i++){
-					$("#middleCategoryCombo").append("<option value='"+categoryList[i].categoryId+"'>"+categoryList[i].categoryName+"</option>");
+					$("#middleCategory").append("<option value='"+categoryList[i].categoryId+"'>"+categoryList[i].categoryName+"</option>");
 				}	
 			}else{
 				//카테고리가 존재하지 X
@@ -128,21 +130,25 @@ getMiddleCategoryList = function(parentId){
 }
 
 
-$("#largeCategoryCombo").change(function(){
-	var categoryId = $("#largeCategoryCombo option:selected").val();
+$("#largeCategory").change(function(){
+	var categoryId = $("#largeCategory option:selected").val();
 	getMiddleCategoryList(categoryId);
 });
 
 save = function(){
-	var param = {};
+	//var param = $("#frm").serializeObject();
+	
+	param = {};
+	param.largeCategory = $("#largeCategory").val();
+	param.middleCategory = $("#middleCategory").val();
+	//param.bottomCategory = "1";
 	param.title = $("#title").val();
 	param.content = $(".summernote").summernote('code');
 	
 	$.ajax({
 		type: "POST",
-		url: '/article/write',
-		data: JSON.stringify(param),
-		contentType: 'application/json',
+		url: '/common/writeArticle',
+		data: param,
 		success: function(msg) {
 				alert(msg);
 		}
