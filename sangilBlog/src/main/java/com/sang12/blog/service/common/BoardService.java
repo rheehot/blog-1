@@ -1,5 +1,8 @@
 package com.sang12.blog.service.common;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.sang12.blog.domain.board.Board;
 
 /**
@@ -12,4 +15,6 @@ import com.sang12.blog.domain.board.Board;
  */
 public interface BoardService {
 	public abstract void articleSave(Board board);
+	
+	public abstract Page<Board> getMainArticleList(Pageable pageable);
 }

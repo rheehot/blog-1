@@ -2,6 +2,10 @@ package com.sang12.blog.controller.front;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,26 +13,24 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sang12.blog.domain.board.Board;
+import com.sang12.blog.service.common.BoardService;
+
 
 @Controller
 @RequestMapping("front")
 public class MainController {
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 	
-	/*
-	@RequestMapping("/main")
-	public ModelAndView main() throws Exception {
-		ModelMap model = new ModelMap();
-		logger.info("main Controller");
-		return new ModelAndView("front/main", "data", model);
-	}
-	*/
+	@Autowired
+	private BoardService boardService;
 	
 	@RequestMapping("/main")
-	public String main(){
-		ModelMap model = new ModelMap();
-		logger.info("main Controller");
-		return "front/main";
+	public ModelAndView main( @PageableDefault(value = 5) Pageable pageable){
+		logger.info("param:"+pageable);
+		Page<Board> data = boardService.getMainArticleList(pageable);
+		logger.info("data:"+data);
+		return new ModelAndView("front/main", "articleList", data);
 	}
 	
 	@RequestMapping("/intro")

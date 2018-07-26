@@ -3,6 +3,8 @@ package com.sang12.blog.service.common.impl;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.sang12.blog.domain.board.Board;
@@ -28,6 +30,11 @@ public class BoardServiceImpl implements BoardService {
 		board.setRegisterDate(new Date());
 		board.setFinalChangeDate(new Date());
 		boardRep.save(board);
+	}
+
+	@Override
+	public Page<Board> getMainArticleList(Pageable pageable) {
+		return boardRep.findAll(pageable);
 	}
 
 }

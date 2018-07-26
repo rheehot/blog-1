@@ -131,6 +131,7 @@
 --%>
 </style>
 
+
 <div class="main" style="">
 	<div class="jumbotron mt-2">
   		<h1>BootStrap</h1>
@@ -138,4 +139,8 @@
   		<p>블로그 작업중입니다.</p> 
   		<p>github => <a href="https://github.com/ChoiSangIl" target="_blank">https://github.com/ChoiSangIl</a></p>
 	</div>
+	
+	<c:forEach items="${articleList.content}" var="list">
+		<p>제목 : ${list.title} 작성일 : ${list.registerDate} <br/> 내용 : ${list.content }</p>
+    </c:forEach>
 </div>
