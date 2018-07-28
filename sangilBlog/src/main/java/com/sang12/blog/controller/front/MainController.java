@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -26,7 +27,7 @@ public class MainController {
 	private BoardService boardService;
 	
 	@RequestMapping("/main")
-	public ModelAndView main( @PageableDefault(value = 5) Pageable pageable){
+	public ModelAndView main( @PageableDefault(value = 5, sort="boardId", direction = Direction.DESC) Pageable pageable){
 		logger.info("param:"+pageable);
 		Page<Board> data = boardService.getMainArticleList(pageable);
 		logger.info("data:"+data);

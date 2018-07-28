@@ -2,145 +2,35 @@
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
  
-<style>
-<%-- 
-#sidebar {
-    overflow: hidden;
-    z-index: 3;
-}
-#sidebar .list-group {
-    min-width: 400px;
-    background-color: #f3f3f3;
-    min-height: 100vh;
-}
-#sidebar i {
-    margin-right: 6px;
-}
-
-#sidebar .list-group-item {
-    border-radius: 0;
-    background-color: #f3f3f3;
-    color: #000000;
-    border-left: 0;
-    border-right: 0;
-    border-color: #f3f3f3;
-    white-space: nowrap;
-}
-
-/* highlight active menu */
-#sidebar .list-group-item:not(.collapsed) {
-    background-color: #f3f3f3;
-}
-
-/* closed state */
-#sidebar .list-group .list-group-item[aria-expanded="false"]::after {
-  content: " \f0d7";
-  font-family: FontAwesome;
-  display: inline;
-  text-align: right;
-  padding-left: 5px;
-}
-
-/* open state */
-#sidebar .list-group .list-group-item[aria-expanded="true"] {
-  background-color: #dedede;
-}
-#sidebar .list-group .list-group-item[aria-expanded="true"]::after {
-  content: " \f0da";
-  font-family: FontAwesome;
-  display: inline;
-  text-align: right;
-  padding-left: 5px;
-}
-
-/* level 1*/
-#sidebar .list-group .collapse .list-group-item,
-#sidebar .list-group .collapsing .list-group-item  {
-  padding-left: 20px;
-}
-
-/* level 2*/
-#sidebar .list-group .collapse > .collapse .list-group-item,
-#sidebar .list-group .collapse > .collapsing .list-group-item {
-  padding-left: 30px;
-}
-
-/* level 3*/
-#sidebar .list-group .collapse > .collapse > .collapse .list-group-item {
-  padding-left: 40px;
-}
-
-@media (max-width:768px) {
-    #sidebar {
-        min-width: 35px;
-        max-width: 40px;
-        overflow-y: auto;
-        overflow-x: visible;
-        transition: all 0.25s ease;
-        transform: translateX(-45px);
-        position: fixed;
-    }
-    
-    #sidebar.show {
-        transform: translateX(0);
-    }
-
-    #sidebar::-webkit-scrollbar{ width: 0px; }
-    
-    #sidebar, #sidebar .list-group {
-        min-width: 35px;
-        overflow: visible;
-    }
-    /* overlay sub levels on small screens */
-    #sidebar .list-group .collapse.show, #sidebar .list-group .collapsing {
-        position: relative;
-        z-index: 1;
-        width: 190px;
-        top: 0;
-    }
-    #sidebar .list-group > .list-group-item {
-        text-align: center;
-        padding: .75rem .5rem;
-    }
-    /* hide caret icons of top level when collapsed */
-    #sidebar .list-group > .list-group-item[aria-expanded="true"]::after,
-    #sidebar .list-group > .list-group-item[aria-expanded="false"]::after {
-        display:none;
-    }
-}
-
-.collapse.show {
-  visibility: visible;
-}
-.collapsing {
-  visibility: visible;
-  height: 0;
-  -webkit-transition-property: height, visibility;
-  transition-property: height, visibility;
-  -webkit-transition-timing-function: ease-out;
-  transition-timing-function: ease-out;
-}
-.collapsing.width {
-  -webkit-transition-property: width, visibility;
-  transition-property: width, visibility;
-  width: 0;
-  height: 100%;
-  -webkit-transition-timing-function: ease-out;
-  transition-timing-function: ease-out;
-}
---%>
-</style>
-
-
-<div class="main" style="">
-	<div class="jumbotron mt-2">
-  		<h1>BootStrap</h1>
-  		<div class="float-right">2018/07/05 sang12</div> 
-  		<p>블로그 작업중입니다.</p> 
-  		<p>github => <a href="https://github.com/ChoiSangIl" target="_blank">https://github.com/ChoiSangIl</a></p>
+		 
+<c:forEach items="${articleList.content}" var="list">
+	<div class="jumbotron mt-2 mb-1 p-4">
+		<div class="text-center"><h3>${list.title}</h3></div> 
+		<div class="float-right">posted by sang12 date: ${list.registerDate}</div>
 	</div>
-	
-	<c:forEach items="${articleList.content}" var="list">
-		<p>제목 : ${list.title} 작성일 : ${list.registerDate} <br/> 내용 : ${list.content }</p>
-    </c:forEach>
-</div>
+	<div class ="mt-0">
+		${list.content}
+	</div>
+</c:forEach>
+
+<%--
+	totalElements : ${articleList.totalElements }
+	totalPages : ${articleList.totalPages }
+	number  : ${articleList.number}
+	hasNext  : ${articleList.hasNext()}
+	nextPageable  : ${articleList.nextPageable()}
+	hasPrevious  : ${articleList.hasPrevious()}
+	previousPageable  : ${articleList.previousPageable()}
+--%>
+   
+<ul class="pagination justify-content-center" style="margin:20px 0">
+	<c:if test="${articleList.hasPrevious()}">
+		<li class="page-item"><a class="page-link" href="/front/main?page=${articleList.number-1}">Previous</a></li>
+		<li class="page-item"><a class="page-link" href="/front/main?page=${articleList.number-1}">${articleList.number}</a></li>
+	</c:if>
+	<li class="page-item active"><a class="page-link" href="/front/main?page=${articleList.number}">${articleList.number + 1}</a></li>
+	<c:if test="${articleList.hasNext()}">
+		<li class="page-item"><a class="page-link" href="/front/main?page=${articleList.number+1}">${articleList.number + 2}</a></li>
+		<li class="page-item"><a class="page-link" href="/front/main?page=${articleList.number+1}">Next</a></li>
+	</c:if>
+</ul>
