@@ -9,6 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 import lombok.Data;
@@ -41,8 +44,14 @@ public class Board implements Serializable{
 	@NotNull
 	String content;
 	
+	@Temporal(TemporalType.TIMESTAMP)
 	Date registerDate;
 	String registerId;
+	@Temporal(TemporalType.TIMESTAMP)
 	Date finalChangeDate;
 	String finalChangeId;
+	
+	@Transient
+	String largeCategoryName;
+	
 }

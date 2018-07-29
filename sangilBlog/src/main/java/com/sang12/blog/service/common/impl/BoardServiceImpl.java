@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.sang12.blog.domain.board.Board;
 import com.sang12.blog.repository.common.BoardRepository;
+import com.sang12.blog.repository.common.CategoryRepository;
 import com.sang12.blog.service.common.BoardService;
 
 /**
@@ -25,6 +26,9 @@ public class BoardServiceImpl implements BoardService {
 	@Autowired
 	private BoardRepository boardRep;
 	
+	@Autowired
+	private CategoryRepository categoryRep;
+	
 	@Override
 	public void articleSave(Board board) {
 		board.setRegisterDate(new Date());
@@ -34,7 +38,8 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public Page<Board> getMainArticleList(Pageable pageable) {
-		return boardRep.findAll(pageable);
+		Page<Board> board = boardRep.findAll(pageable);
+		return board;
 	}
 
 }

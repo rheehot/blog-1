@@ -4,6 +4,7 @@
  
 		 
 <c:forEach items="${articleList.content}" var="list">
+	${list }
 	<div class="jumbotron mt-2 mb-1 p-4">
 		<div class="text-center"><h3>${list.title}</h3></div> 
 		<div class="float-right">posted by sang12 date: ${list.registerDate}</div>

@@ -37,14 +37,20 @@ dependencies {
 	//jdbc,mysql
 	compile('org.springframework.boot:spring-boot-starter-jdbc')
 	compile('mysql:mysql-connector-java')
+	
 	//lombok
 	compile('org.projectlombok:lombok:1.16.6')
 	
 	//mybatis	
-	//compile("org.mybatis.spring.boot:mybatis-spring-boot-starter:1.1.1")
-	//compile("org.mybatis:mybatis-spring")
-	//compile("org.mybatis:mybatis")
+	compile("org.mybatis.spring.boot:mybatis-spring-boot-starter:1.1.1")
+	compile("org.mybatis:mybatis-spring")
+	compile("org.mybatis:mybatis")
 	
+	//log4jdbc
+	compile("org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16")
+	compile("org.logback-extensions:logback-ext-spring:0.1.2")
+
+
 	//jpa	
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	
