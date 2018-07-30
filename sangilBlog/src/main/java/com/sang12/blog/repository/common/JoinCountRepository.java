@@ -6,10 +6,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import com.sang12.blog.domain.common.JoinCount;
+import com.sang12.blog.domain.common.JoinCountEntity;
 
-public interface JoinCountRepository extends JpaRepository<JoinCount, String> {
-	List<JoinCount> findByJoinDateBetween(String startDate, String endDate);
+public interface JoinCountRepository extends JpaRepository<JoinCountEntity, String> {
+	List<JoinCountEntity> findByJoinDateBetween(String startDate, String endDate);
 	
 	@Query(value="SELECT joinCount FROM COMM01TM WHERE joinDate = :day", nativeQuery = true)
 	int findByTodayCount(@Param("day") String day);

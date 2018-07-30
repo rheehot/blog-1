@@ -3,7 +3,7 @@
  
 <mapper namespace="com.sang12.blog.repository.common.BoardDao">
 
-    <select id="getMainArticle" resultType="com.sang12.blog.domain.board.Board">
+    <select id="getMainArticle" resultType="com.sang12.blog.domain.board.BoardEntity">
         SELECT * FROM BOARD01TM
     </select>
  

@@ -14,7 +14,7 @@ import lombok.Data;
 @Entity
 @Data
 @Table(name="COMM03TM")
-public class Category implements Serializable {
+public class CategoryEntity implements Serializable {
 	private static final long serialVersionUID = 4632631363169579856L;
 	
 	@Id

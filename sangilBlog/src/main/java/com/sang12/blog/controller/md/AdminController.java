@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sang12.blog.domain.common.Category;
+import com.sang12.blog.domain.common.CategoryEntity;
 import com.sang12.blog.service.common.CommonService;
 
 /*
@@ -37,7 +37,7 @@ public class AdminController {
 	
 	@RequestMapping("/categoryManagement")
 	public ModelAndView categoryManagement(){
-		List<Category> categoryList= commonService.getCategoryList(0);
+		List<CategoryEntity> categoryList= commonService.getCategoryList(0);
 		return new ModelAndView("md/categoryManagement", "data", categoryList);
 	}
 	

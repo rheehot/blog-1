@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.sang12.blog.domain.board.Board;
+import com.sang12.blog.domain.board.BoardEntity;
 import com.sang12.blog.repository.common.BoardDao;
 
 /**
@@ -27,7 +27,7 @@ public class BoardDaoTest {
 	
 	@Test
 	public void getMainArticleTest() {
-		List<Board> board = boardDao.getMainArticle();
+		List<BoardEntity> board = boardDao.getMainArticle();
 		System.out.println("#######################################"+board);
 
 	}

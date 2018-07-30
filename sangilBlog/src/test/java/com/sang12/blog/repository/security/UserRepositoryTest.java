@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.sang12.blog.domain.security.User;
+import com.sang12.blog.domain.security.UserEntity;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -19,7 +19,7 @@ public class UserRepositoryTest {
 		
 	@Test
 	public void userObjectTest() {
-		User user;
+		UserEntity user;
 		user = userRepo.findByUserIdAndPassword("sang12", "test");
 		System.out.println(user);
 		

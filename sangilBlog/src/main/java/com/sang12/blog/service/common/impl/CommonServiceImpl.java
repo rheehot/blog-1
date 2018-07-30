@@ -7,8 +7,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.sang12.blog.domain.common.Category;
-import com.sang12.blog.domain.common.JoinCount;
+import com.sang12.blog.domain.common.CategoryEntity;
+import com.sang12.blog.domain.common.JoinCountEntity;
 import com.sang12.blog.repository.common.CategoryRepository;
 import com.sang12.blog.repository.common.JoinCountRepository;
 import com.sang12.blog.service.common.CommonService;
@@ -24,9 +24,9 @@ public class CommonServiceImpl implements CommonService {
 	
 	@Override
 	public void checkAndCount() {
-	    JoinCount jc = joinCountRep.findOne(DateUtil.addDayGetString(0));
+	    JoinCountEntity jc = joinCountRep.findOne(DateUtil.addDayGetString(0));
 	    if (jc == null){
-			jc = new JoinCount();
+			jc = new JoinCountEntity();
 			jc.setJoinDate(DateUtil.addDayGetString(0));
 			jc.setJoinCount(1);
 			this.joinCountRep.save(jc);
@@ -37,7 +37,7 @@ public class CommonServiceImpl implements CommonService {
 	}
 
 	@Override
-	public List<JoinCount> getJoinCount(String fromDate, String toDate) {
+	public List<JoinCountEntity> getJoinCount(String fromDate, String toDate) {
 		return joinCountRep.findByJoinDateBetween(fromDate, toDate);
 	}
 	
@@ -51,7 +51,7 @@ public class CommonServiceImpl implements CommonService {
 	}
 
 	@Override
-	public List<Category> getCategoryList(int CategoryNumber) {
+	public List<CategoryEntity> getCategoryList(int CategoryNumber) {
 		return categoryRep.findByParentId(CategoryNumber);
 	}
 

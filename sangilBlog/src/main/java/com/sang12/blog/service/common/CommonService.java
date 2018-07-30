@@ -3,8 +3,8 @@ package com.sang12.blog.service.common;
 import java.util.List;
 import java.util.Map;
 
-import com.sang12.blog.domain.common.Category;
-import com.sang12.blog.domain.common.JoinCount;
+import com.sang12.blog.domain.common.CategoryEntity;
+import com.sang12.blog.domain.common.JoinCountEntity;
 
 public interface CommonService {
 	public abstract void checkAndCount();
@@ -15,7 +15,7 @@ public interface CommonService {
 	 * @param toDate
 	 * @return
 	 */
-	public abstract List<JoinCount> getJoinCount(String fromDate, String toDate);
+	public abstract List<JoinCountEntity> getJoinCount(String fromDate, String toDate);
 	
 	/**
 	 * 일주일동안 일별 방문자, 현재 월의 전체 방문자 수, 전체 방문자수를 가져온다. 
@@ -28,6 +28,6 @@ public interface CommonService {
 	 * @param CategoryNumber
 	 * @return
 	 */
-	public abstract List<Category> getCategoryList(int CategoryNumber);
+	public abstract List<CategoryEntity> getCategoryList(int CategoryNumber);
 	
 }

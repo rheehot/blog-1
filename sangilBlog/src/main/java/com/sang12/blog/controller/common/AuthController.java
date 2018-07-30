@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.sang12.blog.domain.security.User;
+import com.sang12.blog.domain.security.UserEntity;
 import com.sang12.blog.repository.security.UserRepository;
 
 @Controller
@@ -28,7 +28,7 @@ public class AuthController {
 
 	@PostMapping("/login")
 	@ResponseBody
-	public Map<String, Object> login(@RequestBody User user, HttpServletRequest request) throws Exception {
+	public Map<String, Object> login(@RequestBody UserEntity user, HttpServletRequest request) throws Exception {
 		user = this.userRepo.findByUserIdAndPassword(user.getUserId(), user.getPassword());
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		

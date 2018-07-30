@@ -29,7 +29,7 @@ import lombok.Data;
 @Entity
 @Data
 @Table(name="BOARD01TM")
-public class Board implements Serializable{
+public class BoardEntity implements Serializable{
 	private static final long serialVersionUID = -7410113111280947387L;
 	
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)

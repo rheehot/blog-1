@@ -2,7 +2,7 @@ package com.sang12.blog.repository.common;
 
 import java.util.List;
 
-import com.sang12.blog.domain.board.Board;
+import com.sang12.blog.domain.board.BoardEntity;
 
 /**
  * com.sang12.blog.repository.common
@@ -13,5 +13,5 @@ import com.sang12.blog.domain.board.Board;
  * @Description : 
  */
 public interface BoardDao {
-	public List<Board> getMainArticle();
+	public List<BoardEntity> getMainArticle();
 }

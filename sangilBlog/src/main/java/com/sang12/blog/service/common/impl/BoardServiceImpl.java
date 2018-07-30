@@ -1,15 +1,16 @@
 package com.sang12.blog.service.common.impl;
 
 import java.util.Date;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.sang12.blog.domain.board.Board;
+import com.sang12.blog.domain.board.BoardEntity;
+import com.sang12.blog.repository.common.BoardDao;
 import com.sang12.blog.repository.common.BoardRepository;
-import com.sang12.blog.repository.common.CategoryRepository;
 import com.sang12.blog.service.common.BoardService;
 
 /**
@@ -27,19 +28,25 @@ public class BoardServiceImpl implements BoardService {
 	private BoardRepository boardRep;
 	
 	@Autowired
-	private CategoryRepository categoryRep;
+	private BoardDao boardDao;
 	
 	@Override
-	public void articleSave(Board board) {
+	public void articleSave(BoardEntity board) {
 		board.setRegisterDate(new Date());
 		board.setFinalChangeDate(new Date());
 		boardRep.save(board);
 	}
 
 	@Override
-	public Page<Board> getMainArticleList(Pageable pageable) {
-		Page<Board> board = boardRep.findAll(pageable);
+	public Page<BoardEntity> getMainArticleList(Pageable pageable) {
+		Page<BoardEntity> board = boardRep.findAll(pageable);
 		return board;
+	}
+
+	@Override
+	public Map<String, Object> getMainBoardList(BoardEntity board) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

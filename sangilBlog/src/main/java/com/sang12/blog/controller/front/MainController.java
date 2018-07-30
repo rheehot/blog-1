@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sang12.blog.domain.board.Board;
+import com.sang12.blog.domain.board.BoardEntity;
 import com.sang12.blog.service.common.BoardService;
 
 
@@ -29,7 +29,7 @@ public class MainController {
 	@RequestMapping("/main")
 	public ModelAndView main( @PageableDefault(value = 5, sort="boardId", direction = Direction.DESC) Pageable pageable){
 		logger.info("param:"+pageable);
-		Page<Board> data = boardService.getMainArticleList(pageable);
+		Page<BoardEntity> data = boardService.getMainArticleList(pageable);
 		logger.info("data:"+data);
 		return new ModelAndView("front/main", "articleList", data);
 	}

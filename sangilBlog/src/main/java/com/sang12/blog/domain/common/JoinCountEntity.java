@@ -11,7 +11,7 @@ import lombok.Data;
 @Entity
 @Data
 @Table(name="COMM01TM")
-public class JoinCount implements Serializable {
+public class JoinCountEntity implements Serializable {
 	private static final long serialVersionUID = -8418977751769689035L;
 
 	@Id
