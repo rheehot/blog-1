@@ -30,13 +30,13 @@ html, body{
 		<div class="container-flud">
 			<tiles:insertAttribute name="header" />
 			<div class="row d-flex p-0 mr-0 ml-0">
-				<div class="col-md-2 d-none d-sm-block h-100" style="background-color:#f3f3f3">
+				<div class="col-md-2 d-none d-sm-block" style="background-color:#f3f3f3">
 					<tiles:insertAttribute name="leftArea"/>
 				</div>
 				<div class="col">
 		     		<tiles:insertAttribute name="body"/>
 				</div>
-				<div class="col-md-2 d-none d-sm-block h-100" style="background-color:#f3f3f3">
+				<div class="col-md-2 d-none d-sm-block" style="background-color:#f3f3f3">
 					<tiles:insertAttribute name="rightArea"/>	
 				</div>
 			</div>
