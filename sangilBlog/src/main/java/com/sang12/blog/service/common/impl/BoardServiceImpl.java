@@ -1,6 +1,7 @@
 package com.sang12.blog.service.common.impl;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import com.sang12.blog.domain.board.BoardEntity;
 import com.sang12.blog.repository.common.BoardDao;
 import com.sang12.blog.repository.common.BoardRepository;
 import com.sang12.blog.service.common.BoardService;
+import com.sang12.blog.vo.common.PagingVo;
 
 /**
  * com.sang12.blog.service.common.impl
@@ -44,9 +46,12 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public Map<String, Object> getMainBoardList(BoardEntity board) {
-		// TODO Auto-generated method stub
-		return null;
+	public Map<String, Object> getMainBoardList(PagingVo vo) {
+		Map<String, Object> returnData = new HashMap<String, Object>();
+		vo.setTotalCount(boardDao.getMainArticleCount());
+		returnData.put("paging", vo);
+		returnData.put("articleList", boardDao.getMainArticle(vo));
+		return returnData;
 	}
 
 }

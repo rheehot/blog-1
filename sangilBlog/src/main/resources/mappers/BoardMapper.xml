@@ -4,7 +4,14 @@
 <mapper namespace="com.sang12.blog.repository.common.BoardDao">
 
     <select id="getMainArticle" resultType="com.sang12.blog.domain.board.BoardEntity">
-        SELECT * FROM BOARD01TM
+        select @ROWNUM := @ROWNUM + 1 as rnum, R1.* FROM(
+  			SELECT * FROM BOARD01TM ORDER BY boardId desc
+		) R1, (select @ROWNUM := 0) A
+		LIMIT #{start, jdbcType=INTEGER} , #{countList, jdbcType=INTEGER}
+    </select>
+    
+	<select id="getMainArticleCount" resultType="int">
+        SELECT COUNT(*) FROM BOARD01TM
     </select>
  
 </mapper>
