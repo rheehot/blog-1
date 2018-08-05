@@ -21,6 +21,5 @@ public interface BoardService {
 	
 	public abstract Page<BoardEntity> getMainArticleList(Pageable pageable);
 	
-
 	public abstract Map<String, Object> getMainBoardList(PagingVo vo);
 }

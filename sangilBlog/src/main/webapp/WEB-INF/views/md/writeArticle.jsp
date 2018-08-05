@@ -67,7 +67,7 @@ sendFile = function(file, summernote){
 	$.ajax({
 			data: form_data,
 			type: "POST",
-			url: '/image',
+			url: '/common/uploadArticleImage',
 			cache: false,
 			contentType: false,
 			enctype: 'multipart/form-data',
