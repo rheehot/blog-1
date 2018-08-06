@@ -44,10 +44,10 @@ public class BoardEntity implements Serializable{
 	@NotNull
 	String content;
 	
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	Date registerDate;
 	String registerId;
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	Date finalChangeDate;
 	String finalChangeId;
 	

@@ -19,7 +19,7 @@ public class PagingVo implements Serializable {
 	
 	public PagingVo() {
 		this.countPage = 5;
-		this.countList = 5;
+		this.countList = 3;
 		this.page = 1;
 	}
 	
@@ -68,7 +68,7 @@ public class PagingVo implements Serializable {
 		    page = totalPage;
 		}
 		
-		startPage = ((page - 1) / countList) * countList + 1;
+		startPage = ((page - 1) / countPage) * countPage + 1;
 		endPage = startPage + countPage - 1;
 		
 		if (endPage > totalPage) {

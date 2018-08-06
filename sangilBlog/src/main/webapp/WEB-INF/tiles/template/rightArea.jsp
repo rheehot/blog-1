@@ -2,15 +2,17 @@
 	
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
 
-<div class="rightArea" id="rightArea" style="height:100%; background-color:#f3f3f3;">
+<div class="rightArea" id="rightArea" style="height:100%;">
 	<canvas id="joinCountChart" class="mt-2" width="5" height="5"></canvas>
 	<p id="joinCountDetail" class="text-center" style="font-size:12px; font-weight:bold;"></p>
+	<%-- 
 	<p><a href="https://github.com/ChoiSangIl" target="_blank">https://github.com/ChoiSangIl</a></p>
+	--%>
 </div>
 
 <script type="text/javascript">
 $(document).ready(function(){
-	getJoinCount();
+	//getJoinCount();
 })
 
 getJoinCount = function(){

@@ -8,7 +8,7 @@
 	    z-index: 1; /* Stay on top */
 	    top: 0; /* Stay at the top */
 	    left: 0;
-	    background-color: #f3f3f3; /* Black */
+	    background-color: #ffffff00; 
 	    overflow-x: hidden; /* Disable horizontal scroll */
 	    padding-top: 20px;
 	    margin-top:200px;
