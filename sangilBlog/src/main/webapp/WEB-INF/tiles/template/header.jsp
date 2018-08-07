@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 
 <div style="background-color: #ffffff; height:6em;">
-  	<h1 class="ml-3"><a href="/front/main">Sangil's blog</a></h1>
+  	<h1 class="ml-3"><a href="/front/main" style="color: #6a6e71;">Sangil's blog</a></h1>
   	<div class="float-right mr-3 mt-3"> 
 	  	<span class="badge badge-primary" style="cursor:hand" onclick="javascript:location.href='/md/main'">Admin</span>
   	</div>

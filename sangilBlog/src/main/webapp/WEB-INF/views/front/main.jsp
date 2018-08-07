@@ -9,13 +9,13 @@
 <div class="container-flue">
 <c:forEach items="${articleList}" var="list">
 	<div class="mt-2" style="height:140px; background: white; border:solid 2px; border-color: 989898; border-radius: 10px;">
-			<h2 class="ml-3 mt-4">${list.title}</h2>
+			<h2 class="ml-3 mt-4 text-center">${list.title}</h2>
 			<div class="float-right p-3 mt-3" style="">
 				<p><b><fmt:formatDate pattern = "yyyy-MM-dd" value = "${list.registerDate}"/> posted by sang12</b></p>
 			</div>
 	</div>
 		
-	<div class ="mt-0 p-2 mt-2" style="background-color: white; border-radius: 10px;">
+	<div class ="mt-0 p-2 mt-2" style="background-color: white; border-radius: 10px; border: solid 1px; border-color: #25252582;">
 		${list.content}
 	</div>
 </c:forEach>
