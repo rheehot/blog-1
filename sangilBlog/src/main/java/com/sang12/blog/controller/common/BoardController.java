@@ -1,8 +1,5 @@
 package com.sang12.blog.controller.common;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.sang12.blog.domain.board.BoardEntity;
-import com.sang12.blog.domain.common.CategoryEntity;
 import com.sang12.blog.service.common.BoardService;
 import com.sang12.blog.service.common.CommonService;
 import com.sang12.blog.service.common.StorageService;
@@ -39,14 +35,6 @@ public class BoardController {
 	
 	@Value("${static.image.path}")
 	String imagePath;
-	
-	@PostMapping("/getCategoryList")
-	@ResponseBody
-	public Map<String, Object> getCategoryList(CategoryEntity category){
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("data", commonService.getCategoryList(category.getParentId()));
-		return map;
-	}
 	
 	@PostMapping("/writeArticle")
 	@ResponseBody

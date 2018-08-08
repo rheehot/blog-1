@@ -25,6 +25,8 @@ public class CategoryEntity implements Serializable {
 	
 	private int parentId;
 	
+	private int sortNumber;
+	
 	Date registerDate;
 	String registerId;
 	Date finalChangeDate;

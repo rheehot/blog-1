@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 	
 <style>
 	/* The sidebar menu */
@@ -18,7 +21,7 @@
 	.leftArea a {
 	    padding: 6px 8px 6px 16px;
 	    text-decoration: none;
-	    font-size: 25px;
+	    font-size: 15px;
 	    color: #464242;
 	    display: block;
 	}
@@ -30,7 +33,33 @@
 	
 </style>
 	
-	
+<c:set var="upCategoryList" value="${mainData.upCategoryList}"/>
+<c:set var="childCategoryList" value="${mainData.childCategoryList}"/>
+
+
+<div>
+	<nav class="leftArea">
+		<ul class="list-unstyled components">
+			<c:forEach var="upCategory" items="${upCategoryList}">
+				<li>
+	 				<a href="#menu${upCategory.categoryId }" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">${upCategory.categoryName}</a> 
+					<c:forEach var="childCategory" items="${childCategoryList}">
+						<c:if test="${upCategory.categoryId eq childCategory.parentId }">
+							<div class ="ml-2">
+								<ul class="collapse list-unstyled" id="menu${childCategory.parentId }">
+									<li>
+										<a href="#">${childCategory.categoryName }</a>
+									</li>
+								</ul>
+							</div>
+						</c:if>
+					</c:forEach>
+				</li>
+			</c:forEach>
+		</ul>
+	</nav>
+</div>
+<%-- 
 <div>
 	<nav class="leftArea">
         <ul class="list-unstyled components">
@@ -85,3 +114,25 @@
        </ul> 
    </nav>
 </div>
+--%>
+
+<script>
+$(document).ready(function(){
+	getCategoryList(1);
+})
+
+getCategoryList = function(parentId){
+	var param = {};
+	param.parentId = parentId;
+	
+	$.ajax({
+		type: "POST",
+		url: '/common/getCategoryList',
+		data: param,
+		success: function(res) {
+		}
+  	});
+}
+
+
+</script>

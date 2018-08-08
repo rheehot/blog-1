@@ -9,10 +9,12 @@ import org.springframework.stereotype.Service;
 
 import com.sang12.blog.domain.common.CategoryEntity;
 import com.sang12.blog.domain.common.JoinCountEntity;
+import com.sang12.blog.repository.common.BoardDao;
 import com.sang12.blog.repository.common.CategoryRepository;
 import com.sang12.blog.repository.common.JoinCountRepository;
 import com.sang12.blog.service.common.CommonService;
 import com.sang12.blog.utils.DateUtil;
+import com.sang12.blog.vo.common.PagingVo;
 
 @Service
 public class CommonServiceImpl implements CommonService {
@@ -21,6 +23,9 @@ public class CommonServiceImpl implements CommonService {
 	
 	@Autowired
 	private CategoryRepository categoryRep;
+	
+	@Autowired
+	private BoardDao boardDao;
 	
 	@Override
 	public void checkAndCount() {
@@ -53,6 +58,17 @@ public class CommonServiceImpl implements CommonService {
 	@Override
 	public List<CategoryEntity> getCategoryList(int CategoryNumber) {
 		return categoryRep.findByParentId(CategoryNumber);
+	}
+
+	@Override
+	public Map<String, Object> getMainData(PagingVo vo) {
+		Map<String, Object> returnData = new HashMap<String, Object>();
+		vo.setTotalCount(boardDao.getMainArticleCount());
+		returnData.put("paging", vo);
+		returnData.put("articleList", boardDao.getMainArticle(vo));
+		returnData.put("upCategoryList", categoryRep.findByParentId(0));
+		returnData.put("childCategoryList", categoryRep.findChildCategory());
+		return returnData;
 	}
 
 }

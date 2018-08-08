@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sang12.blog.service.common.BoardService;
+import com.sang12.blog.service.common.CommonService;
 import com.sang12.blog.vo.common.PagingVo;
 
 
@@ -21,13 +21,12 @@ public class MainController {
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 	
 	@Autowired
-	private BoardService boardService;
+	private CommonService commonService;
 	
 	@RequestMapping("/main")
 	public ModelAndView main(PagingVo vo){
-		logger.info("vo:"+vo);
-		Map<String, Object> data = boardService.getMainBoardList(vo);
-		logger.info("data:"+data);
+		Map<String, Object> data = commonService.getMainData(vo);
+		logger.info("data:::::"+data);
 		return new ModelAndView("front/main", "mainData", data);
 	}
 	
@@ -44,12 +43,6 @@ public class MainController {
 	@RequestMapping("/guestbook")
 	public ModelAndView guestbook(){
 		return new ModelAndView("front/guestbook");
-	}
-	
-	@RequestMapping("/main_test")
-	public String main_test(){
-		logger.info("main Controller");
-		return "front/main_test";
 	}
 	
 	@GetMapping("/articleDetail/{articleId}")
