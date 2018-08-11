@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 import com.sang12.blog.domain.common.CategoryEntity;
 
 public interface CategoryRepository extends JpaRepository<CategoryEntity, Integer>{
-	List<CategoryEntity> findByParentId(int parentId);
+	List<CategoryEntity> findByParentIdOrderBySortNumber(int parentId);
 	
 	@Query(value="SELECT categoryName FROM COMM03TM WHERE categoryId = :categoryId", nativeQuery = true)
 	String findCategoryNameByCategoryId(@Param("categoryId") Integer categoryId);

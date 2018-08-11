@@ -57,7 +57,7 @@ public class CommonServiceImpl implements CommonService {
 
 	@Override
 	public List<CategoryEntity> getCategoryList(int CategoryNumber) {
-		return categoryRep.findByParentId(CategoryNumber);
+		return categoryRep.findByParentIdOrderBySortNumber(CategoryNumber);
 	}
 
 	@Override
@@ -66,7 +66,7 @@ public class CommonServiceImpl implements CommonService {
 		vo.setTotalCount(boardDao.getMainArticleCount());
 		returnData.put("paging", vo);
 		returnData.put("articleList", boardDao.getMainArticle(vo));
-		returnData.put("upCategoryList", categoryRep.findByParentId(0));
+		returnData.put("upCategoryList", categoryRep.findByParentIdOrderBySortNumber(0));
 		returnData.put("childCategoryList", categoryRep.findChildCategory());
 		return returnData;
 	}
