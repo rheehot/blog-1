@@ -3,7 +3,7 @@
 <div style="background-color: #ffffff; height:6em;">
   	<h1><a href="/md/main">Sangil's blog Admin</a></h1>
 	 <div class="float-right mr-3 mt-3"> 
-	  	<span class="badge badge-primary" style="cursor:hand" onclick="javascript:location.href='/front/main'">Home</span>
+	  	<span class="badge badge-primary" style="cursor:hand" onclick="javascript:location.href='/main'">Home</span>
   	</div>
 </div>
 

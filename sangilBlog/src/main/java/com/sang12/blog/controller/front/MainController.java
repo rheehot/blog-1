@@ -16,7 +16,6 @@ import com.sang12.blog.vo.common.PagingVo;
 
 
 @Controller
-@RequestMapping("front")
 public class MainController {
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 	
@@ -25,6 +24,16 @@ public class MainController {
 	
 	@RequestMapping("/main")
 	public ModelAndView main(PagingVo vo){
+		logger.info("vo:::::"+vo);
+		Map<String, Object> data = commonService.getMainData(vo);
+		logger.info("data:::::"+data);
+		return new ModelAndView("front/main", "mainData", data);
+	}
+	
+	@RequestMapping("/main/{largeCategory}")
+	public ModelAndView mainBoardCategory(PagingVo vo, @PathVariable int largeCategory){
+		logger.info("vo:::::"+vo);
+		logger.info("vo:::::"+largeCategory);
 		Map<String, Object> data = commonService.getMainData(vo);
 		logger.info("data:::::"+data);
 		return new ModelAndView("front/main", "mainData", data);

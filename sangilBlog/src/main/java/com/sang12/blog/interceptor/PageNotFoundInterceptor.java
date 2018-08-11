@@ -15,6 +15,6 @@ public class PageNotFoundInterceptor extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception{
 		logger.info("page not found");
 		response.sendRedirect("/pageNotFound");
-		return false;
+		return true;
 	}
 }

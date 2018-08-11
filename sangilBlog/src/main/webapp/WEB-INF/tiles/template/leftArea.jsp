@@ -36,8 +36,28 @@
 <c:set var="upCategoryList" value="${mainData.upCategoryList}"/>
 <c:set var="childCategoryList" value="${mainData.childCategoryList}"/>
 
+<nav class="leftArea">
+	<ul class="list-unstyled">
+		<c:forEach var="upCategory" items="${upCategoryList}">
+			<li>
+				<a href="#"><b>${upCategory.categoryName}</b></a>
+				<c:forEach var="childCategory" items="${childCategoryList}">
+					<c:if test="${upCategory.categoryId eq childCategory.parentId }">
+						<div class ="ml-2">
+							<ul class="list-unstyled" id="menu${childCategory.parentId }">
+								<li>
+									<a href="#">-${childCategory.categoryName }</a>
+								</li>
+							</ul>
+						</div>
+					</c:if>
+				</c:forEach>
+			</li>
+		</c:forEach>
+	</ul>
+</nav>
 
-<div>
+<%-- <div>
 	<nav class="leftArea">
 		<ul class="list-unstyled components">
 			<c:forEach var="upCategory" items="${upCategoryList}">
@@ -46,7 +66,7 @@
 					<c:forEach var="childCategory" items="${childCategoryList}">
 						<c:if test="${upCategory.categoryId eq childCategory.parentId }">
 							<div class ="ml-2">
-								<ul class="collapse list-unstyled" id="menu${childCategory.parentId }">
+								<ul class="list-unstyled" id="menu${childCategory.parentId }">
 									<li>
 										<a href="#">${childCategory.categoryName }</a>
 									</li>
@@ -58,7 +78,7 @@
 			</c:forEach>
 		</ul>
 	</nav>
-</div>
+</div> --%>
 <%-- 
 <div>
 	<nav class="leftArea">

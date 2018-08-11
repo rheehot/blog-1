@@ -26,20 +26,20 @@
 	<div class="navbar-collapse collapse justify-content-center">
 		<ul class="navbar-nav">
 		<c:if test="${paging.startPage > 1 }">
-			<li class="page-item"><a class="page-link" href="/front/main?page=${paging.startPage - 1}">이전</a></li>
+			<li class="page-item"><a class="page-link" href="/main?page=${paging.startPage - 1}">이전</a></li>
 		</c:if>
 		<c:forEach var="pagingNum" begin="${paging.startPage}" end="${paging.endPage}" step="1">
 			<c:choose>
 				<c:when test="${pagingNum eq paging.page }">
-					<li class="page-item active"><a class="page-link" href="/front/main?page=${pagingNum}">${pagingNum}</a></li>
+					<li class="page-item active"><a class="page-link" href="/main?page=${pagingNum}">${pagingNum}</a></li>
 				</c:when>
 				<c:otherwise>
-					<li class="page-item"><a class="page-link" href="/front/main?page=${pagingNum}">${pagingNum}</a></li>
+					<li class="page-item"><a class="page-link" href="/main?page=${pagingNum}">${pagingNum}</a></li>
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
 		<c:if test="${paging.endPage < paging.totalPage }">
-			<li class="page-item"><a class="page-link" href="/front/main?page=${paging.endPage + 1}">다음</a></li>
+			<li class="page-item"><a class="page-link" href="/main?page=${paging.endPage + 1}">다음</a></li>
 		</c:if>
 		</ul>
 	</div>
