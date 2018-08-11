@@ -14,7 +14,7 @@ import com.sang12.blog.repository.common.CategoryRepository;
 import com.sang12.blog.repository.common.JoinCountRepository;
 import com.sang12.blog.service.common.CommonService;
 import com.sang12.blog.utils.DateUtil;
-import com.sang12.blog.vo.common.PagingVo;
+import com.sang12.blog.vo.front.MainPageVo;
 
 @Service
 public class CommonServiceImpl implements CommonService {
@@ -61,9 +61,9 @@ public class CommonServiceImpl implements CommonService {
 	}
 
 	@Override
-	public Map<String, Object> getMainData(PagingVo vo) {
+	public Map<String, Object> getMainData(MainPageVo vo) {
 		Map<String, Object> returnData = new HashMap<String, Object>();
-		vo.setTotalCount(boardDao.getMainArticleCount());
+		vo.setTotalCount(boardDao.getMainArticleCount(vo));
 		returnData.put("paging", vo);
 		returnData.put("articleList", boardDao.getMainArticle(vo));
 		returnData.put("upCategoryList", categoryRep.findByParentIdOrderBySortNumber(0));

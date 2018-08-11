@@ -38,15 +38,18 @@
 
 <nav class="leftArea">
 	<ul class="list-unstyled">
+		<li>
+			<a href="javascript:getArticle('', '')"><b>ALL</b></a>
+		</li>
 		<c:forEach var="upCategory" items="${upCategoryList}">
 			<li>
-				<a href="#"><b>${upCategory.categoryName}</b></a>
+				<a href="javascript:getArticle(${upCategory.categoryId}, '')"><b>${upCategory.categoryName}</b></a>
 				<c:forEach var="childCategory" items="${childCategoryList}">
 					<c:if test="${upCategory.categoryId eq childCategory.parentId }">
 						<div class ="ml-2">
 							<ul class="list-unstyled" id="menu${childCategory.parentId }">
 								<li>
-									<a href="#">-${childCategory.categoryName }</a>
+									<a href="javascript:getArticle(${upCategory.categoryId}, ${childCategory.categoryId})">-${childCategory.categoryName }</a>
 								</li>
 							</ul>
 						</div>
@@ -137,21 +140,11 @@
 --%>
 
 <script>
-$(document).ready(function(){
-	getCategoryList(1);
-})
-
-getCategoryList = function(parentId){
-	var param = {};
-	param.parentId = parentId;
-	
-	$.ajax({
-		type: "POST",
-		url: '/common/getCategoryList',
-		data: param,
-		success: function(res) {
-		}
-  	});
+getArticle = function(largeCategoryId, middleCategoryId){
+	console.log("largeCategory:"+largeCategoryId+ " middleCategoryId::" +middleCategoryId);
+	$("#largeCategoryId").val(largeCategoryId);
+	$("#middleCategoryId").val(middleCategoryId);
+	go_page(1);
 }
 
 

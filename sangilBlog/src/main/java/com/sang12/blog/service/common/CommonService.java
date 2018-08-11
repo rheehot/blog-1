@@ -5,7 +5,7 @@ import java.util.Map;
 
 import com.sang12.blog.domain.common.CategoryEntity;
 import com.sang12.blog.domain.common.JoinCountEntity;
-import com.sang12.blog.vo.common.PagingVo;
+import com.sang12.blog.vo.front.MainPageVo;
 
 public interface CommonService {
 	public abstract void checkAndCount();
@@ -36,6 +36,6 @@ public interface CommonService {
 	 * @param vo
 	 * @return
 	 */
-	public abstract Map<String, Object> getMainData(PagingVo vo);
+	public abstract Map<String, Object> getMainData(MainPageVo vo);
 	
 }

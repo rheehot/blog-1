@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sang12.blog.service.common.CommonService;
-import com.sang12.blog.vo.common.PagingVo;
+import com.sang12.blog.vo.front.MainPageVo;
 
 
 @Controller
@@ -23,17 +23,8 @@ public class MainController {
 	private CommonService commonService;
 	
 	@RequestMapping("/main")
-	public ModelAndView main(PagingVo vo){
+	public ModelAndView main(MainPageVo vo){
 		logger.info("vo:::::"+vo);
-		Map<String, Object> data = commonService.getMainData(vo);
-		logger.info("data:::::"+data);
-		return new ModelAndView("front/main", "mainData", data);
-	}
-	
-	@RequestMapping("/main/{largeCategory}")
-	public ModelAndView mainBoardCategory(PagingVo vo, @PathVariable int largeCategory){
-		logger.info("vo:::::"+vo);
-		logger.info("vo:::::"+largeCategory);
 		Map<String, Object> data = commonService.getMainData(vo);
 		logger.info("data:::::"+data);
 		return new ModelAndView("front/main", "mainData", data);

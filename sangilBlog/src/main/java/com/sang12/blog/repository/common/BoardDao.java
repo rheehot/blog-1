@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.sang12.blog.domain.board.BoardEntity;
 import com.sang12.blog.vo.common.PagingVo;
+import com.sang12.blog.vo.front.MainPageVo;
 
 /**
  * com.sang12.blog.repository.common
@@ -16,5 +17,5 @@ import com.sang12.blog.vo.common.PagingVo;
 public interface BoardDao {
 	public List<BoardEntity> getMainArticle(PagingVo vo);
 	
-	int getMainArticleCount();
+	int getMainArticleCount(MainPageVo vo);
 }

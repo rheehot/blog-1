@@ -5,8 +5,14 @@
 <c:set var="articleList" value="${mainData.articleList}"/>
 <c:set var="paging" value="${mainData.paging}"/>
 
+<form name="mainFrm" id="mainFrm" method="post">
+	<input type="hidden" name="largeCategoryId" id="largeCategoryId" value="${param.largeCategoryId }"/>
+	<input type="hidden" name="middleCategoryId" id="middleCategoryId" value="${param.middleCategoryId }"/>
+	<input type="hidden" name="page" id="page" value=""/>
+</form>
+
 <%-- 메인 게시물 영역 --%>
-<div class="container-flue">
+<div class="container-flue" style="margin-bottom:80px;">
 <c:forEach items="${articleList}" var="list">
 	<div class="mt-2" style="height:140px; background: white; border:solid 2px; border-color: 989898; border-radius: 10px;">
 			<h2 class="ml-3 mt-4 text-center">${list.title}</h2>
@@ -26,23 +32,32 @@
 	<div class="navbar-collapse collapse justify-content-center">
 		<ul class="navbar-nav">
 		<c:if test="${paging.startPage > 1 }">
-			<li class="page-item"><a class="page-link" href="/main?page=${paging.startPage - 1}">이전</a></li>
+			<li class="page-item"><a class="page-link" href="javascript:go_page(${paging.startPage - 1})">이전</a></li>
 		</c:if>
 		<c:forEach var="pagingNum" begin="${paging.startPage}" end="${paging.endPage}" step="1">
 			<c:choose>
 				<c:when test="${pagingNum eq paging.page }">
-					<li class="page-item active"><a class="page-link" href="/main?page=${pagingNum}">${pagingNum}</a></li>
+					<li class="page-item active"><a class="page-link" href="javascript:go_page(${pagingNum})">${pagingNum}</a></li>
 				</c:when>
 				<c:otherwise>
-					<li class="page-item"><a class="page-link" href="/main?page=${pagingNum}">${pagingNum}</a></li>
+					<li class="page-item"><a class="page-link" href="javascript:go_page(${pagingNum})">${pagingNum}</a></li>
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
 		<c:if test="${paging.endPage < paging.totalPage }">
-			<li class="page-item"><a class="page-link" href="/main?page=${paging.endPage + 1}">다음</a></li>
+			<li class="page-item"><a class="page-link" href="javascript:go_page(${paging.endPage + 1})">다음</a></li>
 		</c:if>
 		</ul>
 	</div>
 </nav>
+
+<script type="text/javascript">
+
+go_page = function(page){
+	$("#page").val(page);
+	document.getElementById("mainFrm").submit();
+}
+
+</script>
 
 
