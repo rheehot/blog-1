@@ -2,8 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
  
 <mapper namespace="com.sang12.blog.repository.common.CategoryDao">
-	<select id="getMainCategoryList" resultType="com.sang12.blog.domain.common.CategoryEntity">
-	
+	<select id="getLargeCategoryList" resultType="com.sang12.blog.domain.common.CategoryEntity">
+		SELECT COMM03.categoryId, COMM03.categoryName, COMM03.parentId, COMM03.sortNumber,
+  			(SELECT COUNT(*) FROM BOARD01TM BOARD01 WHERE BOARD01.largeCategory = COMM03.categoryId) articleCount
+		FROM COMM03TM COMM03
+		WHERE parentId = 0
+		ORDER BY sortNumber
 	</select>
 </mapper>
 

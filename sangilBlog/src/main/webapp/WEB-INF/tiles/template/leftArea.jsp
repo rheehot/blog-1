@@ -43,13 +43,13 @@
 		</li>
 		<c:forEach var="upCategory" items="${upCategoryList}">
 			<li>
-				<a href="javascript:getArticle(${upCategory.categoryId}, '')"><b>${upCategory.categoryName}</b></a>
+				<a href="javascript:getArticle(${upCategory.categoryId}, '')"><b>${upCategory.categoryName}</b><span style="font-size:5px;"> (${upCategory.articleCount})</span></a>
 				<c:forEach var="childCategory" items="${childCategoryList}">
 					<c:if test="${upCategory.categoryId eq childCategory.parentId }">
 						<div class ="ml-2">
 							<ul class="list-unstyled" id="menu${childCategory.parentId }">
 								<li>
-									<a href="javascript:getArticle(${upCategory.categoryId}, ${childCategory.categoryId})">-${childCategory.categoryName }</a>
+									<a href="javascript:getArticle(${upCategory.categoryId}, ${childCategory.categoryId})">-${childCategory.categoryName} <%-- <span class="badge badge-secondary">NEW</span>--%></a>
 								</li>
 							</ul>
 						</div>

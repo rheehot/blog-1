@@ -1,5 +1,9 @@
 package com.sang12.blog.repository.common;
 
+import java.util.List;
+
+import com.sang12.blog.domain.common.CategoryEntity;
+
 /**
  * com.sang12.blog.repository.common
  * CategoryDao.java
@@ -9,5 +13,5 @@ package com.sang12.blog.repository.common;
  * @Description : category dao
  */
 public interface CategoryDao {
-
+	public List<CategoryEntity> getLargeCategoryList();
 }
