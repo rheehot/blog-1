@@ -14,9 +14,11 @@
 <%-- 메인 게시물 영역 --%>
 <div class="container-flue" style="margin-bottom:80px;">
 <c:forEach items="${articleList}" var="list">
-	<div class="mt-2" style="height:140px; background: white; border:solid 2px; border-color: 989898; border-radius: 10px;">
-			<h2 class="ml-3 mt-4 text-center">${list.title}</h2>
-			<div class="float-right p-3 mt-3" style="">
+	<div class="mt-2" style="height:110px; background: white; border:solid 2px; border-color: 989898; border-radius: 10px;">
+			<div class="mb-0">
+				<h2 class="mt-4 text-center">${list.title} <span style="font-size:8px;">${list.largeCategoryName} <c:if test="${list.middleCategoryName ne null }">/ ${list.middleCategoryName}</c:if></span></h2>
+			</div>
+			<div class="float-right mr-3">
 				<p><b><fmt:formatDate pattern = "yyyy-MM-dd" value = "${list.registerDate}"/> posted by sang12</b></p>
 			</div>
 	</div>

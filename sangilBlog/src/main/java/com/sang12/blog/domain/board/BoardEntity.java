@@ -53,5 +53,9 @@ public class BoardEntity implements Serializable{
 	
 	@Transient
 	String largeCategoryName;
+	@Transient
+	String middleCategoryName;
+	@Transient
+	String bottomCategoryName;
 	
 }

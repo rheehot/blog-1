@@ -16,7 +16,20 @@
     </select>
  	
  	<sql id="getMainArticleResult">
- 		SELECT * FROM BOARD01TM
+ 		SELECT boardId, 
+ 			largeCategory, 
+ 			middleCategory, 
+ 			bottomCategory, 
+	  		(SELECT categoryName FROM COMM03TM COMM03 WHERE COMM03.categoryId = largeCategory) largeCategoryName,
+  			(SELECT categoryName FROM COMM03TM COMM03 WHERE COMM03.categoryId = middleCategory) middleCategoryName,
+  			(SELECT categoryName FROM COMM03TM COMM03 WHERE COMM03.categoryId = bottomCategory) bottomCategoryName,
+ 			title, 
+ 			content, 
+ 			registerDate, 
+ 			registerId, 
+ 			finalChangeDate, 
+ 			finalChangeId 
+ 		FROM BOARD01TM
   		WHERE 1=1
 			<if test="largeCategoryId != null and largeCategoryId != ''">
 				AND largeCategory = #{largeCategoryId, jdbcType=INTEGER}
