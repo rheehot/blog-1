@@ -3,7 +3,7 @@
 <div style="background-color: #ffffff; height:6em;">
   	<h1><a href="/md/main">Sangil's blog Admin</a></h1>
 	 <div class="float-right mr-3 mt-3"> 
-	  	<span class="badge badge-primary" style="cursor:hand" onclick="javascript:location.href='/main'">Home</span>
+	  	<span class="badge badge-primary" style="cursor:hand" onclick="javascript:location.href='/'">Home</span>
   	</div>
 </div>
 
@@ -19,6 +19,9 @@
    			</li>
    			<li class="nav-item">
      				<a class="nav-link" href="/md/writeArticle">글작성</a>
+   			</li>
+   			<li class="nav-item">
+   				<a class="nav-link" href="/md/board">게시판</a>
    			</li>
   			<!-- <li class="nav-item dropdown">
 	    		<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">게시판</a>

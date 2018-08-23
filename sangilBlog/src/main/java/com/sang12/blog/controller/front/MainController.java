@@ -22,7 +22,7 @@ public class MainController {
 	@Autowired
 	private CommonService commonService;
 	
-	@RequestMapping("/main")
+	@RequestMapping("/")
 	public ModelAndView main(MainPageVo vo){
 		logger.info("vo:::::"+vo);
 		Map<String, Object> data = commonService.getMainData(vo);

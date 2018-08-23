@@ -45,4 +45,9 @@ public class AdminController {
 	public ModelAndView writeArticle(){
 		return new ModelAndView("md/writeArticle");
 	}
+	
+	@RequestMapping("/board")
+	public ModelAndView board(){
+		return new ModelAndView("md/board");
+	}
 }
