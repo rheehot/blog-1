@@ -3,12 +3,21 @@
  
 <mapper namespace="com.sang12.blog.repository.common.BoardDao">
 
-    <select id="getMainArticle" resultType="com.sang12.blog.domain.board.BoardEntity">
-        select @ROWNUM := @ROWNUM + 1 as rnum, R1.* FROM(
-  			<include refid="getMainArticleResult"/>
-  			ORDER BY boardId desc
+	<sql id="COMMON_PAGING_HEADER">
+		select @ROWNUM := @ROWNUM + 1 as rnum, R1.* FROM(	
+	</sql>
+	
+	<sql id="COMMON_PAGING_TAIL">
 		) R1, (select @ROWNUM := 0) A
-		LIMIT #{start, jdbcType=INTEGER} , #{countList, jdbcType=INTEGER}
+		LIMIT #{length, jdbcType=INTEGER} OFFSET #{start, jdbcType=INTEGER}	
+	</sql>
+	
+	<!-- mainPage 게시물 리스트 -->
+    <select id="getMainArticle" resultType="com.sang12.blog.domain.board.BoardEntity">
+    	<include refid="COMMON_PAGING_HEADER"/>
+ 		<include refid="getMainArticleResult"/>
+  		ORDER BY boardId desc
+  		<include refid="COMMON_PAGING_TAIL"/>
     </select>
     
 	<select id="getMainArticleCount" resultType="int">
@@ -16,27 +25,41 @@
     </select>
  	
  	<sql id="getMainArticleResult">
- 		SELECT boardId, 
- 			largeCategory, 
- 			middleCategory, 
- 			bottomCategory, 
+ 		SELECT boardId, largeCategory, middleCategory, bottomCategory, 
 	  		(SELECT categoryName FROM COMM03TM COMM03 WHERE COMM03.categoryId = largeCategory) largeCategoryName,
   			(SELECT categoryName FROM COMM03TM COMM03 WHERE COMM03.categoryId = middleCategory) middleCategoryName,
   			(SELECT categoryName FROM COMM03TM COMM03 WHERE COMM03.categoryId = bottomCategory) bottomCategoryName,
- 			title, 
- 			content, 
- 			registerDate, 
- 			registerId, 
- 			finalChangeDate, 
- 			finalChangeId 
+ 			title, content, registerDate, registerId, finalChangeDate, finalChangeId 
  		FROM BOARD01TM
   		WHERE 1=1
-			<if test="largeCategoryId != null and largeCategoryId != ''">
-				AND largeCategory = #{largeCategoryId, jdbcType=INTEGER}
-			</if>
-			<if test="middleCategoryId != null and middleCategoryId != ''">
-				AND middleCategory = #{middleCategoryId, jdbcType=INTEGER}
-			</if>
+		<if test="largeCategoryId != null and largeCategoryId != ''">
+			AND largeCategory = #{largeCategoryId, jdbcType=INTEGER}
+		</if>
+		<if test="middleCategoryId != null and middleCategoryId != ''">
+			AND middleCategory = #{middleCategoryId, jdbcType=INTEGER}
+		</if>
     </sql>
+    
+    <!-- admin 게시물 리스트 -->
+    <select id="getAdminArticleList" resultType="com.sang12.blog.domain.board.BoardEntity">
+    	<include refid="COMMON_PAGING_HEADER"/>
+    	<include refid="getAdminArticleListResult"/>
+    	ORDER BY boardId DESC
+    	<include refid="COMMON_PAGING_TAIL"/>
+    </select>
+    
+	<select id="getAdminArticleListCount" resultType="int">
+	      SELECT COUNT(*) FROM (<include refid="getAdminArticleListResult"/>) A
+	</select>
+    
+    <sql id="getAdminArticleListResult">
+		SELECT boardId, largeCategory, middleCategory, bottomCategory, 
+	  		(SELECT categoryName FROM COMM03TM COMM03 WHERE COMM03.categoryId = largeCategory) largeCategoryName,
+  			(SELECT categoryName FROM COMM03TM COMM03 WHERE COMM03.categoryId = middleCategory) middleCategoryName,
+  			(SELECT categoryName FROM COMM03TM COMM03 WHERE COMM03.categoryId = bottomCategory) bottomCategoryName,
+ 			title, registerDate, registerId, finalChangeDate, finalChangeId 
+ 		FROM BOARD01TM
+    </sql>
+    
 </mapper>
 

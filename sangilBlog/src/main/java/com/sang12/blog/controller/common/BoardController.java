@@ -1,5 +1,8 @@
 package com.sang12.blog.controller.common;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +16,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.sang12.blog.domain.board.BoardEntity;
 import com.sang12.blog.service.common.BoardService;
-import com.sang12.blog.service.common.CommonService;
 import com.sang12.blog.service.common.StorageService;
+import com.sang12.blog.vo.admin.boardVo;
 
 /**
  * 게시판 컨트롤러
@@ -24,9 +27,6 @@ import com.sang12.blog.service.common.StorageService;
 @Controller
 @RequestMapping("/common")
 public class BoardController {
-	@Autowired
-	private CommonService commonService;
-	
 	@Autowired
 	private BoardService boardService;
 	
@@ -39,7 +39,6 @@ public class BoardController {
 	@PostMapping("/writeArticle")
 	@ResponseBody
 	public boolean writeArticle(BoardEntity board){
-		System.out.println("param::"+board);
 		boardService.articleSave(board);
 		return true;
 	}
@@ -56,5 +55,15 @@ public class BoardController {
 	      e.printStackTrace();
 	    }
 	    return null;
+	}
+	
+	@PostMapping("/getAdminArticleList")
+	@ResponseBody
+	public Map<String, Object> getArticleList(boardVo vo){
+		System.out.println("parameterMap::"+vo);
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		returnMap = boardService.getAdminArticleList(vo);
+		System.out.println("return" + returnMap);
+		return returnMap;
 	}
 }

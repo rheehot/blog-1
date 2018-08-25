@@ -19,7 +19,7 @@ public class PagingVo implements Serializable {
 	
 	public PagingVo() {
 		this.countPage = 5;
-		this.countList = 3;
+		this.length = 3;
 		this.page = 1;
 	}
 	
@@ -33,7 +33,7 @@ public class PagingVo implements Serializable {
 	private int countPage;
 	
 	//출력될 게시 물 수 
-	private int countList;
+	private int length;
 	
 	//총 게시물 수
 	private int totalCount;
@@ -48,7 +48,7 @@ public class PagingVo implements Serializable {
 	private int endPage;
 	
 	public int getPage() {
-		this.start = (page - 1) * countList;
+		this.start = (page - 1) * length;
 		return page;
 	}
 	
@@ -58,9 +58,9 @@ public class PagingVo implements Serializable {
 	}
 	
 	public void setPaging() {
-		totalPage = totalCount / countList;
+		totalPage = totalCount / length;
 
-		if (totalCount % countList > 0) {
+		if (totalCount % length > 0) {
 		    totalPage++;
 		}
 		

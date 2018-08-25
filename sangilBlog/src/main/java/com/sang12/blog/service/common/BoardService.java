@@ -1,9 +1,12 @@
 package com.sang12.blog.service.common;
 
+import java.util.Map;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import com.sang12.blog.domain.board.BoardEntity;
+import com.sang12.blog.vo.admin.boardVo;
 
 /**
  * com.sang12.blog.service.common
@@ -17,4 +20,6 @@ public interface BoardService {
 	public abstract void articleSave(BoardEntity board);
 	
 	public abstract Page<BoardEntity> getMainArticleList(Pageable pageable);
+	
+	public abstract Map<String, Object> getAdminArticleList(boardVo vo);
 }
