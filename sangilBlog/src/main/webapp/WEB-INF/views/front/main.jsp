@@ -12,19 +12,14 @@
 </form>
 
 <%-- 메인 게시물 영역 --%>
-<div class="container-flue" style="margin-bottom:80px;">
+<div class="container" style="margin-bottom:80px;">
 <c:forEach items="${articleList}" var="list">
-	<div class="mt-2" style="height:110px; background: white; border:solid 2px; border-color: 989898; border-radius: 10px;">
-			<div class="mb-0">
-				<h2 class="mt-4 text-center">${list.title} <span style="font-size:8px;">${list.largeCategoryName} <c:if test="${list.middleCategoryName ne null }">/ ${list.middleCategoryName}</c:if></span></h2>
-			</div>
-			<div class="float-right mr-3">
-				<p><b><fmt:formatDate pattern = "yyyy-MM-dd" value = "${list.registerDate}"/> posted by sang12</b></p>
-			</div>
-	</div>
-		
-	<div class ="mt-0 p-2 mt-2" style="background-color: white; border-radius: 10px; border: solid 1px; border-color: #25252582;">
-		${list.content}
+	<div class="card mb-3">
+		<div class="card-body mb-5">
+			<h2 class="mt-4 text-center">${list.title} <span style="font-size:8px;">${list.largeCategoryName} <c:if test="${list.middleCategoryName ne null }">/ ${list.middleCategoryName}</c:if></span></h2>
+			<p class="text-right mb-5 mt-5"><b><fmt:formatDate pattern = "yyyy-MM-dd" value = "${list.registerDate}"/> posted by sang12</b></p>
+			${list.content}
+		</div>
 	</div>
 </c:forEach>
 </div>
