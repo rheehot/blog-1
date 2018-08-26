@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.sang12.blog.domain.board.BoardEntity;
 
-public interface BoardRepository  extends JpaRepository<BoardEntity, Integer>{ 
+public interface BoardRepository  extends JpaRepository<BoardEntity, Long>{ 
 	Page<BoardEntity> findAllByOrderByBoardId(Pageable pageable);
 }

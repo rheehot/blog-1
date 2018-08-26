@@ -19,7 +19,11 @@ import com.sang12.blog.vo.admin.boardVo;
 public interface BoardService {
 	public abstract void articleSave(BoardEntity board);
 	
+	public abstract void articleUpdate(BoardEntity board);
+	
 	public abstract Page<BoardEntity> getMainArticleList(Pageable pageable);
 	
 	public abstract Map<String, Object> getAdminArticleList(boardVo vo);
+	
+	public abstract BoardEntity getArticleDetail(int boardId);
 }

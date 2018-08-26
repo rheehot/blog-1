@@ -28,17 +28,18 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
+	var table;
 	var param = {};
 	
-	$('#board').DataTable( {
+	table = $('#board').DataTable( {
 		"processing": true,
 		"serverSide": true,
 		"paging" : true,
 		"pagingType" : "full_numbers",
-		"search" : false,
+		"searching": false,
 		"ordering" : false,
 		"ajax": {
-			"url":"/common/getAdminArticleList",
+			"url":"/md/getAdminArticleList",
 			"type":"POST",
 			"data": param,
 		},
@@ -53,7 +54,21 @@ $(document).ready(function(){
 		 "columnDefs":[{targets:4, render:function(data){
 		      return moment(data).format('YYYY/MM/DD');
 	    }}],
-		select: true
+		select: true,
+		dom: 'Bfrtip',
+		 buttons: [
+            {
+                text: 'write',
+                action: function ( e, dt, node, config ) {
+                    location.href="/md/writeArticle";
+                },
+                className: 'pull-right'
+            }
+        ]
+	});
+	
+	$('#board tbody').on('click', 'tr', function () {
+		location.href="/md/modifyArticle/" + table.row(this).data().boardId; 
 	});
 })
 </script>

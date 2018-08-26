@@ -40,14 +40,4 @@ public class AdminController {
 		List<CategoryEntity> categoryList= commonService.getCategoryList(0);
 		return new ModelAndView("md/categoryManagement", "data", categoryList);
 	}
-	
-	@RequestMapping("/writeArticle")
-	public ModelAndView writeArticle(){
-		return new ModelAndView("md/writeArticle");
-	}
-	
-	@RequestMapping("/board")
-	public ModelAndView board(){
-		return new ModelAndView("md/board");
-	}
 }

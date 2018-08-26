@@ -18,9 +18,6 @@
      				<a class="nav-link" href="/md/categoryManagement">카테고리</a>
    			</li>
    			<li class="nav-item">
-     				<a class="nav-link" href="/md/writeArticle">글작성</a>
-   			</li>
-   			<li class="nav-item">
    				<a class="nav-link" href="/md/board">게시판</a>
    			</li>
   			<!-- <li class="nav-item dropdown">

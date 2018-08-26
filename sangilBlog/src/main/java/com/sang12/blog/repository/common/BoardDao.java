@@ -23,4 +23,6 @@ public interface BoardDao {
 	public List<BoardEntity> getAdminArticleList(boardVo vo);
 	
 	int getAdminArticleListCount(boardVo vo);
+	
+	public BoardEntity getArticleDetail(int boardId);
 }

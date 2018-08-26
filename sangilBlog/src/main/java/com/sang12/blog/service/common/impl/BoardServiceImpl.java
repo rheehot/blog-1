@@ -38,6 +38,22 @@ public class BoardServiceImpl implements BoardService {
 		board.setFinalChangeDate(new Date());
 		boardRep.save(board);
 	}
+	
+	@Override
+	public void articleUpdate(BoardEntity board) {
+		BoardEntity boardToUpdate = boardRep.getOne(board.getBoardId()); 
+		
+		boardToUpdate.setTitle(board.getTitle());
+		boardToUpdate.setContent(board.getContent());
+		boardToUpdate.setLargeCategory(board.getLargeCategory());
+		boardToUpdate.setMiddleCategory(board.getMiddleCategory());
+		boardToUpdate.setContent(board.getContent());
+		boardToUpdate.setFinalChangeDate(new Date());
+		
+		//추후 세션아디디로 변경해야함
+		boardToUpdate.setFinalChangeId("sang12");
+		boardRep.save(boardToUpdate);
+	}
 
 	@Override
 	public Page<BoardEntity> getMainArticleList(Pageable pageable) {
@@ -55,5 +71,10 @@ public class BoardServiceImpl implements BoardService {
 		resultMap.put("recordsFiltered",  cnt);
 		System.out.println("rwsultMap:: "+resultMap);
 		return resultMap;
+	}
+
+	@Override
+	public BoardEntity getArticleDetail(int boardId) {
+		return boardDao.getArticleDetail(boardId);
 	}
 }

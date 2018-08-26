@@ -11,13 +11,13 @@
 		<h2 class="text-center">아이고 잘못된 접근입니다</h2>
 		<h3>해당 페이지는 존재하지 않아요</h3>
 		<h3>5초 후 메인페이지로 이동합니다</h3>
-		<h4><a href="/main">이곳을 누르시면 바로 이동합니다</a></h4>
+		<h4><a href="/">이곳을 누르시면 바로 이동합니다</a></h4>
 		<i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
 	</div>
 </div>
 
 <script type="text/javascript">
 	setInterval(function(){ 
-		location.href = "/main";
+		location.href = "/";
 	}, 5000);
 </script>
