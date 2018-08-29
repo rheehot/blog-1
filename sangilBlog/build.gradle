@@ -50,13 +50,16 @@ dependencies {
 	compile("org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16")
 	compile("org.logback-extensions:logback-ext-spring:0.1.2")
 
-
 	//jpa	
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	
 	//webjar 
 	compile 'org.webjars.bower:bootstrap:4.1.2'
 	compile('org.webjars:jquery:3.2.1')
+	
+	// https://mvnrepository.com/artifact/com.rometools/rome
+	compile group: 'com.rometools', name: 'rome', version: '1.11.0'
+
 
 	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
 	testCompile('org.springframework.boot:spring-boot-starter-test')

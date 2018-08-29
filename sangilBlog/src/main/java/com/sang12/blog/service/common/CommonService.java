@@ -3,6 +3,7 @@ package com.sang12.blog.service.common;
 import java.util.List;
 import java.util.Map;
 
+import com.rometools.rome.feed.rss.Channel;
 import com.sang12.blog.domain.common.CategoryEntity;
 import com.sang12.blog.domain.common.JoinCountEntity;
 import com.sang12.blog.vo.front.MainPageVo;
@@ -37,5 +38,18 @@ public interface CommonService {
 	 * @return
 	 */
 	public abstract Map<String, Object> getMainData(MainPageVo vo);
+	
+	/**
+	 * main page호출시 데이터를 가져옴.
+	 * @param vo
+	 * @return
+	 */
+	public abstract Map<String, Object> getArticle(int boardId);
+	
+	/**
+	 * getRssList
+	 * @return
+	 */
+	public abstract Channel getRssList();
 	
 }

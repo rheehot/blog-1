@@ -17,13 +17,17 @@
 	<div class="card mb-3">
 		<div class="card-body mb-5">
 			<h2 class="mt-4 text-center">${list.title} <span style="font-size:8px;">${list.largeCategoryName} <c:if test="${list.middleCategoryName ne null }">/ ${list.middleCategoryName}</c:if></span></h2>
-			<p class="text-right mb-5 mt-5"><b><fmt:formatDate pattern = "yyyy-MM-dd" value = "${list.registerDate}"/> posted by sang12</b></p>
+			<p class="text-right mb-2 mt-5"><b><fmt:formatDate pattern = "yyyy-MM-dd" value = "${list.registerDate}"/> posted by sang12</b></p>
+			<hr>
+			<div class="mt-3">
 			${list.content}
+			</div>
 		</div>
 	</div>
 </c:forEach>
 </div>
 
+<c:if test="${paing ne null }">
 <ul class="pagination" style="justify-content: center;">
 	<c:if test="${paging.startPage > 1 }">
 		<li class="page-item"><a class="page-link" href="javascript:go_page(${paging.startPage - 1})">이전</a></li>
@@ -42,6 +46,7 @@
 		<li class="page-item"><a class="page-link" href="javascript:go_page(${paging.endPage + 1})">다음</a></li>
 	</c:if>
 </ul>
+</c:if>
 
 <script type="text/javascript">
 

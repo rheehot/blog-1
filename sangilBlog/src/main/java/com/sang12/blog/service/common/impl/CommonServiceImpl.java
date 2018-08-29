@@ -1,5 +1,7 @@
 package com.sang12.blog.service.common.impl;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,6 +9,10 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.rometools.rome.feed.rss.Channel;
+import com.rometools.rome.feed.rss.Description;
+import com.rometools.rome.feed.rss.Item;
+import com.sang12.blog.domain.board.BoardEntity;
 import com.sang12.blog.domain.common.CategoryEntity;
 import com.sang12.blog.domain.common.JoinCountEntity;
 import com.sang12.blog.repository.common.BoardDao;
@@ -73,6 +79,56 @@ public class CommonServiceImpl implements CommonService {
 		returnData.put("upCategoryList", categoryDao.getLargeCategoryList());
 		returnData.put("childCategoryList", categoryRep.findChildCategory());
 		return returnData;
+	}
+	
+	@Override
+	public Map<String, Object> getArticle(int boardId) {
+		Map<String, Object> returnData = new HashMap<String, Object>();
+		returnData.put("articleList", boardDao.getMainArticleByBoardId(boardId));
+		returnData.put("upCategoryList", categoryDao.getLargeCategoryList());
+		returnData.put("childCategoryList", categoryRep.findChildCategory());
+		return returnData;
+	}
+
+	@Override
+	public Channel getRssList() {
+		List<BoardEntity> boardList = boardDao.getRssArticleList();
+		
+		Channel channel = new Channel();
+		channel.setFeedType("rss_2.0");
+		channel.setTitle("Sang12 Blog");
+		channel.setDescription("Sangil's Blog");
+		channel.setLink("http://sang12.co.kr");
+		channel.setGenerator("Sang12 Blog");
+		
+		Date postDate = new Date();
+		channel.setPubDate(postDate);
+		
+		List<Item> itemList = new ArrayList<Item>();
+		
+		for(BoardEntity board : boardList) {
+			Item item = new Item();
+			
+			item.setAuthor("sang12");
+			item.setLink("http://sang12.co.kr/" + board.getBoardId());
+			item.setTitle(board.getTitle());
+			
+			/*
+			item.setComments("https://howtodoinjava.com/spring5/webmvc/spring-mvc-cors-configuration/#respond");
+			com.rometools.rome.feed.rss.Category category = new com.rometools.rome.feed.rss.Category();
+			category.setValue("CORS");
+			item.setCategories(Collections.singletonList(category));
+			*/
+			
+			Description descr = new Description();
+			descr.setValue(board.getContent());
+			item.setDescription(descr);
+			item.setPubDate(board.getFinalChangeDate());
+			
+			itemList.add(item);
+		}
+		channel.setItems(itemList);
+		return channel;
 	}
 
 }

@@ -18,6 +18,8 @@ import com.sang12.blog.vo.front.MainPageVo;
 public interface BoardDao {
 	public List<BoardEntity> getMainArticle(PagingVo vo);
 	
+	public List<BoardEntity> getMainArticleByBoardId(int boardId);
+	
 	int getMainArticleCount(MainPageVo vo);
 	
 	public List<BoardEntity> getAdminArticleList(boardVo vo);
@@ -25,4 +27,6 @@ public interface BoardDao {
 	int getAdminArticleListCount(boardVo vo);
 	
 	public BoardEntity getArticleDetail(int boardId);
+	
+	public List<BoardEntity> getRssArticleList();
 }

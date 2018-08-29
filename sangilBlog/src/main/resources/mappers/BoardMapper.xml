@@ -32,12 +32,6 @@
  			title, content, registerDate, registerId, finalChangeDate, finalChangeId 
  		FROM BOARD01TM
   		WHERE 1=1
-		<if test="largeCategoryId != null and largeCategoryId != ''">
-			AND largeCategory = #{largeCategoryId, jdbcType=INTEGER}
-		</if>
-		<if test="middleCategoryId != null and middleCategoryId != ''">
-			AND middleCategory = #{middleCategoryId, jdbcType=INTEGER}
-		</if>
     </sql>
     
     <!-- admin 게시물 리스트 -->
@@ -71,6 +65,16 @@
  		FROM BOARD01TM
   		WHERE 1=1
     		AND boardId = #{boardId, jdbcType=INTEGER}
+    </select>
+    
+    <select id="getRssArticleList" resultType="com.sang12.blog.domain.board.BoardEntity">
+    	<include refid="getMainArticleResult"/>
+    	ORDER BY boardId DESC
+    </select>
+    
+    <select id="getMainArticleByBoardId" parameterType="int" resultType="com.sang12.blog.domain.board.BoardEntity">
+    	<include refid="getMainArticleResult"/>
+    		and boardId = #{boardId, jdbcType=INTEGER}
     </select>
     
 </mapper>

@@ -36,6 +36,7 @@
 	    	</ul>
 	    	
 	    	<div class="form-inline f">
+	    		<span class="badge badge-light mt-3 mr-2" style="cursor:hand" onclick="javascript:location.href='/rss'">RSS</span>
 	  			<input class="form-control mr-sm-2" type="text" placeholder="Search">
 				<button class="btn btn-success my-2 my-sm-0" type="button">Search</button>
 	   		</div>
