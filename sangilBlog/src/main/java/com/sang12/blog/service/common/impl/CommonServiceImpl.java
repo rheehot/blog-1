@@ -84,7 +84,10 @@ public class CommonServiceImpl implements CommonService {
 	@Override
 	public Map<String, Object> getArticle(int boardId) {
 		Map<String, Object> returnData = new HashMap<String, Object>();
-		returnData.put("articleList", boardDao.getMainArticleByBoardId(boardId));
+		List<BoardEntity> boardList = boardDao.getMainArticleByBoardId(boardId);
+		BoardEntity board = boardList.get(0);
+		returnData.put("articleList", boardList);
+		returnData.put("mainTitle", board.getTitle());
 		returnData.put("upCategoryList", categoryDao.getLargeCategoryList());
 		returnData.put("childCategoryList", categoryRep.findChildCategory());
 		return returnData;

@@ -5,11 +5,13 @@
 <c:set var="articleList" value="${mainData.articleList}"/>
 <c:set var="paging" value="${mainData.paging}"/>
 
+
 <form name="mainFrm" id="mainFrm" method="post">
 	<input type="hidden" name="largeCategoryId" id="largeCategoryId" value="${param.largeCategoryId }"/>
 	<input type="hidden" name="middleCategoryId" id="middleCategoryId" value="${param.middleCategoryId }"/>
 	<input type="hidden" name="page" id="page" value=""/>
 </form>
+
 
 <%-- 메인 게시물 영역 --%>
 <div class="container" style="margin-bottom:80px;">
@@ -27,7 +29,7 @@
 </c:forEach>
 </div>
 
-<c:if test="${paing ne null }">
+<c:if test="${paging.length > 0 }">
 <ul class="pagination" style="justify-content: center;">
 	<c:if test="${paging.startPage > 1 }">
 		<li class="page-item"><a class="page-link" href="javascript:go_page(${paging.startPage - 1})">이전</a></li>

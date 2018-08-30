@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
-
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <style>
 html, body{
@@ -15,7 +16,7 @@ html, body{
 	    <meta charset="utf-8">
     	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
-	    <title><tiles:getAsString name="title" /></title>
+	    <title>${mainData.mainTitle} <tiles:getAsString name="title"/></title>
 	    <script src="/webjars/jquery/3.2.1/jquery.js"></script>
 	    <script src="/webjars/bootstrap/4.1.2/dist/js/bootstrap.min.js"></script>
 	    <link rel="stylesheet" href="/webjars/bootstrap/4.1.2/dist/css/bootstrap.min.css">
