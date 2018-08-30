@@ -2,6 +2,7 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <style>
 html, body{
@@ -17,6 +18,12 @@ html, body{
     	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
 	    <title>${mainData.mainTitle} <tiles:getAsString name="title"/></title>
+	    <c:if test="${ mainData.mainTitle ne null}">
+	    	<meta name="description" content='<c:out value='${fn:substring(mainData.articleList[0].content.replaceAll("\\\<.*?\\\>",""),0,100)}' escapeXml="false"/>'>	
+	    </c:if>
+	    <c:if test="${ mainData.mainTitle eq null}">
+	    	<meta name="description" content='sang12 blog'>
+	    </c:if>
 	    <script src="/webjars/jquery/3.2.1/jquery.js"></script>
 	    <script src="/webjars/bootstrap/4.1.2/dist/js/bootstrap.min.js"></script>
 	    <link rel="stylesheet" href="/webjars/bootstrap/4.1.2/dist/css/bootstrap.min.css">
