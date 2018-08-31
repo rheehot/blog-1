@@ -57,7 +57,7 @@ public class MainController {
 		return new ModelAndView("front/articleDetail", "data", "");
 	}
 	
-	@GetMapping(path = "/rss")
+	@GetMapping("/rss")
 	@ResponseBody
 	public Channel rss() {
 		return commonService.getRssList();

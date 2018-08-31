@@ -16,12 +16,26 @@
     <select id="getMainArticle" resultType="com.sang12.blog.domain.board.BoardEntity">
     	<include refid="COMMON_PAGING_HEADER"/>
  		<include refid="getMainArticleResult"/>
+			<if test="largeCategoryId != null and largeCategoryId != ''">
+				AND largeCategory = #{largeCategoryId, jdbcType=INTEGER}
+			</if>
+			<if test="middleCategoryId != null and middleCategoryId != ''">
+				AND middleCategory = #{middleCategoryId, jdbcType=INTEGER}
+			</if>
   		ORDER BY boardId desc
   		<include refid="COMMON_PAGING_TAIL"/>
     </select>
     
 	<select id="getMainArticleCount" resultType="int">
-        SELECT COUNT(*) FROM (<include refid="getMainArticleResult"/>) A
+        SELECT COUNT(*) FROM (
+        	<include refid="getMainArticleResult"/>
+        	<if test="largeCategoryId != null and largeCategoryId != ''">
+				AND largeCategory = #{largeCategoryId, jdbcType=INTEGER}
+			</if>
+			<if test="middleCategoryId != null and middleCategoryId != ''">
+				AND middleCategory = #{middleCategoryId, jdbcType=INTEGER}
+			</if>
+       	) A
     </select>
  	
  	<sql id="getMainArticleResult">
