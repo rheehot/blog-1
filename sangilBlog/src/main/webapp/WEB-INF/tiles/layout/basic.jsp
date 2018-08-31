@@ -17,12 +17,14 @@ html, body{
 	    <meta charset="utf-8">
     	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
-	    <title>${mainData.mainTitle} <tiles:getAsString name="title"/></title>
+	    <title>${mainData.mainTitle} :: <tiles:getAsString name="title"/></title>
 	    <c:if test="${ mainData.mainTitle ne null}">
-	    	<meta name="description" content='<c:out value='${fn:substring(mainData.articleList[0].content.replaceAll("\\\<.*?\\\>",""),0,100)}' escapeXml="false"/>'>	
+	    	<meta name="description" content='<c:out value='${fn:substring(mainData.articleList[0].content.replaceAll("\\\<.*?\\\>",""),0,100)}' escapeXml="false"/>'>
+	    	<link rel="canonical" href="http://sang12.co.kr/${mainData.articleList[0].boardId }">	
 	    </c:if>
 	    <c:if test="${ mainData.mainTitle eq null}">
 	    	<meta name="description" content='sang12 blog'>
+	    	<link rel="canonical" href="http://sang12.co.kr">	
 	    </c:if>
 	    <script src="/webjars/jquery/3.2.1/jquery.js"></script>
 	    <script src="/webjars/bootstrap/4.1.2/dist/js/bootstrap.min.js"></script>
