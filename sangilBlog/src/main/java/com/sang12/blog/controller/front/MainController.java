@@ -36,13 +36,6 @@ public class MainController {
 		return new ModelAndView("front/main", "mainData", data);
 	}
 	
-	@RequestMapping("/{articleId}")
-	public ModelAndView getArticle(@PathVariable int articleId){
-		Map<String, Object> data = commonService.getArticle(articleId);
-		logger.info("data:::::"+data);
-		return new ModelAndView("front/main", "mainData", data);
-	}
-	
 	@RequestMapping("/intro")
 	public String intro(){
 		return "front/intro";
@@ -73,9 +66,17 @@ public class MainController {
 	@RequestMapping(value = "/robots.txt")
 	public void robots(HttpServletRequest request, HttpServletResponse response) {
 	    try {
-	        response.getWriter().write("User-agent: *\nDisallow: /md\n");
+	        response.getWriter().write("User-agent: *\n Disallow: /md\n");
 	    } catch (IOException e) {
 	    	logger.info(e.getMessage());
 	    }
 	}
+	
+	@RequestMapping("/{articleId}")
+	public ModelAndView getArticle(@PathVariable int articleId){
+		Map<String, Object> data = commonService.getArticle(articleId);
+		logger.info("data:::::"+data);
+		return new ModelAndView("front/main", "mainData", data);
+	}
+	
 }
