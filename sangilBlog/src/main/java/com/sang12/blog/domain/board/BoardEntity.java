@@ -44,6 +44,8 @@ public class BoardEntity implements Serializable{
 	@NotNull
 	String title;
 	
+	String keyword;
+	
 	@NotNull
 	@Lob
 	@Column( length = 100000 )

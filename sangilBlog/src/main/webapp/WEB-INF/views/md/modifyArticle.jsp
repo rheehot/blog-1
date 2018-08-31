@@ -28,9 +28,16 @@
 	
 	<div>
 		<div class="summernote">${data.content}</div>
-		<div class="row justify-content-center mt-2">
-			<button type="button" class="btn btn-primary" onClick="javascript:modify();">수정</button>
-		</div>
+	</div>
+	
+	<div class="row d-flex justify-content-center mt-1 mb-3">
+    	<div class="col">
+	        <input type="text" class="form-control" placeholder="keyword" id="keyword" name="keyword" value="${data.keyword }">
+	    </div>
+	</div>
+	
+	<div class="row justify-content-center mt-2">
+		<button type="button" class="btn btn-primary" onClick="javascript:modify();">수정</button>
 	</div>
 </form>
 
@@ -128,6 +135,7 @@ modify = function(){
 	param.boardId = $("#boardId").val();
 	param.title = $("#title").val();
 	param.content = $(".summernote").summernote('code');
+	param.keyword = $("#keyword").val();
 	
 	$.ajax({
 		type: "POST",

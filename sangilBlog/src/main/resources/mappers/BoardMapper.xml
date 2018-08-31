@@ -25,7 +25,7 @@
     </select>
  	
  	<sql id="getMainArticleResult">
- 		SELECT boardId, largeCategory, middleCategory, bottomCategory, 
+ 		SELECT boardId, largeCategory, middleCategory, bottomCategory, keyword,
 	  		(SELECT categoryName FROM COMM03TM COMM03 WHERE COMM03.categoryId = largeCategory) largeCategoryName,
   			(SELECT categoryName FROM COMM03TM COMM03 WHERE COMM03.categoryId = middleCategory) middleCategoryName,
   			(SELECT categoryName FROM COMM03TM COMM03 WHERE COMM03.categoryId = bottomCategory) bottomCategoryName,
@@ -47,7 +47,7 @@
 	</select>
     
     <sql id="getAdminArticleListResult">
-		SELECT boardId, largeCategory, middleCategory, bottomCategory, 
+		SELECT boardId, largeCategory, middleCategory, bottomCategory, keyword,
 	  		(SELECT categoryName FROM COMM03TM COMM03 WHERE COMM03.categoryId = largeCategory) largeCategoryName,
   			(SELECT categoryName FROM COMM03TM COMM03 WHERE COMM03.categoryId = middleCategory) middleCategoryName,
   			(SELECT categoryName FROM COMM03TM COMM03 WHERE COMM03.categoryId = bottomCategory) bottomCategoryName,
@@ -57,7 +57,7 @@
     
     <!-- 게시물 수정대상 상세 가져오기 -->
     <select id="getArticleDetail" resultType="com.sang12.blog.domain.board.BoardEntity">
-    	SELECT boardId, largeCategory, middleCategory, bottomCategory, 
+    	SELECT boardId, largeCategory, middleCategory, bottomCategory, keyword, 
 	  		(SELECT categoryName FROM COMM03TM COMM03 WHERE COMM03.categoryId = largeCategory) largeCategoryName,
   			(SELECT categoryName FROM COMM03TM COMM03 WHERE COMM03.categoryId = middleCategory) middleCategoryName,
   			(SELECT categoryName FROM COMM03TM COMM03 WHERE COMM03.categoryId = bottomCategory) bottomCategoryName,

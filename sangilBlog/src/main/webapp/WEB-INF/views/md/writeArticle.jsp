@@ -23,9 +23,16 @@
 	
 	<div>
 		<div class="summernote"></div>
-		<div class="row justify-content-center mt-2">
-			<button type="button" class="btn btn-primary" onClick="javascript:save();">저장</button>
-		</div>
+	</div>
+	
+	<div class="row d-flex justify-content-center mt-1 mb-3">
+    	<div class="col">
+	        <input type="text" class="form-control" placeholder="keyword" id="keyword" name="keyword">
+	    </div>
+	</div>
+	
+	<div class="row justify-content-center mt-2">
+		<button type="button" class="btn btn-primary" onClick="javascript:save();">저장</button>
 	</div>
 </form>
 
@@ -144,6 +151,7 @@ save = function(){
 	//param.bottomCategory = "1";
 	param.title = $("#title").val();
 	param.content = $(".summernote").summernote('code');
+	param.keyword = $("#keyword").val();
 	
 	$.ajax({
 		type: "POST",

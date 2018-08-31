@@ -21,6 +21,7 @@ import com.sang12.blog.repository.common.CategoryRepository;
 import com.sang12.blog.repository.common.JoinCountRepository;
 import com.sang12.blog.service.common.CommonService;
 import com.sang12.blog.utils.DateUtil;
+import com.sang12.blog.utils.ObjectUtils;
 import com.sang12.blog.vo.front.MainPageVo;
 
 @Service
@@ -111,6 +112,7 @@ public class CommonServiceImpl implements CommonService {
 		
 		for(BoardEntity board : boardList) {
 			Item item = new Item();
+			//category.set
 			
 			item.setAuthor("sang12");
 			item.setLink("http://sang12.co.kr/" + board.getBoardId());
@@ -118,14 +120,15 @@ public class CommonServiceImpl implements CommonService {
 			
 			/*
 			item.setComments("https://howtodoinjava.com/spring5/webmvc/spring-mvc-cors-configuration/#respond");
-			com.rometools.rome.feed.rss.Category category = new com.rometools.rome.feed.rss.Category();
-			category.setValue("CORS");
-			item.setCategories(Collections.singletonList(category));
 			*/
 			
 			Description descr = new Description();
 			descr.setValue(board.getContent());
 			item.setDescription(descr);
+			if(board.getKeyword() != null) {
+				item.setCategories(ObjectUtils.getCategory(board.getKeyword(), ","));
+			}
+			
 			item.setPubDate(board.getFinalChangeDate());
 			
 			itemList.add(item);

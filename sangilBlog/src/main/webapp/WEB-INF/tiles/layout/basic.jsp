@@ -12,7 +12,8 @@ html, body{
 }
 </style>
 
-<html lang="ko">
+<html lang="ko" xmlns:og='http://ogp.me/ns#'>
+
 	<head>
 	    <meta charset="euc-kr">
     	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,14 +21,16 @@ html, body{
 	    <title>${mainData.mainTitle} :: <tiles:getAsString name="title"/></title>
 	    <c:if test="${ mainData.mainTitle ne null}">
 	    	<meta name="description" content='<c:out value='${fn:substring(mainData.articleList[0].content.replaceAll("\\\<.*?\\\>",""),0,100)}' escapeXml="false"/>'>
+	    	<meta name="keywords" content="${mainData.articleList[0].keyword }">
 	    	<link rel="canonical" href="http://sang12.co.kr/${mainData.articleList[0].boardId }">	
-	    	<meta property="og:type" content="blog">
+	    	<meta property="og:type" content="article">
 			<meta property="og:title" content="${mainData.mainTitle} :: <tiles:getAsString name="title"/>">
 			<meta property="og:description" content="<c:out value='${fn:substring(mainData.articleList[0].content.replaceAll("\\\<.*?\\\>",""),0,100)}' escapeXml="false"/>">
 			<meta property="og:url" content="http://sang12.co.kr/${mainData.articleList[0].boardId }">
 	    </c:if>
 	    <c:if test="${ mainData.mainTitle eq null}">
 	    	<meta name="description" content='sang12 blog'>
+	    	<meta name="keywords" content="sang12 blog">
 	    	<link rel="canonical" href="http://sang12.co.kr">	
  		    <meta property="og:type" content="blog">
 			<meta property="og:title" content="${mainData.mainTitle} :: <tiles:getAsString name="title"/>">
