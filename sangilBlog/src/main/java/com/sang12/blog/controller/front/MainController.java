@@ -1,6 +1,10 @@
 package com.sang12.blog.controller.front;
 
+import java.io.IOException;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -64,5 +68,14 @@ public class MainController {
 	@ResponseBody
 	public Channel rss() {
 		return commonService.getRssList();
+	}
+	
+	@RequestMapping(value = "/robots.txt")
+	public void robots(HttpServletRequest request, HttpServletResponse response) {
+	    try {
+	        response.getWriter().write("User-agent: *\nDisallow: /md\n");
+	    } catch (IOException e) {
+	    	logger.info(e.getMessage());
+	    }
 	}
 }

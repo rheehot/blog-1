@@ -25,7 +25,6 @@ public class ConfigurationForInterceptor extends WebMvcConfigurerAdapter{
 				.excludePathPatterns("/md/**");
 		
 		registry.addInterceptor(this.adminLoginInterceptor).addPathPatterns("/md/**")
-		.excludePathPatterns("/front/**")
 		.excludePathPatterns("/md/login*");
 	}
 }
