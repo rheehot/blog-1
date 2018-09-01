@@ -29,12 +29,12 @@ html, body{
 			<meta property="og:url" content="http://sang12.co.kr/${mainData.articleList[0].boardId }">
 	    </c:if>
 	    <c:if test="${ mainData.mainTitle eq null}">
-	    	<meta name="description" content='sang12 blog'>
-	    	<meta name="keywords" content="sang12 blog">
+	    	<meta name="description" content='취미 및 관심사를 공유하는 최상일의 개인 블로그입니다.'>
+	    	<meta name="keywords" content="blog, sang12, 개인블로그">
 	    	<link rel="canonical" href="http://sang12.co.kr">	
  		    <meta property="og:type" content="blog">
 			<meta property="og:title" content="${mainData.mainTitle} :: <tiles:getAsString name="title"/>">
-			<meta property="og:description" content="최상일의 개인 블로그">
+			<meta property="og:description" content="취미 및 관심사를 공유하는 최상일의 개인 블로그입니다.">
 			<meta property="og:url" content="http://sang12.co.kr">
 	    </c:if>
 	    <script src="/webjars/jquery/3.2.1/jquery.js"></script>
@@ -61,9 +61,11 @@ html, body{
 		    enable_page_level_ads: true
 		  });
 		</script>
-		<link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/8.7/styles/monokai_sublime.min.css"> 
-		<script src="//cdn.jsdelivr.net/highlight.js/8.7/highlight.min.js"></script> 
-		<script>hljs.initHighlightingOnLoad();</script>
+		<link rel="stylesheet" href="/css/highlight/androidstudio.css"> 
+		<script src="/js/common/highlight.pack.js"></script>
+		<script>
+			hljs.initHighlightingOnLoad();
+		</script>
 	</head>
 	<body>
 		<div class="container-flud">
