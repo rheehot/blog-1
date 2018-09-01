@@ -54,6 +54,16 @@ html, body{
 		  gtag('js', new Date());
 		  gtag('config', 'UA-123358087-1');
 		</script>
+		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+		<script>
+		  (adsbygoogle = window.adsbygoogle || []).push({
+		    google_ad_client: "ca-pub-2918447982815807",
+		    enable_page_level_ads: true
+		  });
+		</script>
+		<link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/8.7/styles/monokai_sublime.min.css"> 
+		<script src="//cdn.jsdelivr.net/highlight.js/8.7/highlight.min.js"></script> 
+		<script>hljs.initHighlightingOnLoad();</script>
 	</head>
 	<body>
 		<div class="container-flud">
