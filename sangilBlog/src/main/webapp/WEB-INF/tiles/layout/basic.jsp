@@ -43,6 +43,7 @@ html, body{
 	    <%--awesome --%>
 	    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	   	<script src="/js/common/jquery.serializeObject.js"></script>
+	   	<script src="/js/common/common.js"></script>
 	    <%-- 
 	   	<script src="/js/common/util.js"></script>
 	   	--%>
