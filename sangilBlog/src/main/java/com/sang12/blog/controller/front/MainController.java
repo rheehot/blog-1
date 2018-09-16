@@ -64,12 +64,9 @@ public class MainController {
 	}
 	
 	@RequestMapping(value = "/robots.txt")
-	public void robots(HttpServletRequest request, HttpServletResponse response) {
-	    try {
-	        response.getWriter().write("User-agent: *\n Disallow: /md\n");
-	    } catch (IOException e) {
-	    	logger.info(e.getMessage());
-	    }
+	@ResponseBody
+	public String robots() {
+		return "User-agent: *\nDisallow: /md\n";
 	}
 	
 	@RequestMapping("/{articleId}")
