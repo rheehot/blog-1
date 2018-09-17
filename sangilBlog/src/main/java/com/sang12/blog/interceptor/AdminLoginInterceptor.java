@@ -30,7 +30,10 @@ public class AdminLoginInterceptor extends HandlerInterceptorAdapter{
 				response.sendRedirect("/md/login");
 				return false;
 			}
+		}else {
+			logger.info("login::false");
+			response.sendRedirect("/md/login");
+			return false;
 		}
-		return false;
 	}
 }
