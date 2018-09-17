@@ -20,13 +20,10 @@ import lombok.Data;
 
 
 
+
 /**
- * com.sang12.blog.domain.board
- * Board.java
- * 
  * @author Choi Sang Il
- * @Date 2018. 7. 25.
- * @Description : 게시판 domain 모델
+ * BOARD 도메인 객체
  */
 @Entity
 @Data
@@ -43,6 +40,9 @@ public class BoardEntity implements Serializable{
 	
 	@NotNull
 	String title;
+	
+	@NotNull
+	String displayYn;
 	
 	String keyword;
 	

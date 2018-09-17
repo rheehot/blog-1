@@ -16,6 +16,7 @@
     <select id="getMainArticle" resultType="com.sang12.blog.domain.board.BoardEntity">
     	<include refid="COMMON_PAGING_HEADER"/>
  		<include refid="getMainArticleResult"/>
+			AND displayYn = 'Y'
 			<if test="largeCategoryId != null and largeCategoryId != ''">
 				AND largeCategory = #{largeCategoryId, jdbcType=INTEGER}
 			</if>
@@ -29,6 +30,7 @@
 	<select id="getMainArticleCount" resultType="int">
         SELECT COUNT(*) FROM (
         	<include refid="getMainArticleResult"/>
+        	AND displayYn = 'Y'
         	<if test="largeCategoryId != null and largeCategoryId != ''">
 				AND largeCategory = #{largeCategoryId, jdbcType=INTEGER}
 			</if>
@@ -39,7 +41,7 @@
     </select>
  	
  	<sql id="getMainArticleResult">
- 		SELECT boardId, largeCategory, middleCategory, bottomCategory, keyword,
+ 		SELECT boardId, largeCategory, middleCategory, bottomCategory, keyword, displayYn,
 	  		(SELECT categoryName FROM COMM03TM COMM03 WHERE COMM03.categoryId = largeCategory) largeCategoryName,
   			(SELECT categoryName FROM COMM03TM COMM03 WHERE COMM03.categoryId = middleCategory) middleCategoryName,
   			(SELECT categoryName FROM COMM03TM COMM03 WHERE COMM03.categoryId = bottomCategory) bottomCategoryName,
@@ -61,7 +63,7 @@
 	</select>
     
     <sql id="getAdminArticleListResult">
-		SELECT boardId, largeCategory, middleCategory, bottomCategory, keyword,
+		SELECT boardId, largeCategory, middleCategory, bottomCategory, keyword, displayYn,
 	  		(SELECT categoryName FROM COMM03TM COMM03 WHERE COMM03.categoryId = largeCategory) largeCategoryName,
   			(SELECT categoryName FROM COMM03TM COMM03 WHERE COMM03.categoryId = middleCategory) middleCategoryName,
   			(SELECT categoryName FROM COMM03TM COMM03 WHERE COMM03.categoryId = bottomCategory) bottomCategoryName,
@@ -71,14 +73,14 @@
     
     <!-- 게시물 수정대상 상세 가져오기 -->
     <select id="getArticleDetail" resultType="com.sang12.blog.domain.board.BoardEntity">
-    	SELECT boardId, largeCategory, middleCategory, bottomCategory, keyword, 
+    	SELECT boardId, largeCategory, middleCategory, bottomCategory, keyword, displayYn,
 	  		(SELECT categoryName FROM COMM03TM COMM03 WHERE COMM03.categoryId = largeCategory) largeCategoryName,
   			(SELECT categoryName FROM COMM03TM COMM03 WHERE COMM03.categoryId = middleCategory) middleCategoryName,
   			(SELECT categoryName FROM COMM03TM COMM03 WHERE COMM03.categoryId = bottomCategory) bottomCategoryName,
  			title, content, registerDate, registerId, finalChangeDate, finalChangeId 
  		FROM BOARD01TM
   		WHERE 1=1
-    		AND boardId = #{boardId, jdbcType=INTEGER}
+  			AND boardId = #{boardId, jdbcType=INTEGER}
     </select>
     
     <select id="getRssArticleList" resultType="com.sang12.blog.domain.board.BoardEntity">
@@ -88,7 +90,7 @@
     
     <select id="getMainArticleByBoardId" parameterType="int" resultType="com.sang12.blog.domain.board.BoardEntity">
     	<include refid="getMainArticleResult"/>
-    		and boardId = #{boardId, jdbcType=INTEGER}
+    		AND boardId = #{boardId, jdbcType=INTEGER}
     </select>
     
 </mapper>

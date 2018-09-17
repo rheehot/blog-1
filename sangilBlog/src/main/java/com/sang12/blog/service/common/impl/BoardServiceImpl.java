@@ -49,6 +49,7 @@ public class BoardServiceImpl implements BoardService {
 		boardToUpdate.setMiddleCategory(board.getMiddleCategory());
 		boardToUpdate.setContent(board.getContent());
 		boardToUpdate.setKeyword(board.getKeyword());
+		boardToUpdate.setDisplayYn(board.getDisplayYn());
 		boardToUpdate.setFinalChangeDate(new Date());
 		
 		//추후 세션아디디로 변경해야함

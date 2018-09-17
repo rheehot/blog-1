@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -12,27 +14,46 @@
 <form method="post" id="frm" name="frm">
 	<input type="hidden" id="boardId" name="boardId" value="${data.boardId}"/>
 	
-	<div class="row d-flex justify-content-center mt-3 mb-3">
-	    <div class="col-xs-2 ml-3 mr-1">
-	        <select class="form-control" id="largeCategory" name="largeCategory">
-			</select>
+	<div class="row d-flex justify-content-center mt-3 mb-1">
+	    <div class="col-md-4">
+	    	<label>category</label>
+	        <select class="form-control" id="largeCategory" name="largeCategory"></select>
 	    </div>
-	    <div class="col-xs-3">
-			<select class="form-control" id="middleCategory" name="middleCategory">
-			</select>
+	    <div class="col-md-4">
+	    	<label>category</label>
+			<select class="form-control" id="middleCategory" name="middleCategory"></select>
 	    </div>
-	    <div class="col">
-	        <input type="text" class="form-control" placeholder="title" id="title" name="title" value="${data.title }">
+	     <div class="col-md-4">
+	     	<label>전시여부</label>
+			<select class="form-control" id="displayYn" name="displayYn">
+				<c:if test="${data.displayYn eq 'Y' }">
+					<option value="N">N</option>
+					<option value="Y" selected>Y</option>				
+				</c:if>
+				<c:if test="${data.displayYn eq 'N' }">
+					<option value="N" selected>N</option>
+					<option value="Y">Y</option>				
+				</c:if>
+			</select>
 	    </div>
 	</div>
 	
-	<div>
-		<div class="summernote">${data.content}</div>
+	<div class="row d-flex justify-content-center mb-2">
+	    <div class="col">
+	    	<label>Title</label>
+	        <input type="text" class="form-control" placeholder="title" id="title" name="title" value="${data.title}">
+	    </div>
+	</div>
+	
+	<div class="row d-flex justify-content-center mt-1 mb-3">
+		<div class="col">
+			<div class="summernote">${data.content}</div>
+		</div>
 	</div>
 	
 	<div class="row d-flex justify-content-center mt-1 mb-3">
     	<div class="col">
-	        <input type="text" class="form-control" placeholder="keyword" id="keyword" name="keyword" value="${data.keyword }">
+	        <input type="text" class="form-control" placeholder="keyword" id="keyword" name="keyword" value="${data.keyword}">
 	    </div>
 	</div>
 	
@@ -136,6 +157,7 @@ modify = function(){
 	param.title = $("#title").val();
 	param.content = $(".summernote").summernote('code');
 	param.keyword = $("#keyword").val();
+	param.displayYn = $("#displayYn").attr("checked", true).val();
 	
 	$.ajax({
 		type: "POST",

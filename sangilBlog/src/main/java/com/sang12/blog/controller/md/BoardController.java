@@ -88,6 +88,7 @@ public class BoardController {
 	@PostMapping("/modifyArticle")
 	@ResponseBody
 	public boolean modifyArticle(BoardEntity board){
+		System.out.println("board::"+board);
 		boardService.articleUpdate(board);
 		return true;
 	}

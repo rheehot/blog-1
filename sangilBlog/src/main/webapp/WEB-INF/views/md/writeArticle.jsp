@@ -7,22 +7,35 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.js"></script>
 
 <form method="post" id="frm" name="frm">
-	<div class="row d-flex justify-content-center mt-3 mb-3">
-	    <div class="col-xs-2 ml-3 mr-1">
-	        <select class="form-control" id="largeCategory" name="largeCategory">
+	<div class="row d-flex justify-content-center mt-3 mb-1">
+	    <div class="col-md-4">
+	    	<label>category</label>
+	        <select class="form-control" id="largeCategory" name="largeCategory"></select>
+	    </div>
+	    <div class="col-md-4">
+	    	<label>category</label>
+			<select class="form-control" id="middleCategory" name="middleCategory"></select>
+	    </div>
+	     <div class="col-md-4">
+	     	<label>전시여부</label>
+			<select class="form-control" id="displayYn" name="displayYn">
+				<option value="N" selected>N</option>
+				<option value="Y">Y</option>
 			</select>
 	    </div>
-	    <div class="col-xs-3">
-			<select class="form-control" id="middleCategory" name="middleCategory">
-			</select>
-	    </div>
+	</div>
+	
+	<div class="row d-flex justify-content-center mb-2">
 	    <div class="col">
+	    	<label>Title</label>
 	        <input type="text" class="form-control" placeholder="title" id="title" name="title">
 	    </div>
 	</div>
 	
-	<div>
-		<div class="summernote"></div>
+	<div class="row d-flex justify-content-center mt-1 mb-3">
+		<div class="col">
+			<div class="summernote"></div>
+		</div>
 	</div>
 	
 	<div class="row d-flex justify-content-center mt-1 mb-3">
@@ -144,14 +157,13 @@ $("#largeCategory").change(function(){
 
 save = function(){
 	//var param = $("#frm").serializeObject();
-	
 	param = {};
 	param.largeCategory = $("#largeCategory").val();
 	param.middleCategory = $("#middleCategory").val();
-	//param.bottomCategory = "1";
 	param.title = $("#title").val();
 	param.content = $(".summernote").summernote('code');
 	param.keyword = $("#keyword").val();
+	param.displayYn = $("#displayYn").val();
 	
 	$.ajax({
 		type: "POST",
