@@ -146,6 +146,4 @@ getArticle = function(largeCategoryId, middleCategoryId){
 	$("#middleCategoryId").val(middleCategoryId);
 	go_page(1);
 }
-
-
 </script>

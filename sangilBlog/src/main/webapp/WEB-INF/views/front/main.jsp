@@ -50,6 +50,8 @@
 </ul>
 </c:if>
 
+<div id="goBottom"></div>
+
 <script type="text/javascript">
 
 go_page = function(page){
