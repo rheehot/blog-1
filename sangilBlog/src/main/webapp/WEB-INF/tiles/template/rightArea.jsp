@@ -7,7 +7,7 @@
 	z-index:999;
 	padding-top:10px;
 	padding-bottom:10px;
-	left:80%;
+	left:82%;
 	position:fixed;
 	display:inline-block;
 	top:92%;

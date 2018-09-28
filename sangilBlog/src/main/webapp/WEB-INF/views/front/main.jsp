@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 
 <c:set var="articleList" value="${mainData.articleList}"/>
 <c:set var="paging" value="${mainData.paging}"/>
-
 
 <form name="mainFrm" id="mainFrm" method="post">
 	<input type="hidden" name="largeCategoryId" id="largeCategoryId" value="${param.largeCategoryId }"/>
@@ -21,9 +21,21 @@
 			<h2 class="mt-4 text-center"><a href="/${list.boardId }" style="color:#000;">${list.title}</a> <span style="font-size:8px;">${list.largeCategoryName} <c:if test="${list.middleCategoryName ne null }">/ ${list.middleCategoryName}</c:if></span></h2>
 			<p class="text-right mb-2 mt-5"><b><fmt:formatDate pattern = "yyyy-MM-dd" value = "${list.registerDate}"/> posted by sang12</b></p>
 			<hr>
+			
+			<%--main content area--%>
 			<div class="mt-3">
-			${list.content}
+				${list.content}
 			</div>
+			<%--keyword area--%>
+			<c:if test="${fn:length(list.keyword) > 0}">
+				<c:set var="keywordArray" value="${fn:split(list.keyword,',')}"/>
+				<hr>
+				<div class="text-center">
+					<c:forEach items="${keywordArray }" var="keyword">
+						<span class="badge badge-dark" style="cursor:hand;" onClick="javascript:alert('준비중입니다.');">#${keyword }</span>
+					</c:forEach>
+				</div>
+			</c:if>
 		</div>
 	</div>
 </c:forEach>
