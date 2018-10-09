@@ -36,6 +36,25 @@ public class MainController {
 		return new ModelAndView("front/main", "mainData", data);
 	}
 	
+	@RequestMapping("/category/{largeCategoryName}")
+	public ModelAndView largeCategory(MainPageVo vo, @PathVariable String largeCategoryName){
+		logger.info("vo:::::"+vo);
+		vo.setLargeCategoryName(largeCategoryName);
+		Map<String, Object> data = commonService.getMainData(vo);
+		logger.info("data:::::"+data);
+		return new ModelAndView("front/main", "mainData", data);
+	}
+	
+	@RequestMapping("/category/{largeCategoryName}/{middleCategoryName}")
+	public ModelAndView MiddleCategory(MainPageVo vo, @PathVariable String largeCategoryName, @PathVariable String middleCategoryName){
+		logger.info("vo:::::"+vo);
+		vo.setLargeCategoryName(largeCategoryName);
+		vo.setMiddleCategoryName(middleCategoryName);
+		Map<String, Object> data = commonService.getMainData(vo);
+		logger.info("data:::::"+data);
+		return new ModelAndView("front/main", "mainData", data);
+	}
+	
 	@RequestMapping("/intro")
 	public String intro(){
 		return "front/intro";
@@ -49,12 +68,6 @@ public class MainController {
 	@RequestMapping("/guestbook")
 	public ModelAndView guestbook(){
 		return new ModelAndView("front/guestbook");
-	}
-	
-	@GetMapping("/articleDetail/{articleId}")
-	public ModelAndView boardDetail(@PathVariable int articleId) {
-		System.out.println("articleId:::" + articleId);
-		return new ModelAndView("front/articleDetail", "data", "");
 	}
 	
 	@GetMapping("/rss")

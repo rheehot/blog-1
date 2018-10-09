@@ -15,16 +15,45 @@
 	<!-- mainPage 게시물 리스트 -->
     <select id="getMainArticle" resultType="com.sang12.blog.domain.board.BoardEntity">
     	<include refid="COMMON_PAGING_HEADER"/>
- 		<include refid="getMainArticleResult"/>
-			AND displayYn = 'Y'
+    	SELECT * FROM (
+ 			<include refid="getMainArticleResult"/>
+		) A
+		WHERE 1=1
+			AND A.displayYn = 'Y'
 			<if test="largeCategoryId != null and largeCategoryId != ''">
-				AND largeCategory = #{largeCategoryId, jdbcType=INTEGER}
+				AND A.largeCategory = #{largeCategoryId, jdbcType=INTEGER}
 			</if>
 			<if test="middleCategoryId != null and middleCategoryId != ''">
-				AND middleCategory = #{middleCategoryId, jdbcType=INTEGER}
+				AND A.middleCategory = #{middleCategoryId, jdbcType=INTEGER}
+			</if>
+			<if test="largeCategoryName != null and largeCategoryName != ''">
+				AND A.largeCategoryName = REPLACE(#{largeCategoryName, jdbcType=VARCHAR}, '-', ' ')
+			</if>
+			<if test="middleCategoryName != null and middleCategoryName != ''">
+				AND A.middleCategoryName = REPLACE(#{middleCategoryName, jdbcType=VARCHAR}, '-', ' ')
 			</if>
   		ORDER BY boardId desc
   		<include refid="COMMON_PAGING_TAIL"/>
+    </select>
+    
+    <select id="getMainArticleCount" resultType="int">
+        SELECT COUNT(*) FROM (
+        	SELECT * FROM ( <include refid="getMainArticleResult"/> ) A
+			WHERE 1=1
+				AND A.displayYn = 'Y'
+				<if test="largeCategoryId != null and largeCategoryId != ''">
+					AND A.largeCategory = #{largeCategoryId, jdbcType=INTEGER}
+				</if>
+				<if test="middleCategoryId != null and middleCategoryId != ''">
+					AND A.middleCategory = #{middleCategoryId, jdbcType=INTEGER}
+				</if>
+				<if test="largeCategoryName != null and largeCategoryName != ''">
+					AND A.largeCategoryName = #{largeCategoryName, jdbcType=VARCHAR}
+				</if>
+				<if test="middleCategoryName != null and middleCategoryName != ''">
+					AND A.largeCategoryName = #{middleCategoryName, jdbcType=VARCHAR}
+				</if>
+       	) B
     </select>
     
     <!-- 카테고리 관련 게시물 가져오기 -->
@@ -64,19 +93,6 @@
 				)
 		)a
 		ORDER BY a.boardId DESC
-    </select>
-    
-	<select id="getMainArticleCount" resultType="int">
-        SELECT COUNT(*) FROM (
-        	<include refid="getMainArticleResult"/>
-        	AND displayYn = 'Y'
-        	<if test="largeCategoryId != null and largeCategoryId != ''">
-				AND largeCategory = #{largeCategoryId, jdbcType=INTEGER}
-			</if>
-			<if test="middleCategoryId != null and middleCategoryId != ''">
-				AND middleCategory = #{middleCategoryId, jdbcType=INTEGER}
-			</if>
-       	) A
     </select>
  	
  	<sql id="getMainArticleResult">
