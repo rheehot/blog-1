@@ -76,7 +76,15 @@ public class CommonServiceImpl implements CommonService {
 		Map<String, Object> returnData = new HashMap<String, Object>();
 		vo.setTotalCount(boardDao.getMainArticleCount(vo));
 		returnData.put("paging", vo);
-		returnData.put("articleList", boardDao.getMainArticle(vo));
+		//메인 게시물
+		List<BoardEntity> boardList = boardDao.getMainArticle(vo);
+		returnData.put("articleList", boardList);
+		//다른 게시물 리스트 가져오기
+		for(BoardEntity board : boardList) {
+			board.setRelateBoardTitleList(boardDao.getRelateBoardTitleList(board));
+		}
+		
+		//왼쪽 공간 메뉴 리스트 
 		returnData.put("upCategoryList", categoryDao.getLargeCategoryList());
 		returnData.put("childCategoryList", categoryRep.findChildCategory());
 		return returnData;
@@ -88,6 +96,10 @@ public class CommonServiceImpl implements CommonService {
 		List<BoardEntity> boardList = boardDao.getMainArticleByBoardId(boardId);
 		BoardEntity board = boardList.get(0);
 		returnData.put("articleList", boardList);
+		//다른 게시물 리스트 가져오기
+		for(BoardEntity boardDetail : boardList) {
+			boardDetail.setRelateBoardTitleList(boardDao.getRelateBoardTitleList(board));
+		}
 		returnData.put("mainTitle", board.getTitle());
 		returnData.put("upCategoryList", categoryDao.getLargeCategoryList());
 		returnData.put("childCategoryList", categoryRep.findChildCategory());

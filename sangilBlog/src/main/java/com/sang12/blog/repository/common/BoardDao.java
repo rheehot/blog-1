@@ -3,6 +3,7 @@ package com.sang12.blog.repository.common;
 import java.util.List;
 
 import com.sang12.blog.domain.board.BoardEntity;
+import com.sang12.blog.domain.board.RelateBoardTitleEntity;
 import com.sang12.blog.vo.admin.boardVo;
 import com.sang12.blog.vo.common.PagingVo;
 import com.sang12.blog.vo.front.MainPageVo;
@@ -17,6 +18,8 @@ import com.sang12.blog.vo.front.MainPageVo;
  */
 public interface BoardDao {
 	public List<BoardEntity> getMainArticle(PagingVo vo);
+	
+	public List<RelateBoardTitleEntity> getRelateBoardTitleList(BoardEntity board);
 	
 	public List<BoardEntity> getMainArticleByBoardId(int boardId);
 	

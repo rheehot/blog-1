@@ -27,6 +27,45 @@
   		<include refid="COMMON_PAGING_TAIL"/>
     </select>
     
+    <!-- 카테고리 관련 게시물 가져오기 -->
+    <select id="getRelateBoardTitleList" resultType="com.sang12.blog.domain.board.RelateBoardTitleEntity">
+    	SELECT a.boardId, a.title, a.registerDate, a.registerId 
+    	FROM(
+				(
+					SELECT *
+					FROM BOARD01TM
+					WHERE
+						boardId &lt;= #{boardId, jdbcType=INTEGER}
+						AND displayYn = 'Y'
+						<if test="largeCategory != null and largeCategory != ''">
+							AND largeCategory = #{largeCategory, jdbcType=INTEGER}
+						</if>
+						<if test="middleCategory != null and middleCategory != ''">
+							AND middleCategory = #{middleCategory, jdbcType=INTEGER}
+						</if>
+					ORDER BY boardId DESC
+					Limit 4
+				)
+				UNION ALL
+				(
+					SELECT *
+					FROM BOARD01TM
+					WHERE
+						boardId &gt; #{boardId, jdbcType=INTEGER}
+						AND displayYn = 'Y'
+						<if test="largeCategory != null and largeCategory != ''">
+							AND largeCategory = #{largeCategory, jdbcType=INTEGER}
+						</if>
+						<if test="middleCategory != null and middleCategory != ''">
+							AND middleCategory = #{middleCategory, jdbcType=INTEGER}
+						</if>
+					ORDER BY boardId ASC
+					Limit 2
+				)
+		)a
+		ORDER BY a.boardId DESC
+    </select>
+    
 	<select id="getMainArticleCount" resultType="int">
         SELECT COUNT(*) FROM (
         	<include refid="getMainArticleResult"/>

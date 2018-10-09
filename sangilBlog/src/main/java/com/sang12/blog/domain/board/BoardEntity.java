@@ -3,6 +3,7 @@ package com.sang12.blog.domain.board;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,8 +18,6 @@ import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 import lombok.Data;
-
-
 
 
 /**
@@ -65,4 +64,6 @@ public class BoardEntity implements Serializable{
 	@Transient
 	String bottomCategoryName;
 	
+	@Transient
+	List<RelateBoardTitleEntity> relateBoardTitleList;
 }

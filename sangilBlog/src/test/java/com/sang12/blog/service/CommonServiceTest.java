@@ -18,10 +18,15 @@ public class CommonServiceTest {
 	@Autowired
 	private CommonService commonService;
 	
-	@Test
+	//@Test
 	public void joinCountListTest() {
 		List<JoinCountEntity> list = commonService.getJoinCount(DateUtil.addDayGetString(-7), DateUtil.addDayGetString(0));
 		System.out.println(list);
+	}
+	
+	@Test
+	public void getMainData() {
+		
 	}
 
 }

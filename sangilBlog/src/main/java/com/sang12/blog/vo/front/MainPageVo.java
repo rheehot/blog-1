@@ -18,6 +18,8 @@ public class MainPageVo extends PagingVo{
 	private String largeCategoryId;
 	private String middleCategoryId;
 	private String bottomCategoryId;
+	
+	private int boardId;
 
 	public String getMiddleCategoryId() {
 		return middleCategoryId;
@@ -41,6 +43,14 @@ public class MainPageVo extends PagingVo{
 
 	public void setLargeCategoryId(String largeCategoryId) {
 		this.largeCategoryId = largeCategoryId;
+	}
+
+	public int getBoardId() {
+		return boardId;
+	}
+
+	public void setBoardId(int boardId) {
+		this.boardId = boardId;
 	}
 
 }
