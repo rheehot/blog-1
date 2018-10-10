@@ -75,7 +75,7 @@ html, body{
 				<div class="col-md-2 d-none d-sm-block" style="background-color: #f7f7f7;">
 					<tiles:insertAttribute name="leftArea"/>
 				</div>
-				<div class="col col-xs-12" style="background-color: #f7f7f7;">
+				<div class="col col-xs-10" style="background-color: #f7f7f7;">
 		     		<tiles:insertAttribute name="body"/>
 				</div>
 				<div class="col-md-2 d-none d-sm-block" style="background-color: #f7f7f7;">
