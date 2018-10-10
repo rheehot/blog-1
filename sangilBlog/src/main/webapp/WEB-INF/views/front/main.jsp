@@ -27,7 +27,12 @@
 			<%--relateTitle area --%>
 			<div class="card mt-3">
 				<div class="pl-2 pr-2 pt-3  mb-0">
-					<span class=""><b>${list.largeCategoryName} <c:if test="${list.middleCategoryName ne null }">> ${list.middleCategoryName}</c:if> 다른글</b></span> 
+					<span class="">
+						<a style="color:black;" href="/category/${fn:replace(list.largeCategoryName, ' ', '-')}"><b>${list.largeCategoryName}</b></a> 
+						<c:if test="${list.middleCategoryName ne null }">
+							<b>></b><a style="color:black;" href="/category/${fn:replace(list.largeCategoryName, ' ', '-')}/${fn:replace(list.middleCategoryName, ' ', '-')}"><b> ${list.middleCategoryName}</b></a>
+						</c:if> 
+						<b> 다른글</b></span> 
 					<hr>
 				</div>
 				<div class="pl-2">
