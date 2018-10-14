@@ -170,7 +170,7 @@ save = function(){
 		url: '/md/writeArticle',
 		data: param,
 		success: function(msg) {
-				alert(msg);
+				location.href="/md/board"
 		}
   	});
 }
