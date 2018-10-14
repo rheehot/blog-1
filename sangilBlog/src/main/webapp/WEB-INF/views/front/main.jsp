@@ -13,8 +13,19 @@
 </form>
 
 
-<%-- 메인 게시물 영역 --%>
 <div class="container" style="margin-bottom:80px;">
+<%--type에 따른 상단 표시 --%>
+<c:choose>
+	<c:when test="${mainData.type eq 'tag' }">
+		<div class="card mb-4">
+			<div class="card-body">
+				<h4>tag 검색결과 :: ${fn:replace(mainData.tagName, '-', ' ')}</h4>
+			</div>
+		</div>
+	</c:when>
+</c:choose>
+
+<%-- 메인 게시물 영역 --%>
 <c:forEach items="${articleList}" var="list">
 	<div class="card mb-3">
 		<div class="card-body mb-5">
@@ -54,7 +65,7 @@
 				<c:set var="keywordArray" value="${fn:split(list.keyword,',')}"/>
 				<div class="text-center mt-3">
 					<c:forEach items="${keywordArray }" var="keyword">
-						<span class="badge badge-dark" style="cursor:hand;" onClick="javascript:alert('준비중입니다.');">#${keyword }</span>
+						<span class="badge badge-dark" style="cursor:hand;" onClick="location.href='/tag/${fn:replace(keyword, ' ', '-')}'">#${keyword }</span>
 					</c:forEach>
 				</div>
 			</c:if>
@@ -63,6 +74,7 @@
 </c:forEach>
 </div>
 
+<%--paging 영역--%>
 <c:if test="${paging.length > 0 }">
 <ul class="pagination" style="justify-content: center;">
 	<c:if test="${paging.startPage > 1 }">

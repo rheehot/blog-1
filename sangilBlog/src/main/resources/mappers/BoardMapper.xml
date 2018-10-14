@@ -19,19 +19,7 @@
  			<include refid="getMainArticleResult"/>
 		) A
 		WHERE 1=1
-			AND A.displayYn = 'Y'
-			<if test="largeCategoryId != null and largeCategoryId != ''">
-				AND A.largeCategory = #{largeCategoryId, jdbcType=INTEGER}
-			</if>
-			<if test="middleCategoryId != null and middleCategoryId != ''">
-				AND A.middleCategory = #{middleCategoryId, jdbcType=INTEGER}
-			</if>
-			<if test="largeCategoryName != null and largeCategoryName != ''">
-				AND A.largeCategoryName = REPLACE(#{largeCategoryName, jdbcType=VARCHAR}, '-', ' ')
-			</if>
-			<if test="middleCategoryName != null and middleCategoryName != ''">
-				AND A.middleCategoryName = REPLACE(#{middleCategoryName, jdbcType=VARCHAR}, '-', ' ')
-			</if>
+		<include refid="getMainArticleWhereClause"/>
   		ORDER BY boardId desc
   		<include refid="COMMON_PAGING_TAIL"/>
     </select>
@@ -40,21 +28,28 @@
         SELECT COUNT(*) FROM (
         	SELECT * FROM ( <include refid="getMainArticleResult"/> ) A
 			WHERE 1=1
-				AND A.displayYn = 'Y'
-				<if test="largeCategoryId != null and largeCategoryId != ''">
-					AND A.largeCategory = #{largeCategoryId, jdbcType=INTEGER}
-				</if>
-				<if test="middleCategoryId != null and middleCategoryId != ''">
-					AND A.middleCategory = #{middleCategoryId, jdbcType=INTEGER}
-				</if>
-				<if test="largeCategoryName != null and largeCategoryName != ''">
-					AND A.largeCategoryName = #{largeCategoryName, jdbcType=VARCHAR}
-				</if>
-				<if test="middleCategoryName != null and middleCategoryName != ''">
-					AND A.largeCategoryName = #{middleCategoryName, jdbcType=VARCHAR}
-				</if>
+			<include refid="getMainArticleWhereClause"/>
        	) B
     </select>
+    
+    <sql id="getMainArticleWhereClause">
+    	AND A.displayYn = 'Y'
+		<if test="largeCategoryId != null and largeCategoryId != ''">
+			AND A.largeCategory = #{largeCategoryId, jdbcType=INTEGER}
+		</if>
+		<if test="middleCategoryId != null and middleCategoryId != ''">
+			AND A.middleCategory = #{middleCategoryId, jdbcType=INTEGER}
+		</if>
+		<if test="largeCategoryName != null and largeCategoryName != ''">
+			AND A.largeCategoryName = REPLACE(#{largeCategoryName, jdbcType=VARCHAR}, '-', ' ')
+		</if>
+		<if test="middleCategoryName != null and middleCategoryName != ''">
+			AND A.middleCategoryName = REPLACE(#{middleCategoryName, jdbcType=VARCHAR}, '-', ' ')
+		</if>
+		<if test="tagName != null and tagName != ''">
+			AND INSTR(keyword, REPLACE(#{tagName, jdbcType=VARCHAR}, '-', ' '))
+		</if>
+    </sql>
     
     <!-- 카테고리 관련 게시물 가져오기 -->
     <select id="getRelateBoardTitleList" resultType="com.sang12.blog.domain.board.RelateBoardTitleEntity">

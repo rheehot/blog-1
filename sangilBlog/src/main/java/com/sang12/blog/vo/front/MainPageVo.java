@@ -20,6 +20,7 @@ public class MainPageVo extends PagingVo{
 	private String largeCategoryName;
 	private String middleCategoryName;
 	private String bottomCategoryId;
+	private String tagName;
 	
 	private int boardId;
 
@@ -69,6 +70,14 @@ public class MainPageVo extends PagingVo{
 
 	public void setMiddleCategoryName(String middleCategoryName) {
 		this.middleCategoryName = middleCategoryName;
+	}
+
+	public String getTagName() {
+		return tagName;
+	}
+
+	public void setTagName(String tagName) {
+		this.tagName = tagName;
 	}
 
 }

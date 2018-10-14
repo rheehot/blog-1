@@ -1,11 +1,6 @@
 package com.sang12.blog.controller.front;
 
-import java.io.IOException;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,14 +50,21 @@ public class MainController {
 		return new ModelAndView("front/main", "mainData", data);
 	}
 	
+	@RequestMapping("/tag/{tagName}")
+	public ModelAndView tag(MainPageVo vo, @PathVariable String tagName){
+		logger.info("vo:::::"+vo);
+		vo.setTagName(tagName);
+		Map<String, Object> data = commonService.getMainData(vo);
+		//tag로 검색여부를 알려주기위한 변수값
+		data.put("type", "tag");
+		data.put("tagName", vo.getTagName());
+		logger.info("data:::::"+data);
+		return new ModelAndView("front/main", "mainData", data);
+	}
+	
 	@RequestMapping("/intro")
 	public String intro(){
 		return "front/intro";
-	}
-	
-	@RequestMapping("/logbook")
-	public ModelAndView logbook(){
-		return new ModelAndView("front/logbook");
 	}
 	
 	@RequestMapping("/guestbook")
