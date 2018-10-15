@@ -44,6 +44,7 @@ html, body{
 	    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	   	<script src="/js/common/jquery.serializeObject.js"></script>
 	   	<script src="/js/common/common.js"></script>
+	   	<script src="/js/common/b4_sidebar.js?20181015"></script>
 	    <%-- 
 	   	<script src="/js/common/util.js"></script>
 	   	--%>
@@ -63,6 +64,7 @@ html, body{
  			 gtag('config', 'UA-123358087-1');
 		</script>
 		<link rel="stylesheet" href="/css/highlight/androidstudio.css"> 
+		<link rel="stylesheet" href="/css/common/b4_sidebar.css"> 
 		<script src="/js/common/highlight.pack.js"></script>
 		<script>
 			hljs.initHighlightingOnLoad();
