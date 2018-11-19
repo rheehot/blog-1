@@ -135,6 +135,7 @@
     
     <select id="getRssArticleList" resultType="com.sang12.blog.domain.board.BoardEntity">
     	<include refid="getMainArticleResult"/>
+    	AND displayYn = 'Y'
     	ORDER BY boardId DESC
     </select>
     
