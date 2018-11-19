@@ -7,7 +7,7 @@
   	</div>
 </div>
 
-<nav class="navbar sticky-top navbar-expand-md navbar-dark bg-dark sidebarNavigation" data-sidebarClass="navbar-dark bg-dark">
+<nav class="navbar sticky-top navbar-expand-md navbar-dark bg-dark sidebarNavigation" data-sidebarClass="navbar-dark bg-dark" style="height:4em;">
         <button class="navbar-toggler leftNavbarToggler" type="button" data-toggle="collapse" data-target="#navb"
             aria-controls="navb" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
