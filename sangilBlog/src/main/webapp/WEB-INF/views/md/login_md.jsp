@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<div class="container">
+<div class="container" style="height:600px;">
 	<div class="row d-plex justify-content-center" style="margin-top:7rem">
 		<div class="col-md-6">
             <h2>Admin Login Page</h2><hr>

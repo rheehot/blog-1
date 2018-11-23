@@ -73,6 +73,15 @@
 	
 </style>
 
+<!-- blog 우측 광고_1 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-2918447982815807"
+     data-ad-slot="5444897677"
+     data-ad-format="auto"
+     data-full-width-responsive="true">
+</ins>
+
 <nav class="floating-menu">
 	<ul class="main-menu">
 	    <li>

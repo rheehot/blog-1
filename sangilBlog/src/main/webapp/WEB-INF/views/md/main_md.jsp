@@ -4,7 +4,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
 
-<div class="container">
+<div class="container" style="height:600px;">
 	<div class="row">
 		<div class="col-md-3">
 			<canvas id="joinCountChart" class="mt-2" width="5" height="5"></canvas>
