@@ -74,13 +74,13 @@ html, body{
 		<div class="container-flud">
 			<tiles:insertAttribute name="header" />
 			<div class="row d-flex p-0 mr-0 ml-0">
-				<div class="col-md-2 d-none d-sm-block" style="background-color: #f7f7f7;">
+				<div class="col col-md-2 d-none d-sm-block" style="background-color: #f7f7f7;">
 					<tiles:insertAttribute name="leftArea"/>
 				</div>
-				<div class="col col-xs-10" style="background-color: #f7f7f7;">
+				<div class="col col-md-8" style="background-color: #f7f7f7;">
 		     		<tiles:insertAttribute name="body"/>
 				</div>
-				<div class="col-md-2 d-none d-sm-block" style="background-color: #f7f7f7;">
+				<div class="col col-md-2 d-none d-sm-block" style="background-color: #f7f7f7;">
 					<tiles:insertAttribute name="rightArea"/>	
 				</div>
 			</div>

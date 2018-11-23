@@ -13,7 +13,7 @@
 </form>
 
 
-<div class="container" style="margin-bottom:80px;">
+<div class="main" style="margin-bottom:80px;">
 <%--type에 따른 상단 표시 --%>
 <c:choose>
 	<c:when test="${mainData.type eq 'tag' }">
