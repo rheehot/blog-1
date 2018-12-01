@@ -88,7 +88,7 @@
 
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
-<div class="rightArea" style="background: black;">
+<div class="rightArea">
 <!-- blog 우측 광고_1 -->
 <ins class="adsbygoogle"
      style="display:block"

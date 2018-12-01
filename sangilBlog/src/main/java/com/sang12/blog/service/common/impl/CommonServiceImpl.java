@@ -149,4 +149,15 @@ public class CommonServiceImpl implements CommonService {
 		return channel;
 	}
 
+	@Override
+	public Map<String, Object> searchKeyword(String keyword) {
+		Map<String, Object> returnData = new HashMap<String, Object>();
+		List<BoardEntity> boardList = boardDao.saerchKeyword(keyword);
+		
+		returnData.put("mainTitle", keyword + " 검색결과");
+		returnData.put("keyword", keyword);
+		returnData.put("articleList", boardList);
+		return returnData;
+	}
+
 }

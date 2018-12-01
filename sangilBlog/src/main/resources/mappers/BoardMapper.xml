@@ -144,5 +144,15 @@
     		AND boardId = #{boardId, jdbcType=INTEGER}
     </select>
     
+    <select id="saerchKeyword" parameterType="String" resultType="com.sang12.blog.domain.board.BoardEntity">
+    	<include refid="getMainArticleResult"/>
+		AND (
+				title LIKE CONCAT('%',#{keyword, jdbcType=VARCHAR},'%')
+				OR
+				content LIKE CONCAT('%',#{keyword, jdbcType=VARCHAR},'%')
+			)
+		ORDER BY boardId DESC
+    </select>
+    
 </mapper>
 

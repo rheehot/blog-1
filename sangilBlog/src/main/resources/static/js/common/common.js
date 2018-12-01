@@ -1,7 +1,10 @@
 /**
  * 	common.js
+ *  2018.09.08 최상일
+ *  공통으로 사용 되는 함수
  */
 
+//image 클릭시 확대 함수 호출
 $('img').on('click', function(){
     simpleLightbox($(this).attr('src'));
 });

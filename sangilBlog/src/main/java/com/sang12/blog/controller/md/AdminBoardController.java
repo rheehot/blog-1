@@ -28,7 +28,7 @@ import com.sang12.blog.vo.admin.boardVo;
  */
 @Controller
 @RequestMapping("/md")
-public class BoardController {
+public class AdminBoardController {
 	@Autowired
 	private BoardService boardService;
 	

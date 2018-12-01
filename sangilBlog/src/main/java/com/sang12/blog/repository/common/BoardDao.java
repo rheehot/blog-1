@@ -32,4 +32,7 @@ public interface BoardDao {
 	public BoardEntity getArticleDetail(int boardId);
 	
 	public List<BoardEntity> getRssArticleList();
+	
+	public List<BoardEntity> saerchKeyword(String Keyword);
+	
 }

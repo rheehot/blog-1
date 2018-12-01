@@ -18,8 +18,8 @@ html, body{
 	    <meta charset="euc-kr">
     	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
-	    <title>${mainData.mainTitle} :: <tiles:getAsString name="title"/></title>
 	    <c:if test="${ mainData.mainTitle ne null}">
+	    	<title>${mainData.mainTitle} :: <tiles:getAsString name="title"/></title>
 	    	<meta name="description" content='<c:out value='${fn:substring(mainData.articleList[0].content.replaceAll("\\\<.*?\\\>",""),0,100)}' escapeXml="false"/>'>
 	    	<meta name="keywords" content="${mainData.articleList[0].keyword }">
 	    	<link rel="canonical" href="http://sang12.co.kr/${mainData.articleList[0].boardId }">	
@@ -29,6 +29,7 @@ html, body{
 			<meta property="og:url" content="http://sang12.co.kr/${mainData.articleList[0].boardId }">
 	    </c:if>
 	    <c:if test="${ mainData.mainTitle eq null}">
+	    	<title><tiles:getAsString name="title"/></title>
 	    	<meta name="description" content='취미 및 관심사를 공유하는 최상일의 개인 블로그입니다.'>
 	    	<meta name="keywords" content="blog, sang12, 개인블로그">
 	    	<link rel="canonical" href="http://sang12.co.kr">	
@@ -45,9 +46,7 @@ html, body{
 	   	<script src="/js/common/jquery.serializeObject.js"></script>
 	   	<script src="/js/common/common.js"></script>
 	   	<script src="/js/common/b4_sidebar.js?20181015"></script>
-	    <%-- 
 	   	<script src="/js/common/util.js"></script>
-	   	--%>
 		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 		<script>
 		  (adsbygoogle = window.adsbygoogle || []).push({

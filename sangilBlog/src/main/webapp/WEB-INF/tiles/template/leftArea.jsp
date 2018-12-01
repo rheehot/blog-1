@@ -39,9 +39,11 @@
 
 <nav class="leftArea">
 	<ul class="list-unstyled">
+		<c:if test="${fn:length(upCategoryList) > 0} ">
 		<li>
 			<a href="/"><b>ALL</b></a>
 		</li>
+		</c:if>
 		<c:forEach var="upCategory" items="${upCategoryList}">
 			<li>
 				<a href="/category/${fn:replace(upCategory.categoryName, ' ', '-')}"><b>${upCategory.categoryName}</b><span style="font-size:5px;"> (${upCategory.articleCount})</span></a>

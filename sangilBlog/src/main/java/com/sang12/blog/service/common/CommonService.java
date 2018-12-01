@@ -52,4 +52,11 @@ public interface CommonService {
 	 */
 	public abstract Channel getRssList();
 	
+	/**
+	 * 게시물 검색
+	 * @param vo
+	 * @return
+	 */
+	public abstract Map<String, Object> searchKeyword(String keyword);
+	
 }

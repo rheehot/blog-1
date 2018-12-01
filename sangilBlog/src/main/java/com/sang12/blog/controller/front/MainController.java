@@ -91,4 +91,11 @@ public class MainController {
 		return new ModelAndView("front/main", "mainData", data);
 	}
 	
+	@RequestMapping("/search/{keyword}")
+	public ModelAndView search(@PathVariable String keyword){
+		logger.info("data:::::"+keyword);
+		Map<String, Object> data = commonService.searchKeyword(keyword);
+		return new ModelAndView("front/search", "mainData", data);
+	}
+	
 }
