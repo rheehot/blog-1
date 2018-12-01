@@ -2,6 +2,18 @@
 	
 <style>
 
+/* The sidebar menu */
+.rightArea {
+    height: 100%; /* Full-height: remove this if you want "auto" height */
+    width: 15%; /* Set the width of the sidebar */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1; /* Stay on top */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 20px;
+    margin-top:10px;
+}
+	
+
 .floating-menu{
 	border-radius:100px;
 	z-index:999;
@@ -15,6 +27,7 @@
 	-ms-transform:translateY(-50%);
 	transform:translateY(-50%)
 }
+
 .main-menu{
 	margin:0;
 	padding-left:0;
@@ -73,6 +86,9 @@
 	
 </style>
 
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<div class="rightArea" style="background: black;">
 <!-- blog 우측 광고_1 -->
 <ins class="adsbygoogle"
      style="display:block"
@@ -81,6 +97,11 @@
      data-ad-format="auto"
      data-full-width-responsive="true">
 </ins>
+</div>
+     
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
 <nav class="floating-menu">
 	<ul class="main-menu">
