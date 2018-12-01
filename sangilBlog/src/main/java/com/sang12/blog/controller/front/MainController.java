@@ -25,40 +25,40 @@ public class MainController {
 	
 	@RequestMapping("/")
 	public ModelAndView main(MainPageVo vo){
-		logger.info("vo:::::"+vo);
+		logger.debug("vo:::::"+vo);
 		Map<String, Object> data = commonService.getMainData(vo);
-		logger.info("data:::::"+data);
+		logger.debug("data:::::"+data);
 		return new ModelAndView("front/main", "mainData", data);
 	}
 	
 	@RequestMapping("/category/{largeCategoryName}")
 	public ModelAndView largeCategory(MainPageVo vo, @PathVariable String largeCategoryName){
-		logger.info("vo:::::"+vo);
+		logger.debug("vo:::::"+vo);
 		vo.setLargeCategoryName(largeCategoryName);
 		Map<String, Object> data = commonService.getMainData(vo);
-		logger.info("data:::::"+data);
+		logger.debug("data:::::"+data);
 		return new ModelAndView("front/main", "mainData", data);
 	}
 	
 	@RequestMapping("/category/{largeCategoryName}/{middleCategoryName}")
 	public ModelAndView MiddleCategory(MainPageVo vo, @PathVariable String largeCategoryName, @PathVariable String middleCategoryName){
-		logger.info("vo:::::"+vo);
+		logger.debug("vo:::::"+vo);
 		vo.setLargeCategoryName(largeCategoryName);
 		vo.setMiddleCategoryName(middleCategoryName);
 		Map<String, Object> data = commonService.getMainData(vo);
-		logger.info("data:::::"+data);
+		logger.debug("data:::::"+data);
 		return new ModelAndView("front/main", "mainData", data);
 	}
 	
 	@RequestMapping("/tag/{tagName}")
 	public ModelAndView tag(MainPageVo vo, @PathVariable String tagName){
-		logger.info("vo:::::"+vo);
+		logger.debug("vo:::::"+vo);
 		vo.setTagName(tagName);
 		Map<String, Object> data = commonService.getMainData(vo);
 		//tag로 검색여부를 알려주기위한 변수값
 		data.put("type", "tag");
 		data.put("tagName", vo.getTagName());
-		logger.info("data:::::"+data);
+		logger.debug("data:::::"+data);
 		return new ModelAndView("front/main", "mainData", data);
 	}
 	
@@ -87,13 +87,12 @@ public class MainController {
 	@RequestMapping("/{articleId}")
 	public ModelAndView getArticle(@PathVariable int articleId){
 		Map<String, Object> data = commonService.getArticle(articleId);
-		logger.info("data:::::"+data);
 		return new ModelAndView("front/main", "mainData", data);
 	}
 	
 	@RequestMapping("/search/{keyword}")
 	public ModelAndView search(@PathVariable String keyword){
-		logger.info("data:::::"+keyword);
+		logger.debug("data:::::"+keyword);
 		Map<String, Object> data = commonService.searchKeyword(keyword);
 		return new ModelAndView("front/search", "mainData", data);
 	}

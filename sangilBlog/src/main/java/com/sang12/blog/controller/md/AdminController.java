@@ -26,7 +26,7 @@ public class AdminController {
 	
 	@RequestMapping("/main")
 	public String adminMain(){
-		logger.info("admin Controller");
+		logger.debug("admin Controller");
 		return "md/main_md";
 	}
 	

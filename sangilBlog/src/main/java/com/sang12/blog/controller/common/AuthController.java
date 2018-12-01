@@ -32,7 +32,7 @@ public class AuthController {
 		user = this.userRepo.findByUserIdAndPassword(user.getUserId(), user.getPassword());
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		
-		logger.info(user +"");
+		logger.debug(user +"");
 		
 		if (user != null)
 		{

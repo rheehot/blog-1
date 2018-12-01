@@ -45,7 +45,6 @@ public class AdminBoardController {
 	
 	@RequestMapping("/modifyArticle/{articleId}")
 	public ModelAndView modifyArticle(@PathVariable int articleId){
-		System.out.println(articleId);
 		return new ModelAndView("md/modifyArticle", "data", boardService.getArticleDetail(articleId));
 	}
 	
@@ -67,7 +66,6 @@ public class AdminBoardController {
 		try{
 			String imageUrl = this.storageService.imageStore(file);
 			String address = request.getRequestURL().toString().replace(request.getRequestURI(), "");
-			System.out.println("###########"+address + this.imagePath + imageUrl);
 			return address + this.imagePath + imageUrl;
 	    }catch (Exception e){
 	      e.printStackTrace();
@@ -78,17 +76,14 @@ public class AdminBoardController {
 	@PostMapping("/getAdminArticleList")
 	@ResponseBody
 	public Map<String, Object> getArticleList(boardVo vo){
-		System.out.println("parameterMap::"+vo);
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		returnMap = boardService.getAdminArticleList(vo);
-		System.out.println("return" + returnMap);
 		return returnMap;
 	}
 	
 	@PostMapping("/modifyArticle")
 	@ResponseBody
 	public boolean modifyArticle(BoardEntity board){
-		System.out.println("board::"+board);
 		boardService.articleUpdate(board);
 		return true;
 	}
