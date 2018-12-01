@@ -23,7 +23,7 @@ public class FrontSessionInterceptor extends HandlerInterceptorAdapter{
 	private CommonService commonService;
   
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception{
-		logger.info("Front Session Interceptor");
+		logger.debug("Front Session Interceptor");
 		HttpSession session = request.getSession(false);
 		if(session != null){
 			return true;
