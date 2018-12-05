@@ -40,6 +40,11 @@
 		<put-attribute name="body" value="/WEB-INF/views/md/{1}.jsp"/>
 	</definition>
 	
+		 <!-- lab template -->
+    <definition name="lab/*/*" extends="frontTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/lab/{1}/{2}.jsp"/>
+	</definition>
+	
 	<!--  
 	<definition name="front/*/*" extends="frontTemplate">
 		<put-attribute name="body" value="/WEB-INF/views/front/{1}/{2}.jsp"/>
