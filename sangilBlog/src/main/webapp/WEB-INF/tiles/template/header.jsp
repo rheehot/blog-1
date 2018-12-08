@@ -3,6 +3,7 @@
 <div style="background-color: #ffffff; height:6em;">
   	<h1 class="ml-3"><a href="/" style="color: #6a6e71;">Sangil's blog</a></h1>
   	<div class="float-right mr-3 mt-3"> 
+  		<span class="badge badge-light" style="cursor:hand" onclick="javascript:window.open('https://github.com/ChoiSangIl', '_blank')">https://github.com/ChoiSangIl</span>
 	  	<span class="badge badge-primary" style="cursor:hand" onclick="javascript:location.href='/md/main'">Admin</span>
   	</div>
 </div>
