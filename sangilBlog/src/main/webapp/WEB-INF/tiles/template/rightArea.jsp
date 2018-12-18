@@ -21,7 +21,6 @@
 	padding-bottom:10px;
 	left:82%;
 	position:fixed;
-	display:inline-block;
 	top:92%;
 	-webkit-transform:translateY(-50%);
 	-ms-transform:translateY(-50%);
@@ -103,7 +102,7 @@
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 
-<nav class="floating-menu">
+<nav class="floating-menu form-inline">
 	<ul class="main-menu">
 	    <li>
 	        <a href="javascript:goTop();" class="ripple">
@@ -116,16 +115,37 @@
 	        </a>
 	    </li>
 	</ul>
-	<div class="menu-bg"></div>
+	<p class="text-left mt-3 ml-5">
+		<b>total</b> <span class="badge badge-pill  badge-dark" id="totalCount"></span><br/>
+		<b>today</b> <span class="badge badge-pill badge-dark" id="todayCount"></span>
+	</p>
 </nav>
 
 <script>
+$(document).ready(function(){
+	getJoinCount();
+})
+
 goTop = function(){
 	$('html, body').scrollTop(0);
 }
 
 goBottom = function(){
 	$('html, body').scrollTop( $(document).height() );
+}
+
+getJoinCount = function(){
+	var param = {};
+	$.ajax({
+		type: "POST",
+		url: '/common/getJoinCountList',
+		data: JSON.stringify(param),
+		contentType: 'application/json',
+		success: function(res) {
+			$("#totalCount").text(res.joinCountTotalSum+"명");
+			$("#todayCount").text(res.joinCountOfToday+"명");
+		}
+  	});
 }
 
 </script>
