@@ -8,8 +8,8 @@
 	</sql>
 	
 	<sql id="COMMON_PAGING_TAIL">
-		) R1, (select @ROWNUM := 0) A
 		LIMIT #{length, jdbcType=INTEGER} OFFSET #{start, jdbcType=INTEGER}	
+		) R1, (select @ROWNUM := 0) A
 	</sql>
 	
 	<!-- mainPage 게시물 리스트 -->
