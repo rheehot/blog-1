@@ -65,8 +65,7 @@ public class AdminBoardController {
 	public String handleFileUpload(@RequestParam("file") MultipartFile file, HttpServletRequest request){
 		try{
 			String imageUrl = this.storageService.imageStore(file);
-			String address = request.getRequestURL().toString().replace(request.getRequestURI(), "");
-			return address + this.imagePath + imageUrl;
+			return this.imagePath + imageUrl;
 	    }catch (Exception e){
 	      e.printStackTrace();
 	    }
