@@ -1,6 +1,9 @@
 package com.sang12.blog.controller.front;
 
 import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,6 +85,15 @@ public class MainController {
 	@ResponseBody
 	public String robots() {
 		return "User-agent: *\nDisallow: /md\n";
+	}
+	
+	@RequestMapping(value = "/ads.txt")
+	@ResponseBody
+	public String adstxt(HttpServletResponse response) {
+	    String fileName = "ads.txt";
+	    response.setHeader("Content-Disposition", "attachment; filename=" + fileName);
+	    String content = "google.com, pub-2918447982815807, DIRECT, f08c47fec0942fa0";
+	    return content;
 	}
 	
 	@RequestMapping("/{articleId}")
