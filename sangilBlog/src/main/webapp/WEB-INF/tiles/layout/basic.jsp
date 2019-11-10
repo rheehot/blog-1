@@ -13,9 +13,8 @@ html, body{
 </style>
 
 <html lang="ko" xmlns:og='http://ogp.me/ns#'>
-
 	<head>
-	    <meta charset="euc-kr">
+	    <meta charset="utf-8">
     	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
 	    <c:if test="${ mainData.mainTitle ne null}">
@@ -47,13 +46,17 @@ html, body{
 	   	<script src="/js/common/common.js"></script>
 	   	<script src="/js/common/b4_sidebar.js?20181015"></script>
 	   	<script src="/js/common/util.js"></script>
-		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	   	
+	   	<!-- google ads -->
+    	<script data-ad-client="ca-pub-2918447982815807" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 		<script>
 		  (adsbygoogle = window.adsbygoogle || []).push({
 		    google_ad_client: "ca-pub-2918447982815807",
 		    enable_page_level_ads: true
 		  });
 		</script>
+
 		<!-- Global site tag (gtag.js) - Google Analytics -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-123358087-1"></script>
 		<script>
@@ -62,6 +65,7 @@ html, body{
   			gtag('js', new Date());
  			 gtag('config', 'UA-123358087-1');
 		</script>
+		
 		<link rel="stylesheet" href="/css/highlight/androidstudio.css"> 
 		<link rel="stylesheet" href="/css/common/b4_sidebar.css"> 
 		<script src="/js/common/highlight.pack.js"></script>
