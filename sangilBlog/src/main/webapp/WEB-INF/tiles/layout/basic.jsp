@@ -48,7 +48,6 @@ html, body{
 	   	<script src="/js/common/util.js"></script>
 	   	
 	   	<!-- google ads -->
-    	<script data-ad-client="ca-pub-2918447982815807" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 		<script>
 		  (adsbygoogle = window.adsbygoogle || []).push({
