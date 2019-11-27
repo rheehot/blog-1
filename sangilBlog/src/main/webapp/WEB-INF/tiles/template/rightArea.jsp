@@ -87,13 +87,16 @@
 
 <div class="rightArea">
 <!-- blog 우측 광고_1 -->
-<!-- <ins class="adsbygoogle"
+<ins class="adsbygoogle"
      style="display:block"
      data-ad-client="ca-pub-2918447982815807"
      data-ad-slot="5444897677"
      data-ad-format="auto"
      data-full-width-responsive="true">
-</ins> -->
+</ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 </div>
 
 <nav class="floating-menu form-inline">

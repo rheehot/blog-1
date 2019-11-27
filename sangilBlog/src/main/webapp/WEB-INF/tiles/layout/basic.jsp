@@ -17,6 +17,17 @@ html, body{
 	    <meta charset="utf-8">
     	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
+    	
+    	<!-- google ads -->
+    	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+		<script>
+		  (adsbygoogle = window.adsbygoogle || []).push({
+		    google_ad_client: "ca-pub-2918447982815807",
+		    enable_page_level_ads: true
+		  });
+		</script>
+    	
 	    <c:if test="${ mainData.mainTitle ne null}">
 	    	<title>${mainData.mainTitle} :: <tiles:getAsString name="title"/></title>
 	    	<meta name="description" content='<c:out value='${fn:substring(mainData.articleList[0].content.replaceAll("\\\<.*?\\\>",""),0,100)}' escapeXml="false"/>'>
@@ -46,9 +57,6 @@ html, body{
 	   	<script src="/js/common/common.js"></script>
 	   	<script src="/js/common/b4_sidebar.js?20181015"></script>
 	   	<script src="/js/common/util.js"></script>
-	   	
-	   	<!-- google ads -->
-    	<script data-ad-client="ca-pub-2918447982815807" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
 		<!-- Global site tag (gtag.js) - Google Analytics -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-123358087-1"></script>

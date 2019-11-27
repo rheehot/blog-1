@@ -35,6 +35,17 @@
 			<div class="mt-3">
 				${list.content}
 			</div>
+			
+			<!-- 게시글 하단 배너 -->
+			<ins class="adsbygoogle"
+			     style="display:inline-block;width:100%;height:120px"
+			     data-ad-client="ca-pub-2918447982815807"
+			     data-ad-slot="4912443342">
+			</ins>
+			<script>
+			     (adsbygoogle = window.adsbygoogle || []).push({});
+			</script>
+			
 			<%--relateTitle area --%>
 			<div class="card mt-3">
 				<div class="pl-2 pr-2 pt-3  mb-0">
