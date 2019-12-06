@@ -29,12 +29,12 @@ html, body{
 		</script>
     	
 	    <c:if test="${ mainData.mainTitle ne null}">
-	    	<title>${mainData.mainTitle} :: <tiles:getAsString name="title"/></title>
+	    	<title>${mainData.mainTitle}</title>
 	    	<meta name="description" content='<c:out value='${fn:substring(mainData.articleList[0].content.replaceAll("\\\<.*?\\\>",""),0,100)}' escapeXml="false"/>'>
 	    	<meta name="keywords" content="${mainData.articleList[0].keyword }">
 	    	<link rel="canonical" href="http://sang12.co.kr/${mainData.articleList[0].boardId }">	
 	    	<meta property="og:type" content="article">
-			<meta property="og:title" content="${mainData.mainTitle} :: <tiles:getAsString name="title"/>">
+			<meta property="og:title" content="${mainData.mainTitle}">
 			<meta property="og:description" content="<c:out value='${fn:substring(mainData.articleList[0].content.replaceAll("\\\<.*?\\\>",""),0,100)}' escapeXml="false"/>">
 			<meta property="og:url" content="http://sang12.co.kr/${mainData.articleList[0].boardId }">
 	    </c:if>
@@ -44,7 +44,7 @@ html, body{
 	    	<meta name="keywords" content="blog, sang12, 개인블로그">
 	    	<link rel="canonical" href="http://sang12.co.kr">	
  		    <meta property="og:type" content="blog">
-			<meta property="og:title" content="${mainData.mainTitle} :: <tiles:getAsString name="title"/>">
+			<meta property="og:title" content="${mainData.mainTitle}">
 			<meta property="og:description" content="취미 및 관심사를 공유하는 최상일의 개인 블로그입니다.">
 			<meta property="og:url" content="http://sang12.co.kr">
 	    </c:if>
