@@ -29,7 +29,9 @@ public class FrontSessionInterceptor extends HandlerInterceptorAdapter{
 			return true;
 		}
 		session = request.getSession();
-		commonService.checkAndCount();
+		
+		//메모리부족으로 주석처리
+		//commonService.checkAndCount();
 		return true;
 	}
 }
