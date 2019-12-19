@@ -17,7 +17,7 @@
 	   		<p>한미헬스케어 재직중</p>
 		</div>
 		<div class="card-footer">
-			연락처: sang12@kakao.co.kr
+			연락처: wo566@naver.com
 		</div>
 	</div> 
 	
