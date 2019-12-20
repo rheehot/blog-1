@@ -120,7 +120,8 @@
 
 <script>
 $(document).ready(function(){
-	getJoinCount();
+	//이용안함 google 이용 
+	//getJoinCount();
 })
 
 goTop = function(){
