@@ -127,7 +127,7 @@ public class CommonServiceImpl implements CommonService {
 			//category.set
 			
 			item.setAuthor("sang12");
-			item.setLink("http://sang12.co.kr/" + board.getBoardId());
+			item.setLink("http://sang12.co.kr/" + board.getBoardId() + "/" + board.getTitle().replaceAll(" ","-"));
 			item.setTitle(board.getTitle());
 			
 			/*

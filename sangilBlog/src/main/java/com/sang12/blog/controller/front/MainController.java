@@ -102,6 +102,17 @@ public class MainController {
 		return new ModelAndView("front/main", "mainData", data);
 	}
 	
+	/**
+	 * domain/articleId/title로 상세 검색한다. (구글 아날리틱스에서 게시판 번호만 나와서 이름도 가져오게끔 변경)
+	 * @param articleId
+	 * @return
+	 */
+	@RequestMapping("/{articleId}/{title}")
+	public ModelAndView getArticleTitle(@PathVariable int articleId, @PathVariable String title){
+		Map<String, Object> data = commonService.getArticle(articleId);
+		return new ModelAndView("front/main", "mainData", data);
+	}
+	
 	@RequestMapping("/search/{keyword}")
 	public ModelAndView search(@PathVariable String keyword){
 		logger.debug("data:::::"+keyword);

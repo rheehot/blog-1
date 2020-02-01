@@ -29,7 +29,7 @@
 <c:forEach items="${articleList}" var="list">
 	<div class="card mb-3">
 		<div class="card-body mb-5">
-			<h2 class="mt-4 text-center"><a href="/${list.boardId }" style="color:#000;">${list.title}</a> <span style="font-size:8px;">${list.largeCategoryName} <c:if test="${list.middleCategoryName ne null }">/ ${list.middleCategoryName}</c:if></span></h2>
+			<h2 class="mt-4 text-center"><a href="/${list.boardId}/${fn:replace(list.title, ' ', '-')}" style="color:#000;">${list.title}</a> <span style="font-size:8px;">${list.largeCategoryName} <c:if test="${list.middleCategoryName ne null }">/ ${list.middleCategoryName}</c:if></span></h2>
 			<p class="text-right mb-2 mt-5"><b><fmt:formatDate pattern = "yyyy-MM-dd" value = "${list.registerDate}"/> posted by sang12</b></p><hr/>
 			<%--main content area--%>
 			<div class="mt-3">
@@ -61,10 +61,10 @@
 					<c:forEach items="${list.relateBoardTitleList}" var="relateBoardTitle">
 							<c:choose>
 								<c:when test="${list.boardId eq relateBoardTitle.boardId }">
-									<a class="text-dark" href="/${relateBoardTitle.boardId }"><b>${relateBoardTitle.title }</b></a><br/>		
+									<a class="text-dark" href="/${relateBoardTitle.boardId}/${fn:replace(relateBoardTitle.title, ' ', '-')}"><b>${relateBoardTitle.title }</b></a><br/>		
 								</c:when>
 								<c:otherwise>
-									<a class="text-dark" href="/${relateBoardTitle.boardId }">${relateBoardTitle.title }</a><br/>
+									<a class="text-dark" href="/${relateBoardTitle.boardId}/${fn:replace(relateBoardTitle.title, ' ', '-')}">${relateBoardTitle.title }</a><br/>
 								</c:otherwise>
 							</c:choose>
 					</c:forEach>
