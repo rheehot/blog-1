@@ -14,7 +14,6 @@ public interface CategoryRepository extends JpaRepository<CategoryEntity, Intege
 	@Query(value="SELECT categoryName FROM COMM03TM WHERE categoryId = :categoryId", nativeQuery = true)
 	String findCategoryNameByCategoryId(@Param("categoryId") Integer categoryId);
 	
-	@Query(value="SELECT * FROM COMM03TM WHERE parentId <> 0", nativeQuery=true)
+	@Query(value="SELECT * FROM COMM03TM WHERE parentId <> 0 ORDER BY parentId, sortNumber", nativeQuery=true)
 	List<CategoryEntity> findChildCategory();
-	
 }
