@@ -28,7 +28,7 @@
 <%-- 메인 게시물 영역 --%>
 <c:forEach items="${articleList}" var="list">
 	<div class="card mb-3">
-		<div class="card-body mb-5">
+		<div class="card-body mb-1">
 			<h2 class="mt-4 text-center"><a href="/${list.boardId}/${fn:replace(fn:replace(list.title, ' ', '-'), '/', '')}" style="color:#000;">${list.title}</a> <span style="font-size:8px;">${list.largeCategoryName} <c:if test="${list.middleCategoryName ne null }">/ ${list.middleCategoryName}</c:if></span></h2>
 			<p class="text-right mb-2 mt-5"><b><fmt:formatDate pattern = "yyyy-MM-dd" value = "${list.registerDate}"/> posted by sang12</b></p><hr/>
 			<%--main content area--%>
@@ -47,7 +47,7 @@
 			</script>
 			
 			<%--relateTitle area --%>
-			<div class="card mt-3">
+			<div class="card mt-2">
 				<div class="pl-2 pr-2 pt-3  mb-0">
 					<span class="">
 						<a style="color:black;" href="/category/${fn:replace(list.largeCategoryName, ' ', '-')}"><b>${list.largeCategoryName}</b></a> 
@@ -82,7 +82,18 @@
 			</c:if>
 		</div>
 	</div>
+	
+	<div class="card mb-2">
+		<div class="card-header bg-light">
+    		<i class="fa fa-comment fa"></i> REPLY
+  		</div>
+		<div class="card-body">
+			<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+			<button type="button" class="btn btn-dark mt-3" onClick="javascript:alert('준비중입니다.')">작성</button>
+		</div>
+	</div>
 </c:forEach>
+
 </div>
 
 <%--paging 영역--%>
@@ -106,6 +117,7 @@
 	</c:if>
 </ul>
 </c:if>
+
 
 <div id="goBottom"></div>
 
