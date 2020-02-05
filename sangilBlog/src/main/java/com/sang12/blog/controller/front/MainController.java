@@ -1,5 +1,7 @@
 package com.sang12.blog.controller.front;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
@@ -7,12 +9,14 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.rometools.rome.feed.rss.Channel;
 import com.sang12.blog.service.common.CommonService;
@@ -97,9 +101,19 @@ public class MainController {
 	}
 	
 	@RequestMapping("/{articleId}")
-	public ModelAndView getArticle(@PathVariable int articleId){
+	public RedirectView getArticle(@PathVariable int articleId){
 		Map<String, Object> data = commonService.getArticle(articleId);
-		return new ModelAndView("front/main", "mainData", data);
+		String articleTitle = data.get("mainTitle") + "";
+		try {
+			articleTitle = URLEncoder.encode(articleTitle.replaceAll(" ", "-").replaceAll("/", ""), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String redirectUrl = "/" + articleId + "/" + articleTitle;
+	    RedirectView redirectView = new RedirectView(redirectUrl);
+	    redirectView.setStatusCode(HttpStatus.MOVED_PERMANENTLY);
+	    return redirectView ;
 	}
 	
 	/**
