@@ -102,17 +102,17 @@ public class MainController {
 	
 	@RequestMapping("/{articleId}")
 	public RedirectView getArticle(@PathVariable int articleId){
-		Map<String, Object> data = commonService.getArticle(articleId);
-		String articleTitle = data.get("mainTitle") + "";
+		RedirectView redirectView = null;
 		try {
+			Map<String, Object> data = commonService.getArticle(articleId);
+			String articleTitle = data.get("mainTitle") + "";
 			articleTitle = URLEncoder.encode(articleTitle.replaceAll(" ", "-").replaceAll("/", ""), "UTF-8");
+			String redirectUrl = "/" + articleId + "/" + articleTitle;
+		    redirectView = new RedirectView(redirectUrl);
+		    redirectView.setStatusCode(HttpStatus.MOVED_PERMANENTLY);
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		String redirectUrl = "/" + articleId + "/" + articleTitle;
-	    RedirectView redirectView = new RedirectView(redirectUrl);
-	    redirectView.setStatusCode(HttpStatus.MOVED_PERMANENTLY);
 	    return redirectView ;
 	}
 	
