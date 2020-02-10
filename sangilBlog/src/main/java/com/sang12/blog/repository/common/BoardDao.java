@@ -3,6 +3,7 @@ package com.sang12.blog.repository.common;
 import java.util.List;
 
 import com.sang12.blog.domain.board.BoardEntity;
+import com.sang12.blog.domain.board.BoardReplyEntity;
 import com.sang12.blog.domain.board.RelateBoardTitleEntity;
 import com.sang12.blog.vo.admin.boardVo;
 import com.sang12.blog.vo.common.PagingVo;
@@ -35,4 +36,16 @@ public interface BoardDao {
 	
 	public List<BoardEntity> saerchKeyword(String Keyword);
 	
+	/**
+	 * addReply
+	 * @param boardReply
+	 */
+	public void addReply(BoardReplyEntity boardReply);
+	
+	/**
+	 * getReplyList
+	 * @param board
+	 * @return
+	 */
+	public List<BoardReplyEntity> getReplyList(BoardEntity board);
 }

@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import com.sang12.blog.domain.board.BoardEntity;
+import com.sang12.blog.domain.board.BoardReplyEntity;
 import com.sang12.blog.vo.admin.boardVo;
 
 /**
@@ -26,4 +27,18 @@ public interface BoardService {
 	public abstract Map<String, Object> getAdminArticleList(boardVo vo);
 	
 	public abstract BoardEntity getArticleDetail(int boardId);
+	
+	/**
+	 * main page호출시 데이터를 가져옴.
+	 * @param vo
+	 * @return
+	 */
+	public abstract Map<String, Object> getArticle(int boardId);
+	
+	/**
+	 * 댓글 저장
+	 * @param boardId
+	 * @return
+	 */
+	public abstract Boolean addReply(BoardReplyEntity boardReply);
 }

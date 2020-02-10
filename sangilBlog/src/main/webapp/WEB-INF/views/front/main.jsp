@@ -36,7 +36,7 @@
 				${list.content}
 			</div>
 			
-			<!-- 게시글 하단 배너 -->
+			<!-- 게시글 하단 배너 -->		
 			<ins class="adsbygoogle"
 			     style="display:inline-block;width:100%;height:120px"
 			     data-ad-client="ca-pub-2918447982815807"
@@ -80,16 +80,49 @@
 					</c:forEach>
 				</div>
 			</c:if>
+			
+			<c:if test="${fn:length(list.boardReplyEntity) > 0}"><hr/></c:if>
+			<c:forEach items="${list.boardReplyEntity}" var="reply">
+				<div class="card mt-2">
+					<div class="card-header">
+						<table>
+							<tr>
+								<td rowspan="2"><i class="fa fa-user-o fa-2x"></i></td>
+								<td class="ml">${reply.reply_writer}</td>
+							</tr>
+							<tr>
+								<td class="text-muted">${reply.register_datetime}</td>
+							</tr>
+						</table>
+				    </div>
+				    <div class="card-body">
+						<p class="card-text">${reply.reply_content }</p>
+					</div>
+				</div>
+			</c:forEach>
 		</div>
 	</div>
+	
 	
 	<div class="card mb-2">
 		<div class="card-header bg-light">
     		<i class="fa fa-comment fa"></i> REPLY
   		</div>
 		<div class="card-body">
-			<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-			<button type="button" class="btn btn-dark mt-3" onClick="javascript:alert('준비중입니다.')">작성</button>
+ 			<ul class="list-group list-group-flush">
+			    <li class="list-group-item">
+			    <form id = "boardReplyFrm">
+					<div class="form-inline mb-2">
+						<label for="replyId"><i class="fa fa-user-circle-o fa-2x"></i></label>
+						<input type="text" class="form-control ml-2" placeholder="Enter yourId" id="reply_writer" name="reply_writer">
+						<label for="replyPassword" class="ml-4"><i class="fa fa-unlock-alt fa-2x"></i></label>
+						<input type="password" class="form-control ml-2" placeholder="Enter password" id="reply_password" name="reply_password">
+					</div>
+					<textarea class="form-control" id="reply_content" name="reply_content" rows="3"></textarea>
+				</form>
+   				<button type="button" class="btn btn-dark mt-3" onClick="javascript:addReply(${list.boardId}, 0);">post reply</button>
+			    </li>
+			</ul>
 		</div>
 	</div>
 </c:forEach>
@@ -140,6 +173,21 @@ function simpleLightbox(imageUrl, bgColor, maxWidth){
         maxWidth = '1100px';
     }
     window.open('', 'simpleLightbox').document.write('<html><head><meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, width=device-width" /></head><body style="margin:0; background:'+bgColor+';height:100%;" onclick="javascript:window.close(\'simpleLightbox\');"><table border="0" width="100%" height="100%"><tr><td valign="middle" align="center"><img style="position:relative;z-index:2;width:100%;max-width:'+maxWidth+';" src="'+imageUrl+'"/></td></tr></table></body></html>');
+}
+
+function addReply(boardId, depth){
+	var param = $("#boardReplyFrm").serializeObject();
+	param.board_id = boardId;
+	param.depth = depth;
+	
+	$.ajax({
+		type: "POST",
+		url: '/addReply',
+		data: param,
+		success: function(msg) {
+			alert("등록성공");
+		}
+  	});
 }
 
 </script>

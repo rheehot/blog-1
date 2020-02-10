@@ -100,32 +100,6 @@ public class MainController {
 	    return content;
 	}
 	
-	@RequestMapping("/{articleId}")
-	public RedirectView getArticle(@PathVariable int articleId){
-		RedirectView redirectView = null;
-		try {
-			Map<String, Object> data = commonService.getArticle(articleId);
-			String articleTitle = data.get("mainTitle") + "";
-			articleTitle = URLEncoder.encode(articleTitle.replaceAll(" ", "-").replaceAll("/", ""), "UTF-8");
-			String redirectUrl = "/" + articleId + "/" + articleTitle;
-		    redirectView = new RedirectView(redirectUrl);
-		    redirectView.setStatusCode(HttpStatus.MOVED_PERMANENTLY);
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-	    return redirectView ;
-	}
-	
-	/**
-	 * domain/articleId/title로 상세 검색한다. (구글 아날리틱스에서 게시판 번호만 나와서 이름도 가져오게끔 변경)
-	 * @param articleId
-	 * @return
-	 */
-	@RequestMapping("/{articleId}/{title}")
-	public ModelAndView getArticleTitle(@PathVariable int articleId, @PathVariable String title){
-		Map<String, Object> data = commonService.getArticle(articleId);
-		return new ModelAndView("front/main", "mainData", data);
-	}
 	
 	@RequestMapping("/search/{keyword}")
 	public ModelAndView search(@PathVariable String keyword){

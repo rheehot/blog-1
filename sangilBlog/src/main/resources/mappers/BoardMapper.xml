@@ -153,5 +153,32 @@
 		ORDER BY boardId DESC
     </select>
     
+    <!-- addReply -->
+    <insert id="addReply">
+    	INSERT INTO BOARD_REPLY(
+    		board_id, parent_id, depth, reply_content, reply_writer, reply_password, register_datetime
+    	) VALUES(
+    		#{board_id}, #{parent_id}, #{depth}, #{reply_content}, #{reply_writer}, #{reply_password}, now()
+    	)
+    </insert>
+    
+    <!-- getReplyList -->
+    <select id="getReplyList" resultType="com.sang12.blog.domain.board.BoardReplyEntity">
+    	select
+            reply_id,
+            board_id,
+            parent_id,
+            depth,
+            reply_content,
+            reply_writer,
+            reply_password,
+            register_datetime
+        from
+            BOARD_REPLY
+        where
+            board_id = #{boardId, jdbcType=INTEGER}
+        order by reply_id asc
+    </select>
+    
 </mapper>
 

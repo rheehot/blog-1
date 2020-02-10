@@ -13,6 +13,7 @@ import com.rometools.rome.feed.rss.Channel;
 import com.rometools.rome.feed.rss.Description;
 import com.rometools.rome.feed.rss.Item;
 import com.sang12.blog.domain.board.BoardEntity;
+import com.sang12.blog.domain.board.BoardReplyEntity;
 import com.sang12.blog.domain.common.CategoryEntity;
 import com.sang12.blog.domain.common.JoinCountEntity;
 import com.sang12.blog.repository.common.BoardDao;
@@ -79,9 +80,11 @@ public class CommonServiceImpl implements CommonService {
 		//메인 게시물
 		List<BoardEntity> boardList = boardDao.getMainArticle(vo);
 		returnData.put("articleList", boardList);
+		
 		//다른 게시물 리스트 가져오기
 		for(BoardEntity board : boardList) {
 			board.setRelateBoardTitleList(boardDao.getRelateBoardTitleList(board));
+			board.setBoardReplyEntity(sortReplyList(boardDao.getReplyList(board)));
 		}
 		
 		//왼쪽 공간 메뉴 리스트 
@@ -90,21 +93,41 @@ public class CommonServiceImpl implements CommonService {
 		return returnData;
 	}
 	
-	@Override
-	public Map<String, Object> getArticle(int boardId) {
-		Map<String, Object> returnData = new HashMap<String, Object>();
-		List<BoardEntity> boardList = boardDao.getMainArticleByBoardId(boardId);
-		BoardEntity board = boardList.get(0);
-		returnData.put("articleList", boardList);
-		//다른 게시물 리스트 가져오기
-		for(BoardEntity boardDetail : boardList) {
-			boardDetail.setRelateBoardTitleList(boardDao.getRelateBoardTitleList(board));
-		}
-		returnData.put("mainTitle", board.getTitle());
-		returnData.put("upCategoryList", categoryDao.getLargeCategoryList());
-		returnData.put("childCategoryList", categoryRep.findChildCategory());
-		return returnData;
-	}
+	 /**
+	  * 게시판 댓글 자식과 부모리를 소팅한다.
+	 * @param boardReplyList
+	 * @return
+	 */
+	public List<BoardReplyEntity> sortReplyList(List<BoardReplyEntity> boardReplyList) {
+        List<BoardReplyEntity> boardReplyListParent = new ArrayList<BoardReplyEntity>();
+        List<BoardReplyEntity> boardReplyListChild = new ArrayList<BoardReplyEntity>();
+        List<BoardReplyEntity> newBoardReplyList = new ArrayList<BoardReplyEntity>();
+ 
+        //1.부모와 자식 분리
+        for(BoardReplyEntity boardReply: boardReplyList){
+            if(boardReply.getDepth().equals("0")){
+                boardReplyListParent.add(boardReply);
+            }else{
+                boardReplyListChild.add(boardReply);
+            }
+        }
+ 
+        //2.부모를 돌린다.
+        for(BoardReplyEntity boardReplyParent: boardReplyListParent){
+            //2-1. 부모는 무조건 넣는다.
+            newBoardReplyList.add(boardReplyParent);
+            //3.자식을 돌린다.
+            for(BoardReplyEntity boardReplyChild: boardReplyListChild){
+                //3-1. 부모의 자식인 것들만 넣는다.
+                if(boardReplyParent.getReply_id().equals(boardReplyChild.getParent_id())){
+                    newBoardReplyList.add(boardReplyChild);
+                }
+            }
+        }
+        //정리한 list return
+        return newBoardReplyList;
+	 }
+	
 
 	@Override
 	public Channel getRssList() {

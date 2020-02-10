@@ -2,6 +2,7 @@ package com.sang12.blog.service.common.impl;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +11,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.sang12.blog.domain.board.BoardEntity;
+import com.sang12.blog.domain.board.BoardReplyEntity;
 import com.sang12.blog.repository.common.BoardDao;
 import com.sang12.blog.repository.common.BoardRepository;
+import com.sang12.blog.repository.common.CategoryDao;
+import com.sang12.blog.repository.common.CategoryRepository;
 import com.sang12.blog.service.common.BoardService;
 import com.sang12.blog.vo.admin.boardVo;
 
@@ -31,6 +35,12 @@ public class BoardServiceImpl implements BoardService {
 	
 	@Autowired
 	private BoardDao boardDao;
+	
+	@Autowired
+	private CategoryRepository categoryRep;
+	
+	@Autowired
+	private CategoryDao categoryDao;
 	
 	@Override
 	public void articleSave(BoardEntity board) {
@@ -78,5 +88,27 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public BoardEntity getArticleDetail(int boardId) {
 		return boardDao.getArticleDetail(boardId);
+	}
+	
+	@Override
+	public Map<String, Object> getArticle(int boardId) {
+		Map<String, Object> returnData = new HashMap<String, Object>();
+		List<BoardEntity> boardList = boardDao.getMainArticleByBoardId(boardId);
+		BoardEntity board = boardList.get(0);
+		returnData.put("articleList", boardList);
+		//다른 게시물 리스트 가져오기
+		for(BoardEntity boardDetail : boardList) {
+			boardDetail.setRelateBoardTitleList(boardDao.getRelateBoardTitleList(board));
+		}
+		returnData.put("mainTitle", board.getTitle());
+		returnData.put("upCategoryList", categoryDao.getLargeCategoryList());
+		returnData.put("childCategoryList", categoryRep.findChildCategory());
+		return returnData;
+	}
+	
+	@Override
+	public Boolean addReply(BoardReplyEntity boardReply) {
+		boardDao.addReply(boardReply);
+		return true;
 	}
 }

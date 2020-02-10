@@ -40,13 +40,6 @@ public interface CommonService {
 	public abstract Map<String, Object> getMainData(MainPageVo vo);
 	
 	/**
-	 * main page호출시 데이터를 가져옴.
-	 * @param vo
-	 * @return
-	 */
-	public abstract Map<String, Object> getArticle(int boardId);
-	
-	/**
 	 * getRssList
 	 * @return
 	 */

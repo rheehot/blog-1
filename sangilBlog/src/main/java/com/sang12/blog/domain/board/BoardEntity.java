@@ -66,4 +66,7 @@ public class BoardEntity implements Serializable{
 	
 	@Transient
 	List<RelateBoardTitleEntity> relateBoardTitleList;
+	
+	@Transient
+	List<BoardReplyEntity> boardReplyEntity;
 }
