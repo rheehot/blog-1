@@ -2,7 +2,9 @@ package com.sang12.blog.controller.front;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +17,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.sang12.blog.domain.board.BoardEntity;
 import com.sang12.blog.domain.board.BoardReplyEntity;
 import com.sang12.blog.domain.common.CategoryEntity;
 import com.sang12.blog.service.common.BoardService;
+
 
 @Controller
 public class FrontBoardController {
@@ -61,5 +65,19 @@ public class FrontBoardController {
 	public Boolean addReply(BoardReplyEntity boardReply){
 		boardService.addReply(boardReply);
 		return true;
+	}
+	
+	
+	/**
+	 * 
+	 * @param boardReply
+	 * @return
+	 */
+	@PostMapping("/getBoardReplyListAjax")
+	@ResponseBody
+	public List<BoardReplyEntity> getBoardReplyListAjax(BoardEntity board){
+		List<BoardReplyEntity> boardReplyList = null;
+		boardReplyList = boardService.getBoardReplyList(board);
+		return boardReplyList;
 	}
 }

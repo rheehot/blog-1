@@ -81,29 +81,32 @@
 				</div>
 			</c:if>
 			
-			<c:if test="${fn:length(list.boardReplyEntity) > 0}"><hr/></c:if>
-			<c:forEach items="${list.boardReplyEntity}" var="reply">
-				<div class="card mt-2">
-					<div class="card-header">
-						<table>
-							<tr>
-								<td rowspan="2"><i class="fa fa-user-o fa-2x"></i></td>
-								<td class="ml">${reply.reply_writer}</td>
-							</tr>
-							<tr>
-								<td class="text-muted">${reply.register_datetime}</td>
-							</tr>
-						</table>
-				    </div>
-				    <div class="card-body">
-						<p class="card-text">${reply.reply_content }</p>
+			<%-- 댓글창 --%>
+			<div id="replyContent_${list.boardId}">
+				<c:if test="${fn:length(list.boardReplyEntity) > 0}"><hr/></c:if>
+				<c:forEach items="${list.boardReplyEntity}" var="reply">
+					<div class="card mt-2">
+						<div class="card-header">
+							<table>
+								<tr>
+									<td rowspan="2" class="pr-3"><i class="fa fa-user-o fa-2x"></i></td>
+									<td class="ml">${reply.reply_writer}</td>
+								</tr>
+								<tr>
+									<td class="text-muted">${reply.register_datetime}</td>
+								</tr>
+							</table>
+					    </div>
+					    <div class="card-body list-group-item-action">
+							<p class="card-text">${reply.reply_content }</p>
+						</div>
 					</div>
-				</div>
-			</c:forEach>
+				</c:forEach>
+			</div>
 		</div>
 	</div>
 	
-	
+	<%-- 댓글 작성 --%>
 	<div class="card mb-2">
 		<div class="card-header bg-light">
     		<i class="fa fa-comment fa"></i> REPLY
@@ -112,15 +115,17 @@
  			<ul class="list-group list-group-flush">
 			    <li class="list-group-item">
 			    <form id = "boardReplyFrm">
-					<div class="form-inline mb-2">
-						<label for="replyId"><i class="fa fa-user-circle-o fa-2x"></i></label>
-						<input type="text" class="form-control ml-2" placeholder="Enter yourId" id="reply_writer" name="reply_writer">
-						<label for="replyPassword" class="ml-4"><i class="fa fa-unlock-alt fa-2x"></i></label>
-						<input type="password" class="form-control ml-2" placeholder="Enter password" id="reply_password" name="reply_password">
-					</div>
-					<textarea class="form-control" id="reply_content" name="reply_content" rows="3"></textarea>
+			    	<table>
+			    		<tr>
+			    			<td><label for="replyId"><i class="fa fa-user-circle-o fa-2x"></i></label></td>
+			    			<td><input type="text" class="form-control ml-2" placeholder="Enter yourId" id="reply_writer_${list.boardId}" name="reply_writer">
+			    			<td><label for="replyPassword" class="ml-4"><i class="fa fa-unlock-alt fa-2x"></i></label></td>
+			    			<td><input type="password" class="form-control ml-2" placeholder="Enter password" id="reply_password_${list.boardId}" name="reply_password"></td>
+			    		</tr>
+			    	</table>
+					<textarea class="form-control mt-2" id="reply_content_${list.boardId}" name="reply_content" rows="3"></textarea>
 				</form>
-   				<button type="button" class="btn btn-dark mt-3" onClick="javascript:addReply(${list.boardId}, 0);">post reply</button>
+   				<button type="button" class="btn btn-dark" onClick="javascript:addReply(${list.boardId}, 0);">post reply</button>
 			    </li>
 			</ul>
 		</div>
@@ -175,6 +180,53 @@ function simpleLightbox(imageUrl, bgColor, maxWidth){
     window.open('', 'simpleLightbox').document.write('<html><head><meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, width=device-width" /></head><body style="margin:0; background:'+bgColor+';height:100%;" onclick="javascript:window.close(\'simpleLightbox\');"><table border="0" width="100%" height="100%"><tr><td valign="middle" align="center"><img style="position:relative;z-index:2;width:100%;max-width:'+maxWidth+';" src="'+imageUrl+'"/></td></tr></table></body></html>');
 }
 
+
+//게시판 댓글 리스트를 가져온다.
+function getBoardReplyList(boardId){
+	var param = {};
+	param.boardId = boardId;
+	
+	$.ajax({
+		type: "POST",
+		url: '/getBoardReplyListAjax',
+		data: param,
+		success: function(result) {
+			clearAndSetReplyContent(result, boardId);
+		}
+  	});
+}
+
+//댓글창을 삭제하고 받아온 리스트로 다시 그린다.
+function clearAndSetReplyContent(reply, boardId){
+	$("#replyContent_" +boardId ).empty();
+	var html = "<hr/>";
+		
+	reply.forEach(function (item, index, array) {
+	    console.log(item, index);
+	    
+	    html = html 
+    	+"<div class='card mt-2'>"
+    	+	"<div class='card-header'>"
+    	+ 		"<table>"
+    	+ 			"<tr>"
+		+				"<td rowspan='2' class='pr-3'><i class='fa fa-user-o fa-2x'></i></td>"
+		+					"<td class='ml'>"+ item.reply_writer +"</td>"
+        +			"</tr>"
+        +			"<tr>"
+		+				"<td class='text-muted'>"+item.register_datetime+"</td>"
+		+			"</tr>"
+		+		"</table>"
+		+	"</div>"
+		+	"<div class='card-body list-group-item-action'>"
+		+		"<p class='card-text'>"+item.reply_content+"</p>"
+		+"	</div>"
+		+"</div>";
+	});
+	
+	$("#replyContent_" +boardId).append(html);	
+
+}
+
 function addReply(boardId, depth){
 	var param = $("#boardReplyFrm").serializeObject();
 	param.board_id = boardId;
@@ -185,11 +237,12 @@ function addReply(boardId, depth){
 		url: '/addReply',
 		data: param,
 		success: function(msg) {
-			alert("등록성공");
+			getBoardReplyList(boardId);
+			$("#reply_writer_" + boardId).val("");
+			$("#reply_password_" + boardId).val("");
+			$("#reply_content_" + boardId).val("");
 		}
   	});
 }
-
 </script>
-
 

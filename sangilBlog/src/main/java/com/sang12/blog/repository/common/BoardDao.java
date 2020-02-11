@@ -48,4 +48,11 @@ public interface BoardDao {
 	 * @return
 	 */
 	public List<BoardReplyEntity> getReplyList(BoardEntity board);
+	
+	/**
+	 * getReplyList
+	 * @param board
+	 * @return
+	 */
+	public List<BoardReplyEntity> getReplyList(BoardReplyEntity board);
 }

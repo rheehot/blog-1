@@ -1,5 +1,7 @@
 package com.sang12.blog.service.common;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.data.domain.Page;
@@ -41,4 +43,11 @@ public interface BoardService {
 	 * @return
 	 */
 	public abstract Boolean addReply(BoardReplyEntity boardReply);
+	
+	/**
+	 * 댓글 저장
+	 * @param boardId
+	 * @return
+	 */
+	public abstract List<BoardReplyEntity> getBoardReplyList(BoardEntity board);
 }

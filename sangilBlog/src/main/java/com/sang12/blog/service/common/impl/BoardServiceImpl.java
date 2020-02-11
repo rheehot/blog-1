@@ -1,5 +1,6 @@
 package com.sang12.blog.service.common.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -99,6 +100,7 @@ public class BoardServiceImpl implements BoardService {
 		//다른 게시물 리스트 가져오기
 		for(BoardEntity boardDetail : boardList) {
 			boardDetail.setRelateBoardTitleList(boardDao.getRelateBoardTitleList(board));
+			board.setBoardReplyEntity(sortReplyList(boardDao.getReplyList(board)));
 		}
 		returnData.put("mainTitle", board.getTitle());
 		returnData.put("upCategoryList", categoryDao.getLargeCategoryList());
@@ -111,4 +113,45 @@ public class BoardServiceImpl implements BoardService {
 		boardDao.addReply(boardReply);
 		return true;
 	}
+
+	@Override
+	public List<BoardReplyEntity> getBoardReplyList(BoardEntity board) {
+		// TODO Auto-generated method stub
+		return sortReplyList(boardDao.getReplyList(board));
+	}
+	
+	 /**
+	  * 게시판 댓글 자식과 부모리를 소팅한다.
+	 * @param boardReplyList
+	 * @return
+	 */
+	public List<BoardReplyEntity> sortReplyList(List<BoardReplyEntity> boardReplyList) {
+       List<BoardReplyEntity> boardReplyListParent = new ArrayList<BoardReplyEntity>();
+       List<BoardReplyEntity> boardReplyListChild = new ArrayList<BoardReplyEntity>();
+       List<BoardReplyEntity> newBoardReplyList = new ArrayList<BoardReplyEntity>();
+
+       //1.부모와 자식 분리
+       for(BoardReplyEntity boardReply: boardReplyList){
+           if(boardReply.getDepth().equals("0")){
+               boardReplyListParent.add(boardReply);
+           }else{
+               boardReplyListChild.add(boardReply);
+           }
+       }
+
+       //2.부모를 돌린다.
+       for(BoardReplyEntity boardReplyParent: boardReplyListParent){
+           //2-1. 부모는 무조건 넣는다.
+           newBoardReplyList.add(boardReplyParent);
+           //3.자식을 돌린다.
+           for(BoardReplyEntity boardReplyChild: boardReplyListChild){
+               //3-1. 부모의 자식인 것들만 넣는다.
+               if(boardReplyParent.getReply_id().equals(boardReplyChild.getParent_id())){
+                   newBoardReplyList.add(boardReplyChild);
+               }
+           }
+       }
+       //정리한 list return
+       return newBoardReplyList;
+	 }
 }
