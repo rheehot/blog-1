@@ -18,6 +18,9 @@ html, body{
     	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
     	
+    	<!-- 네이버 웹마스터 도구 -->
+    	<meta name="naver-site-verification" content="a6da77ae6bd501416cee3778d854b01cd134bd62"/>
+    	
     	<!-- google ads -->
     	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
