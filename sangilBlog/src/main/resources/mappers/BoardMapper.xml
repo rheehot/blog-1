@@ -172,7 +172,7 @@
             reply_content,
             reply_writer,
             reply_password,
-            register_datetime
+            DATE_FORMAT(register_datetime, '%Y-%m-%d %H:%i:%s') register_datetime
         from
             BOARD_REPLY
         where
