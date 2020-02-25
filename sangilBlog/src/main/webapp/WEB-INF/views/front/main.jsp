@@ -93,12 +93,15 @@
 									<td class="ml">${reply.reply_writer}</td>
 								</tr>
 								<tr>
-									<td class="text-muted">${reply.register_datetime}</td>
+									<td>${reply.register_datetime} <i class="fa fa-window-close fa" aria-hidden="true"></i></td>
 								</tr>
 							</table>
 					    </div>
 					    <div class="card-body list-group-item-action">
 							<p class="card-text">${reply.reply_content }</p>
+							<div>
+								<span class="badge badge-dark" style="cursor:hand;">답글</span>
+							</div>
 						</div>
 					</div>
 				</c:forEach>
