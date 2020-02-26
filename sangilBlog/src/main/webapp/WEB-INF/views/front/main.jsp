@@ -108,16 +108,16 @@
 						<colgroup>
 							<col width="1%">
 							<col width="2%">
-							<col width="40%">
+							<col width="*">
 							<col width="2%">
-							<col width="40%">
+							<col width="*">
 						</colgroup>
 			    		<tr>
-			    			<td rowspan="2" class="align-top"><i class="mt-3 fa fa-reply fa-2x fa-rotate-180" aria-hidden="true"></i></td>
-			    			<td><label for="replyId"><i class="fa fa-user-circle-o fa-2x"></i></label></td>
+			    			<td rowspan="2" class="align-top"><i class="mt-3 fa fa-reply fa fa-rotate-180" aria-hidden="true"></i></td>
+			    			<td class="align-middle"><i class="fa fa-user-circle-o fa"></i></td>
 			    			<td><input type="text" class="form-control" placeholder="Enter yourId" id="reply_writer_${list.boardId}" name="reply_writer">
-			    			<td><label for="replyPassword" class=""><i class="fa fa-unlock-alt fa-2x"></i></label></td>
-			    			<td><input type="password" class="form-control ml-2" placeholder="Enter password" id="reply_password_${list.boardId}" name="reply_password"></td>
+			    			<td class="align-middle"><i class="fa fa-unlock-alt fa"></i></td>
+			    			<td><input type="password" class="form-control" placeholder="Enter password" id="reply_password_${list.boardId}" name="reply_password"></td>
 			    		</tr>
 			    		<tr>
 			    			<td colspan="4">
