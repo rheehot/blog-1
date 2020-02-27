@@ -99,32 +99,12 @@
 					    </div>
 					    <div class="card-body list-group-item-action">
 							<p class="card-text">${reply.reply_content }</p>
-							<span class="badge badge-dark" style="cursor:pointer"><a>답글</a></span>
+							<span class="badge badge-dark" style="cursor:pointer"><a onClick="javascript:showReReplyArea(${reply.reply_id});">답글</a></span>
 						</div>
 					</div>
 					
-					<!-- table-borderless -->
-					<table class="table table-bordered mt-3">
-						<colgroup>
-							<col width="1%">
-							<col width="2%">
-							<col width="*">
-							<col width="2%">
-							<col width="*">
-						</colgroup>
-			    		<tr>
-			    			<td rowspan="2" class="align-top"><i class="mt-3 fa fa-reply fa fa-rotate-180" aria-hidden="true"></i></td>
-			    			<td class="align-middle"><i class="fa fa-user-circle-o fa"></i></td>
-			    			<td><input type="text" class="form-control" placeholder="Enter yourId" id="reply_writer_${list.boardId}" name="reply_writer">
-			    			<td class="align-middle"><i class="fa fa-unlock-alt fa"></i></td>
-			    			<td><input type="password" class="form-control" placeholder="Enter password" id="reply_password_${list.boardId}" name="reply_password"></td>
-			    		</tr>
-			    		<tr>
-			    			<td colspan="4">
-			    				<textarea class="form-control" id="" name="reply_content" rows="3"></textarea>
-			    			</td>
-			    		</tr>
-			    	</table>
+					<%--대댓글 작성 공간 --%>
+					<div id="reReply_${reply.reply_id}"></div>
 			    	
 				</c:forEach>
 			</div>
@@ -249,7 +229,44 @@ function clearAndSetReplyContent(reply, boardId){
 	});
 	
 	$("#replyContent_" +boardId).append(html);	
+}
 
+//대댓글 작성창 출력 뷰가 그립다
+function showReReplyArea(replayId){
+	if($("#reReplayTable" + replayId).length > 0){
+		$("#reReply_" + replayId).empty();
+	}else{
+		var html = "";
+		html = html
+		+ "<table class='table table-bordered mt-3' id=reReplayTable"+replayId+">"
+		+	"<colgroup>"
+		+		"<col width='1%'>"
+		+		"<col width='2%'>"
+		+		"<col width='*'>"
+		+		"<col width='2%'>"
+		+		"<col width='*'>"
+		+	"</colgroup>"
+		+	"<tr>"
+		+		"<td rowspan='3' class='align-top'><i class='mt-3 fa fa-reply fa fa-rotate-180' aria-hidden='true'></i></td>"
+		+		"<td class='align-middle'><i class='fa fa-user-circle-o fa'></i></td>"
+		+		"<td><input type='text' class='form-control' placeholder='Enter yourId' id='reply_writer_${list.boardId}' name='reply_writer'>"
+		+		"<td class='align-middle'><i class='fa fa-unlock-alt fa'></i></td>"
+		+		"<td><input type='password' class='form-control' placeholder='Enter password' id='reply_password_${list.boardId}' name='reply_password'></td>"
+		+	"</tr>"
+		+	"<tr>"
+		+		"<td colspan='4'>"
+		+			"<textarea class='form-control' id='' name='reply_content' rows='3'></textarea>"
+		+		"</td>"
+		+	"</tr>"
+		+	"<tr>"
+		+		"<td colspan='4'>"
+		+			"<button type='button' class='btn btn-dark'>post reply</button>"
+		+		"</td>"
+		+	"</tr>"
+		+	"</table>"
+		
+		$("#reReply_" + replayId).append(html);			
+	}
 }
 
 function addReply(boardId, depth){
