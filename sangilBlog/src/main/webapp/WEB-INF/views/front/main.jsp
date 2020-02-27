@@ -119,7 +119,7 @@
 		<div class="card-body">
  			<ul class="list-group list-group-flush">
 			    <li class="list-group-item">
-			    <form id = "boardReplyFrm">
+			    <form id = "boardReplyFrm_${list.boardId}">
 			    	<table>
 			    		<tr>
 			    			<td><label for="replyId"><i class="fa fa-user-circle-o fa-2x"></i></label></td>
@@ -224,8 +224,10 @@ function clearAndSetReplyContent(reply, boardId){
 		+	"</div>"
 		+	"<div class='card-body list-group-item-action'>"
 		+		"<p class='card-text'>"+item.reply_content+"</p>"
+		+"		<span class='badge badge-dark' style='cursor:pointer'><a onClick='javascript:showReReplyArea("+item.reply_id+")'>답글</a></span>"
 		+"	</div>"
-		+"</div>";
+		+"</div>"
+		+"<div id=reReply_"+item.reply_id+"></div>";
 	});
 	
 	$("#replyContent_" +boardId).append(html);	
@@ -269,10 +271,24 @@ function showReReplyArea(replayId){
 	}
 }
 
-function addReply(boardId, depth){
-	var param = $("#boardReplyFrm").serializeObject();
+function addReply(boardId, depth){	
+	var param = $("#boardReplyFrm_" + boardId).serializeObject();
 	param.board_id = boardId;
 	param.depth = depth;
+	
+	console.log(param);
+	if(param.reply_writer == ""){
+		alert("아이디를 입력하세요");
+		return;
+	}
+	if(param.reply_password == ""){
+		alert("암호를 입력하세요");
+		return;
+	}
+	if(param.reply_content == ""){
+		alert("댓글내용이 존재하지 않습니다");
+		return;
+	}
 	
 	$.ajax({
 		type: "POST",
