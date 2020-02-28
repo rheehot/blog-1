@@ -86,20 +86,20 @@
 				<c:if test="${fn:length(list.boardReplyEntity) > 0}"><hr/></c:if>
 				<c:forEach items="${list.boardReplyEntity}" var="reply">
 					<div class="card mt-2">
-						<div class="card-header">
+						<div class="card-header p-2">
 							<table>
-								<tr>
-									<td rowspan="2" class="pr-3"><i class="fa fa-user-o fa-2x"></i></td>
+								<tr class="align-middle">
+									<td rowspan="2" class="pr-2"><i class="fa fa-user-o fa-2x"></i></td>
 									<td class="ml">${reply.reply_writer}</td>
 								</tr>
 								<tr>
-									<td>${reply.register_datetime} <i class="fa fa-window-close fa" aria-hidden="true"></i></td>
+									<td><font size="2">${reply.register_datetime} <i class="fa fa-window-close fa" aria-hidden="true"></i></font></td>
 								</tr>
 							</table>
 					    </div>
 					    <div class="card-body list-group-item-action">
 							<p class="card-text">${reply.reply_content }</p>
-							<span class="badge badge-dark" style="cursor:pointer"><a onClick="javascript:showReReplyArea(${reply.reply_id});">답글</a></span>
+							<span class="badge badge-dark" style="cursor:pointer"><a onClick="javascript:showReReplyArea(${list.boardId},${reply.reply_id});">답글</a></span>
 						</div>
 					</div>
 					
@@ -208,23 +208,22 @@ function clearAndSetReplyContent(reply, boardId){
 		
 	reply.forEach(function (item, index, array) {
 	    console.log(item, index);
-	    
 	    html = html 
     	+"<div class='card mt-2'>"
     	+	"<div class='card-header'>"
     	+ 		"<table>"
     	+ 			"<tr>"
-		+				"<td rowspan='2' class='pr-3'><i class='fa fa-user-o fa-2x'></i></td>"
-		+					"<td class='ml'>"+ item.reply_writer +"</td>"
+		+				"<td rowspan='2' class='pr-2'><i class='fa fa-user-o fa-2x'></i></td>"
+		+				"<td class='ml'>"+ item.reply_writer +"</td>"
         +			"</tr>"
         +			"<tr>"
-		+				"<td class='text-muted'>"+item.register_datetime+"</td>"
+		+				"<td><font size='2'>"+item.register_datetime+" <i class='fa fa-window-close fa' aria-hidden='true'></i></font></td>"
 		+			"</tr>"
 		+		"</table>"
 		+	"</div>"
 		+	"<div class='card-body list-group-item-action'>"
 		+		"<p class='card-text'>"+item.reply_content+"</p>"
-		+"		<span class='badge badge-dark' style='cursor:pointer'><a onClick='javascript:showReReplyArea("+item.reply_id+")'>답글</a></span>"
+		+"		<span class='badge badge-dark' style='cursor:pointer'><a onClick='javascript:showReReplyArea("+boardId+","+item.reply_id+")'>답글</a></span>"
 		+"	</div>"
 		+"</div>"
 		+"<div id=reReply_"+item.reply_id+"></div>";
@@ -234,13 +233,13 @@ function clearAndSetReplyContent(reply, boardId){
 }
 
 //대댓글 작성창 출력 뷰가 그립다
-function showReReplyArea(replayId){
-	if($("#reReplayTable" + replayId).length > 0){
-		$("#reReply_" + replayId).empty();
+function showReReplyArea(boardId, replyId){
+	if($("#reReplayTable" + replyId).length > 0){
+		$("#reReply_" + replyId).empty();
 	}else{
 		var html = "";
 		html = html
-		+ "<table class='table table-bordered mt-3' id=reReplayTable"+replayId+">"
+		+ "<table class='table table-bordered mt-3' id=reReplayTable"+replyId+">"
 		+	"<colgroup>"
 		+		"<col width='1%'>"
 		+		"<col width='2%'>"
@@ -251,24 +250,61 @@ function showReReplyArea(replayId){
 		+	"<tr>"
 		+		"<td rowspan='3' class='align-top'><i class='mt-3 fa fa-reply fa fa-rotate-180' aria-hidden='true'></i></td>"
 		+		"<td class='align-middle'><i class='fa fa-user-circle-o fa'></i></td>"
-		+		"<td><input type='text' class='form-control' placeholder='Enter yourId' id='reply_writer_${list.boardId}' name='reply_writer'>"
+		+		"<td><input type='text' class='form-control' placeholder='Enter yourId' id='reReply_writer_"+replyId+"' name='reply_writer'>"
 		+		"<td class='align-middle'><i class='fa fa-unlock-alt fa'></i></td>"
-		+		"<td><input type='password' class='form-control' placeholder='Enter password' id='reply_password_${list.boardId}' name='reply_password'></td>"
+		+		"<td><input type='password' class='form-control' placeholder='Enter password' id='reReply_password_"+replyId+"' name='reply_password'></td>"
 		+	"</tr>"
 		+	"<tr>"
 		+		"<td colspan='4'>"
-		+			"<textarea class='form-control' id='' name='reply_content' rows='3'></textarea>"
+		+			"<textarea class='form-control' id='reReply_content_"+replyId+"' name='reply_content' rows='3'></textarea>"
 		+		"</td>"
 		+	"</tr>"
 		+	"<tr>"
 		+		"<td colspan='4'>"
-		+			"<button type='button' class='btn btn-dark'>post reply</button>"
+		+			"<button type='button' class='btn btn-dark' onClick='addReReply("+boardId+","+replyId+")'>post reply</button>"
 		+		"</td>"
 		+	"</tr>"
 		+	"</table>"
 		
-		$("#reReply_" + replayId).append(html);			
+		$("#reReply_" + replyId).append(html);		
+		$("#reReply_writer_" + replyId).focus();
 	}
+}
+
+//대댓글 작성 
+function addReReply(boardId, replyId){
+	param = {};
+	param.reply_writer = $("#reReply_writer_"+replyId).val();
+	param.reply_password = $("#reReply_password_"+replyId).val();
+	param.reply_content = $("#reReply_content_"+replyId).val();
+	param.parent_id = replyId;
+	param.board_id = boardId;
+	param.depth = 1;
+	console.log(param);
+	
+	if(param.reply_writer == ""){
+		alert("아이디를 입력하세요");
+		return;
+	}
+	if(param.reply_password == ""){
+		alert("암호를 입력하세요");
+		return;
+	}
+	if(param.reply_content == ""){
+		alert("댓글내용이 존재하지 않습니다");
+		return;
+	}
+	
+	$.ajax({
+		type: "POST",
+		url: '/addReply',
+		data: param,
+		success: function(msg) {
+			alert("성공");
+			$("#reReply_" + replyId).empty();
+		}
+  	});
+	
 }
 
 function addReply(boardId, depth){	
