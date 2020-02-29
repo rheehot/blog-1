@@ -351,7 +351,6 @@ function addReReply(boardId, replyId, parentId){
 	}
 	param.board_id = boardId;
 	param.depth = 1;
-	console.log(param);
 	
 	if(param.reply_writer == ""){
 		alert("아이디를 입력하세요");
@@ -383,7 +382,6 @@ function addReply(boardId, depth){
 	param.board_id = boardId;
 	param.depth = depth;
 	
-	console.log(param);
 	if(param.reply_writer == ""){
 		alert("아이디를 입력하세요");
 		return;
