@@ -85,23 +85,52 @@
 			<div id="replyContent_${list.boardId}">
 				<c:if test="${fn:length(list.boardReplyEntity) > 0}"><hr/></c:if>
 				<c:forEach items="${list.boardReplyEntity}" var="reply">
-					<div class="card mt-2">
-						<div class="card-header p-2">
-							<table>
-								<tr class="align-middle">
-									<td rowspan="2" class="pr-2"><i class="fa fa-user-o fa-2x"></i></td>
-									<td class="ml">${reply.reply_writer}</td>
-								</tr>
-								<tr>
-									<td><font size="2">${reply.register_datetime} <i class="fa fa-window-close fa" aria-hidden="true"></i></font></td>
-								</tr>
-							</table>
-					    </div>
-					    <div class="card-body list-group-item-action">
-							<p class="card-text">${reply.reply_content }</p>
-							<span class="badge badge-dark" style="cursor:pointer"><a onClick="javascript:showReReplyArea(${list.boardId},${reply.reply_id});">답글</a></span>
+					<%--메인 댓글 창--%>
+					<c:if test="${ reply.depth eq 0}">
+						<div class="card mt-2">
+							<div class="card-header p-2">
+								<table>
+									<tr class="align-middle">
+										<td rowspan="2" class="pr-2"><i class="fa fa-user-o fa-2x"></i></td>
+										<td class="ml">${reply.reply_writer}</td>
+									</tr>
+									<tr>
+										<td><font size="2">${reply.register_datetime} <i class="fa fa-window-close fa" aria-hidden="true"></i></font></td>
+									</tr>
+								</table>
+						    </div>
+						    <div class="card-body list-group-item-action">
+								<p class="card-text">${reply.reply_content }</p>
+								<span class="badge badge-dark" style="cursor:pointer"><a onClick="javascript:showReReplyArea(${list.boardId},${reply.reply_id});">답글</a></span>
+							</div>
 						</div>
-					</div>
+					</c:if>
+					
+					<%--자식 댓글 창 (대댓글)--%>
+					<c:if test="${ reply.depth ne 0}">
+						<div class="d-flex">
+							<div class="p-2"><i class='mt-3 fa fa-reply fa fa-rotate-180' aria-hidden='true'></i></div>
+							<div class="flex-fill">
+								<div class="card mt-2">
+									<div class="card-header">
+										<table>
+											<tr class="align-middle">
+												<td rowspan="2" class="pr-2"><i class="fa fa-user-o fa-2x"></i></td>
+												<td class="ml">${reply.reply_writer}</td>
+											</tr>
+											<tr>
+												<td><font size="2">${reply.register_datetime} <i class="fa fa-window-close fa" aria-hidden="true"></i></font></td>
+											</tr>
+										</table>
+									</div>
+									<div class="card-body list-group-item-action">
+										<p class="card-text">${reply.reply_content }</p>
+										<span class="badge badge-dark" style="cursor:pointer"><a onClick="javascript:showReReplyArea(${list.boardId},${reply.reply_id}, ${reply.parent_id});">답글</a></span>
+									</div>
+								</div>
+							</div>
+						</div>					
+					</c:if>
 					
 					<%--대댓글 작성 공간 --%>
 					<div id="reReply_${reply.reply_id}"></div>
@@ -208,32 +237,60 @@ function clearAndSetReplyContent(reply, boardId){
 		
 	reply.forEach(function (item, index, array) {
 	    console.log(item, index);
-	    html = html 
-    	+"<div class='card mt-2'>"
-    	+	"<div class='card-header'>"
-    	+ 		"<table>"
-    	+ 			"<tr>"
-		+				"<td rowspan='2' class='pr-2'><i class='fa fa-user-o fa-2x'></i></td>"
-		+				"<td class='ml'>"+ item.reply_writer +"</td>"
-        +			"</tr>"
-        +			"<tr>"
-		+				"<td><font size='2'>"+item.register_datetime+" <i class='fa fa-window-close fa' aria-hidden='true'></i></font></td>"
-		+			"</tr>"
-		+		"</table>"
-		+	"</div>"
-		+	"<div class='card-body list-group-item-action'>"
-		+		"<p class='card-text'>"+item.reply_content+"</p>"
-		+"		<span class='badge badge-dark' style='cursor:pointer'><a onClick='javascript:showReReplyArea("+boardId+","+item.reply_id+")'>답글</a></span>"
-		+"	</div>"
-		+"</div>"
-		+"<div id=reReply_"+item.reply_id+"></div>";
+	    if(item.depth == 0){
+		    html = html 
+	    	+"<div class='card mt-2'>"
+	    	+	"<div class='card-header'>"
+	    	+ 		"<table>"
+	    	+ 			"<tr>"
+			+				"<td rowspan='2' class='pr-2'><i class='fa fa-user-o fa-2x'></i></td>"
+			+				"<td class='ml'>"+ item.reply_writer +"</td>"
+	        +			"</tr>"
+	        +			"<tr>"
+			+				"<td><font size='2'>"+item.register_datetime+" <i class='fa fa-window-close fa' aria-hidden='true'></i></font></td>"
+			+			"</tr>"
+			+		"</table>"
+			+	"</div>"
+			+	"<div class='card-body list-group-item-action'>"
+			+		"<p class='card-text'>"+item.reply_content+"</p>"
+			+"		<span class='badge badge-dark' style='cursor:pointer'><a onClick='javascript:showReReplyArea("+boardId+","+item.reply_id+")'>답글</a></span>"
+			+"	</div>"
+			+"</div>"
+			+"<div id=reReply_"+item.reply_id+"></div>";
+	    }else{
+	    	html = html
+		    +	"<div class='d-flex'>"
+			+    	"<div class='p-2'><i class='mt-3 fa fa-reply fa fa-rotate-180' aria-hidden='true'></i></div>"
+			+    	"<div class='flex-fill'>"
+			+    		"<div class='card mt-2'>"
+			+    			"<div class='card-header'>"
+			+    				"<table>"
+			+    					"<tr class='align-middle'>"
+			+    						"<td rowspan='2' class='pr-2'><i class='fa fa-user-o fa-2x'></i></td>"
+			+    						"<td class='ml'>"+item.reply_writer+"</td>"
+			+    					"</tr>"
+			+    					"<tr>"
+			+    						"<td><font size='2'>"+item.register_datetime+" <i class='fa fa-window-close fa' aria-hidden='true'></i></font></td>"
+			+    					"</tr>"
+			+    				"</table>"
+			+    			"</div>"
+			+    			"<div class='card-body list-group-item-action'>"
+			+    				"<p class='card-text'>"+item.reply_content+"</p>"
+			+    				"<span class='badge badge-dark' style='cursor:pointer'><a onClick='javascript:showReReplyArea("+boardId+","+item.reply_id+","+item.parent_id+")'>답글</a></span>"
+			+    			"</div>"
+			+    		"</div>"
+			+    	"</div>"
+			+    "</div>"
+			+"<div id=reReply_"+item.reply_id+"></div>";
+	    	
+	    }
 	});
 	
 	$("#replyContent_" +boardId).append(html);	
 }
 
 //대댓글 작성창 출력 뷰가 그립다
-function showReReplyArea(boardId, replyId){
+function showReReplyArea(boardId, replyId, parentId){
 	if($("#reReplayTable" + replyId).length > 0){
 		$("#reReply_" + replyId).empty();
 	}else{
@@ -260,11 +317,20 @@ function showReReplyArea(boardId, replyId){
 		+		"</td>"
 		+	"</tr>"
 		+	"<tr>"
-		+		"<td colspan='4'>"
-		+			"<button type='button' class='btn btn-dark' onClick='addReReply("+boardId+","+replyId+")'>post reply</button>"
+		+		"<td colspan='4'>";
+
+		if(parentId != null && parentId != '' && parentId != 'undefined'){
+			html = html  
+				+ "<button type='button' class='btn btn-dark' onClick='addReReply("+boardId+","+replyId+", "+parentId+")'>post reply</button>";
+		} 
+		else{
+			html = html  
+				+ "<button type='button' class='btn btn-dark' onClick='addReReply("+boardId+","+replyId+")'>post reply</button>";
+		}
+		html = html  
 		+		"</td>"
 		+	"</tr>"
-		+	"</table>"
+		+	"</table>";
 		
 		$("#reReply_" + replyId).append(html);		
 		$("#reReply_writer_" + replyId).focus();
@@ -272,12 +338,17 @@ function showReReplyArea(boardId, replyId){
 }
 
 //대댓글 작성 
-function addReReply(boardId, replyId){
+function addReReply(boardId, replyId, parentId){
 	param = {};
 	param.reply_writer = $("#reReply_writer_"+replyId).val();
 	param.reply_password = $("#reReply_password_"+replyId).val();
 	param.reply_content = $("#reReply_content_"+replyId).val();
-	param.parent_id = replyId;
+	
+	if(parentId != null && parentId != '' && parentId != 'undefined'){
+		param.parent_id = parentId;
+	}else{
+		param.parent_id = replyId;
+	}
 	param.board_id = boardId;
 	param.depth = 1;
 	console.log(param);
@@ -300,8 +371,8 @@ function addReReply(boardId, replyId){
 		url: '/addReply',
 		data: param,
 		success: function(msg) {
-			alert("성공");
 			$("#reReply_" + replyId).empty();
+			getBoardReplyList(boardId);
 		}
   	});
 	
