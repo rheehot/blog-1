@@ -169,7 +169,12 @@
             board_id,
             parent_id,
             depth,
-            reply_content,
+            CASE
+				WHEN del_yn = 'Y'
+				THEN '삭제된 댓글입니다.'
+				ELSE reply_content 
+			END reply_content,
+			del_yn,
             reply_writer,
             reply_password,
             DATE_FORMAT(register_datetime, '%Y-%m-%d %H:%i:%s') register_datetime
@@ -179,6 +184,13 @@
             board_id = #{boardId, jdbcType=INTEGER}
         order by reply_id asc
     </select>
+    
+   <!-- deleteBoardReplyAjax -->
+   <update id="deleteBoardReply">
+   		UPDATE BOARD_REPLY SET del_yn = 'Y' 
+   		WHERE reply_id = #{reply_id}
+   			AND reply_password = #{reply_password}
+   </update>
     
 </mapper>
 

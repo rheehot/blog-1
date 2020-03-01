@@ -27,8 +27,8 @@ public interface BoardService {
 	public abstract Page<BoardEntity> getMainArticleList(Pageable pageable);
 	
 	public abstract Map<String, Object> getAdminArticleList(boardVo vo);
-	
 	public abstract BoardEntity getArticleDetail(int boardId);
+	
 	
 	/**
 	 * main page호출시 데이터를 가져옴.
@@ -44,10 +44,18 @@ public interface BoardService {
 	 */
 	public abstract Boolean addReply(BoardReplyEntity boardReply);
 	
+	
 	/**
 	 * 댓글 저장
 	 * @param boardId
 	 * @return
 	 */
 	public abstract List<BoardReplyEntity> getBoardReplyList(BoardEntity board);
+
+	/**
+	 * 댓글 삭제
+	 * @param boardId
+	 * @return
+	 */
+	public abstract Boolean deleteBoardReply(BoardReplyEntity boardReply);
 }

@@ -43,6 +43,12 @@ public interface BoardDao {
 	public void addReply(BoardReplyEntity boardReply);
 	
 	/**
+	 * deleteBoardReplyAjax
+	 * @param boardReply
+	 */
+	public int deleteBoardReply(BoardReplyEntity boardReply);
+	
+	/**
 	 * getReplyList
 	 * @param board
 	 * @return

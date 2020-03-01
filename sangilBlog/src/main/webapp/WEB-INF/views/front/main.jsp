@@ -95,11 +95,16 @@
 										<td class="ml">${reply.reply_writer}</td>
 									</tr>
 									<tr>
-										<td><font size="2">${reply.register_datetime} <i class="fa fa-window-close fa" aria-hidden="true"></i></font></td>
+										<td>
+											<font size="2">${reply.register_datetime}</font> 
+											<c:if test="${reply.del_yn eq 'N' }">
+												<span style="cursor:pointer" onClick="javascript:showDeleteReplyModal(${list.boardId}, ${reply.reply_id});"><i class="fa fa-window-close fa" aria-hidden="true"></i></span>
+											</c:if>
+										</td>
 									</tr>
 								</table>
 						    </div>
-						    <div class="card-body list-group-item-action">
+						    <div class="card-body">
 								<p class="card-text">${reply.reply_content }</p>
 								<span class="badge badge-dark" style="cursor:pointer"><a onClick="javascript:showReReplyArea(${list.boardId},${reply.reply_id});">답글</a></span>
 							</div>
@@ -119,11 +124,16 @@
 												<td class="ml">${reply.reply_writer}</td>
 											</tr>
 											<tr>
-												<td><font size="2">${reply.register_datetime} <i class="fa fa-window-close fa" aria-hidden="true"></i></font></td>
+												<td>
+													<font size="2">${reply.register_datetime}</font> 
+													<c:if test="${reply.del_yn eq 'N' }">
+														<span style="cursor:pointer" onClick="javascript:showDeleteReplyModal(${list.boardId}, ${reply.reply_id});"><i class="fa fa-window-close fa" aria-hidden="true"></i></span>
+													</c:if>
+												</td>
 											</tr>
 										</table>
 									</div>
-									<div class="card-body list-group-item-action">
+									<div class="card-body">
 										<p class="card-text">${reply.reply_content }</p>
 										<span class="badge badge-dark" style="cursor:pointer"><a onClick="javascript:showReReplyArea(${list.boardId},${reply.reply_id}, ${reply.parent_id});">답글</a></span>
 									</div>
@@ -191,6 +201,28 @@
 </c:if>
 
 
+<!-- 댓글 삭제 Modal -->
+<div class="modal fade" id="deleteReplyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteReplyModalLabel">암호를 입력하여 주세요</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      
+      <div class="modal-body">
+        <input class="w-100" type="password" id="deleteReplyPassword">
+      </div>
+      
+      <div class="modal-footer" id="deleteModalArea">
+        <button type="button" class="btn btn-primary">삭제</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div id="goBottom"></div>
 
 <script type="text/javascript">
@@ -214,6 +246,43 @@ function simpleLightbox(imageUrl, bgColor, maxWidth){
     window.open('', 'simpleLightbox').document.write('<html><head><meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, width=device-width" /></head><body style="margin:0; background:'+bgColor+';height:100%;" onclick="javascript:window.close(\'simpleLightbox\');"><table border="0" width="100%" height="100%"><tr><td valign="middle" align="center"><img style="position:relative;z-index:2;width:100%;max-width:'+maxWidth+';" src="'+imageUrl+'"/></td></tr></table></body></html>');
 }
 
+function showDeleteReplyModal(boardId, replyId){
+	$("#deleteModalArea").empty();
+	$('#deleteReplyPassword').val('');
+  	$("#deleteModalArea").append("<button type='button' class='btn btn-primary' onClick='javascript:deleteReply("+boardId+","+replyId+")'>삭제</button>");
+	$('#deleteReplyModal').modal('toggle');
+}
+
+//댓글을 삭제한다
+function deleteReply(boardId, replyId){
+	var param = {};
+	param.reply_id = replyId;
+	param.board_id = boardId;
+	param.reply_password = $("#deleteReplyPassword").val();;
+
+	if(param.reply_password == ""){
+		alert("암호를 입력하여 주십시오");
+		return;
+	}
+	
+	$.ajax({
+		type: "POST",
+		url: '/deleteBoardReplyAjax',
+		data: param,
+		success: function(result) {
+			if(result){
+				$('#deleteReplyModal').modal('toggle');
+				$('#deleteReplyPassword').val('');
+				getBoardReplyList(boardId);				
+			}else{
+				alert("암호가 일치하지 않습니다");
+			}
+		},
+		error:function(request,status,error){
+		    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		}
+  	});
+}
 
 //게시판 댓글 리스트를 가져온다.
 function getBoardReplyList(boardId){
@@ -237,21 +306,26 @@ function clearAndSetReplyContent(reply, boardId){
 		
 	reply.forEach(function (item, index, array) {
 	    console.log(item, index);
+	    
 	    if(item.depth == 0){
 		    html = html 
 	    	+"<div class='card mt-2'>"
-	    	+	"<div class='card-header'>"
+	    	+	"<div class='card-header p-2'>"
 	    	+ 		"<table>"
-	    	+ 			"<tr>"
+	    	+ 			"<tr class='align-middle'>"
 			+				"<td rowspan='2' class='pr-2'><i class='fa fa-user-o fa-2x'></i></td>"
 			+				"<td class='ml'>"+ item.reply_writer +"</td>"
 	        +			"</tr>"
 	        +			"<tr>"
-			+				"<td><font size='2'>"+item.register_datetime+" <i class='fa fa-window-close fa' aria-hidden='true'></i></font></td>"
+			+				"<td>"
+	        +					"<font size='2'>"+item.register_datetime+" </font>"; 
+	        if(item.del_yn == 'N') html = html + "<span style='cursor:pointer' onClick='javascript:showDeleteReplyModal("+boardId+","+item.reply_id+");'><i class='fa fa-window-close fa' aria-hidden='true'></i></span>";
+	        html = html 
+	        +				"</td>"
 			+			"</tr>"
 			+		"</table>"
 			+	"</div>"
-			+	"<div class='card-body list-group-item-action'>"
+			+	"<div class='card-body'>"
 			+		"<p class='card-text'>"+item.reply_content+"</p>"
 			+"		<span class='badge badge-dark' style='cursor:pointer'><a onClick='javascript:showReReplyArea("+boardId+","+item.reply_id+")'>답글</a></span>"
 			+"	</div>"
@@ -270,11 +344,15 @@ function clearAndSetReplyContent(reply, boardId){
 			+    						"<td class='ml'>"+item.reply_writer+"</td>"
 			+    					"</tr>"
 			+    					"<tr>"
-			+    						"<td><font size='2'>"+item.register_datetime+" <i class='fa fa-window-close fa' aria-hidden='true'></i></font></td>"
+			+							"<td>"
+	        +								"<font size='2'>"+item.register_datetime+" </font>"; 
+	        if(item.del_yn == 'N') html = html + "<span style='cursor:pointer' onClick='javascript:showDeleteReplyModal("+boardId+","+item.reply_id+");'><i class='fa fa-window-close fa' aria-hidden='true'></i></span>";
+	        html = html 
+	        +							"</td>"
 			+    					"</tr>"
 			+    				"</table>"
 			+    			"</div>"
-			+    			"<div class='card-body list-group-item-action'>"
+			+    			"<div class='card-body'>"
 			+    				"<p class='card-text'>"+item.reply_content+"</p>"
 			+    				"<span class='badge badge-dark' style='cursor:pointer'><a onClick='javascript:showReReplyArea("+boardId+","+item.reply_id+","+item.parent_id+")'>답글</a></span>"
 			+    			"</div>"

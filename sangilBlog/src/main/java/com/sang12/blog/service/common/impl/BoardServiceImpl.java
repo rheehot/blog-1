@@ -116,7 +116,6 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public List<BoardReplyEntity> getBoardReplyList(BoardEntity board) {
-		// TODO Auto-generated method stub
 		return sortReplyList(boardDao.getReplyList(board));
 	}
 	
@@ -154,4 +153,19 @@ public class BoardServiceImpl implements BoardService {
        //정리한 list return
        return newBoardReplyList;
 	 }
+
+	@Override
+	public Boolean deleteBoardReply(BoardReplyEntity boardReply) {
+		try {
+			int count = boardDao.deleteBoardReply(boardReply);
+			if(count == 1) {
+				return true;
+			}else {
+				return false;
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 }

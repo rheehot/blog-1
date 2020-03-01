@@ -80,4 +80,16 @@ public class FrontBoardController {
 		boardReplyList = boardService.getBoardReplyList(board);
 		return boardReplyList;
 	}
+
+	
+	/**
+	 * 댓글 삭제
+	 * @param category
+	 * @return
+	 */
+	@PostMapping("/deleteBoardReplyAjax")
+	@ResponseBody
+	public Boolean deleteBoardReplyAjax(BoardReplyEntity boardReply){
+		return boardService.deleteBoardReply(boardReply);
+	}
 }

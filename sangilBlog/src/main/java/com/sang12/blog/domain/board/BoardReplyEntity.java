@@ -1,6 +1,8 @@
 package com.sang12.blog.domain.board;
 
 
+import java.io.Serializable;
+
 import com.sang12.blog.utils.SecurityUtil;
 
 import lombok.Data;
@@ -12,7 +14,12 @@ import lombok.Data;
  *
  */
 @Data
-public class BoardReplyEntity {
+public class BoardReplyEntity implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3794846291912322914L;
+	
 	private String reply_id;
     private String board_id;
     private String parent_id;
@@ -21,14 +28,15 @@ public class BoardReplyEntity {
     private String reply_writer;
     private String reply_password;
     private String register_datetime;
+    private String del_yn;
     
     public String getReply_password() {
+    	System.out.println("@@@@@@" + this.reply_password);
     	try {
-			return SecurityUtil.getEncSHA256(reply_password);
+			return SecurityUtil.getEncSHA256(this.reply_password);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			return this.reply_password;
 		}
     }
-    
 }
