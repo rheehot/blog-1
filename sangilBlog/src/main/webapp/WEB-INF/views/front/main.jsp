@@ -135,7 +135,9 @@
 									</div>
 									<div class="card-body">
 										<p class="card-text">${reply.reply_content }</p>
-										<span class="badge badge-dark" style="cursor:pointer"><a onClick="javascript:showReReplyArea(${list.boardId},${reply.reply_id}, ${reply.parent_id});">답글</a></span>
+										<c:if test="${reply.del_yn eq 'N' }">
+											<span class="badge badge-dark" style="cursor:pointer"><a onClick="javascript:showReReplyArea(${list.boardId},${reply.reply_id}, ${reply.parent_id});">답글</a></span>
+										</c:if>
 									</div>
 								</div>
 							</div>
@@ -161,9 +163,9 @@
 			    <form id = "boardReplyFrm_${list.boardId}">
 			    	<table>
 			    		<tr>
-			    			<td><label for="replyId"><i class="fa fa-user-circle-o fa-2x"></i></label></td>
+			    			<td class="align-middle"><label for="replyId"><i class="fa fa-user-circle-o fa"></i></label></td>
 			    			<td><input type="text" class="form-control ml-2" placeholder="Enter yourId" id="reply_writer_${list.boardId}" name="reply_writer">
-			    			<td><label for="replyPassword" class="ml-4"><i class="fa fa-unlock-alt fa-2x"></i></label></td>
+			    			<td class="align-middle"><label for="replyPassword" class="ml-4"><i class="fa fa-unlock-alt fa"></i></label></td>
 			    			<td><input type="password" class="form-control ml-2" placeholder="Enter password" id="reply_password_${list.boardId}" name="reply_password"></td>
 			    		</tr>
 			    	</table>
@@ -326,8 +328,10 @@ function clearAndSetReplyContent(reply, boardId){
 			+		"</table>"
 			+	"</div>"
 			+	"<div class='card-body'>"
-			+		"<p class='card-text'>"+item.reply_content+"</p>"
-			+"		<span class='badge badge-dark' style='cursor:pointer'><a onClick='javascript:showReReplyArea("+boardId+","+item.reply_id+")'>답글</a></span>"
+			+		"<p class='card-text'>"+item.reply_content+"</p>";
+			//if(item.del_yn == 'N') html = html + "<span class='badge badge-dark' style='cursor:pointer'><a onClick='javascript:showReReplyArea("+boardId+","+item.reply_id+")'>답글</a></span>";
+			html = html
+			+"	<span class='badge badge-dark' style='cursor:pointer'><a onClick='javascript:showReReplyArea("+boardId+","+item.reply_id+")'>답글</a></span>"
 			+"	</div>"
 			+"</div>"
 			+"<div id=reReply_"+item.reply_id+"></div>";
@@ -354,7 +358,8 @@ function clearAndSetReplyContent(reply, boardId){
 			+    			"</div>"
 			+    			"<div class='card-body'>"
 			+    				"<p class='card-text'>"+item.reply_content+"</p>"
-			+    				"<span class='badge badge-dark' style='cursor:pointer'><a onClick='javascript:showReReplyArea("+boardId+","+item.reply_id+","+item.parent_id+")'>답글</a></span>"
+			if(item.del_yn == 'N') html = html + "<span class='badge badge-dark' style='cursor:pointer'><a onClick='javascript:showReReplyArea("+boardId+","+item.reply_id+","+item.parent_id+")'>답글</a></span>";
+			html = html
 			+    			"</div>"
 			+    		"</div>"
 			+    	"</div>"
@@ -396,7 +401,6 @@ function showReReplyArea(boardId, replyId, parentId){
 		+	"</tr>"
 		+	"<tr>"
 		+		"<td colspan='4'>";
-
 		if(parentId != null && parentId != '' && parentId != 'undefined'){
 			html = html  
 				+ "<button type='button' class='btn btn-dark' onClick='addReReply("+boardId+","+replyId+", "+parentId+")'>post reply</button>";
