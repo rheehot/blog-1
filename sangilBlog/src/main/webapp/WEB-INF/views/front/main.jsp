@@ -454,6 +454,7 @@ function addReReply(boardId, replyId, parentId){
 		success: function(msg) {
 			$("#reReply_" + replyId).empty();
 			getBoardReplyList(boardId);
+			mailSend(boardId, param.reply_content);
 		}
   	});
 	
@@ -483,9 +484,24 @@ function addReply(boardId, depth){
 		data: param,
 		success: function(msg) {
 			getBoardReplyList(boardId);
+			mailSend(boardId, param.reply_content);
 			$("#reply_writer_" + boardId).val("");
 			$("#reply_password_" + boardId).val("");
 			$("#reply_content_" + boardId).val("");
+		}
+  	});
+}
+
+function mailSend(board_id, reply_content){
+	var param = {};
+	param.board_id = board_id;
+	param.reply_content = reply_content;
+	
+	$.ajax({
+		type: "POST",
+		url: '/sendReplyMail',
+		data: param,
+		success: function(msg) {
 		}
   	});
 }

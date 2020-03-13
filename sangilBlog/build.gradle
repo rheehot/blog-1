@@ -61,7 +61,10 @@ dependencies {
 	
 	// https://mvnrepository.com/artifact/com.rometools/rome
 	compile group: 'com.rometools', name: 'rome', version: '1.11.0'
-
+	
+	// https://mvnrepository.com/artifact/javax.mail/javax.mail-api
+	compile group: 'javax.mail', name: 'mail', version: '1.4.7'
+	
 
 	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
 	testCompile('org.springframework.boot:spring-boot-starter-test')

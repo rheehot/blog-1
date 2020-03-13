@@ -5,10 +5,21 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import com.sang12.blog.domain.board.BoardEntity;
@@ -42,6 +53,12 @@ public class BoardServiceImpl implements BoardService {
 	
 	@Autowired
 	private CategoryDao categoryDao;
+	
+	@Value("${security.mail.id}")
+	String mailId;
+	
+	@Value("${security.mail.pw}")
+	String mailPw;
 	
 	@Override
 	public void articleSave(BoardEntity board) {
@@ -112,6 +129,41 @@ public class BoardServiceImpl implements BoardService {
 	public Boolean addReply(BoardReplyEntity boardReply) {
 		boardDao.addReply(boardReply);
 		return true;
+	}
+	
+	@Async
+	public void sendReplyMail(BoardReplyEntity boardReply) {
+		if(!"".equals(mailId)) {
+			Properties props = System.getProperties();
+			props.put("mail.smtp.host", "smtp.naver.com");
+			props.put("mail.smtp.port", "25");
+			props.put("defaultEncoding", "utf-8");
+			props.put("mail.smtp.auth", "true");
+			
+			System.out.println("매일 보내기 " + mailId + mailPw);
+			
+			try {
+				String sender = mailId + "@naver.com"; 
+				String subject = "[블로그 댓글] 게시글 번호: " + boardReply.getBoard_id(); 
+				String body = "http://sang12.co.kr/" + boardReply.getBoard_id() + "\n" +boardReply.getReply_content();
+				
+				Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
+					protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
+						return new javax.mail.PasswordAuthentication(mailId, mailPw);
+					}
+				});
+				
+				session.setDebug(false); //Debug 모드 설정.
+				Message mimeMessage = new MimeMessage(session);
+				mimeMessage.setFrom(new InternetAddress(sender)); 
+				mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress("sang12@kakao.com") ); //수신자 셋팅
+				mimeMessage.setSubject(subject); //제목 세팅
+				mimeMessage.setText(body); //본문 세팅
+				Transport.send(mimeMessage);
+			} catch (Exception e) {
+				System.out.println("메일보내기 오류 : "+ e.getMessage());
+			}
+		}
 	}
 
 	@Override

@@ -67,6 +67,18 @@ public class FrontBoardController {
 		return true;
 	}
 	
+	/**
+	 * 댓글 저장
+	 * @param category
+	 * @return
+	 */
+	@PostMapping("/sendReplyMail")
+	@ResponseBody
+	public Boolean sendReplyMail(BoardReplyEntity boardReply){
+		boardService.sendReplyMail(boardReply);
+		return true;
+	}
+	
 	
 	/**
 	 * 

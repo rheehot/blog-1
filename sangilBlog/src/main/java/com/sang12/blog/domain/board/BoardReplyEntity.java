@@ -31,9 +31,12 @@ public class BoardReplyEntity implements Serializable{
     private String del_yn;
     
     public String getReply_password() {
-    	System.out.println("@@@@@@" + this.reply_password);
     	try {
-			return SecurityUtil.getEncSHA256(this.reply_password);
+    		if(this.reply_password != null) {
+    			return SecurityUtil.getEncSHA256(this.reply_password);
+    		}else {
+    			return this.reply_password;
+    		}
 		} catch (Exception e) {
 			e.printStackTrace();
 			return this.reply_password;

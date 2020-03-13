@@ -58,4 +58,6 @@ public interface BoardService {
 	 * @return
 	 */
 	public abstract Boolean deleteBoardReply(BoardReplyEntity boardReply);
+
+	public abstract void sendReplyMail(BoardReplyEntity boardReply);
 }
