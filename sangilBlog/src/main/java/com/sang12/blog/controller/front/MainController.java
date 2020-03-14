@@ -100,6 +100,12 @@ public class MainController {
 	    return content;
 	}
 	
+	@RequestMapping(value = "/.well-known/acme-challenge/sbFxajVn1v5-Ke70HOq1arrboQxrGMErQvh0Q45va9g")
+	@ResponseBody
+	public String applyHttps(HttpServletResponse response) {
+		return "sbFxajVn1v5-Ke70HOq1arrboQxrGMErQvh0Q45va9g.OzhoVkYUtTfBlqw89G_5QALG1PnRmmHHz-_k9lMZ0nw";
+	}
+	
 	
 	@RequestMapping("/search/{keyword}")
 	public ModelAndView search(@PathVariable String keyword){
