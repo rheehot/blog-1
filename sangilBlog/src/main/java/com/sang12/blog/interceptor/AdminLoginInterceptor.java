@@ -31,7 +31,7 @@ public class AdminLoginInterceptor extends HandlerInterceptorAdapter{
 				return false;
 			}
 		}else {
-			logger.info("login::false");
+			logger.info("login::false session is null");
 			response.sendRedirect("/md/login");
 			return false;
 		}
